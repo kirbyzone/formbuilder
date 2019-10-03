@@ -1,14 +1,21 @@
 {
-    "name": "getkirby/pluginkit",
-    "description": "Kirby Example Plugin",
+    "name": "cre8ivclick/formbuilder",
+    "description": "Cre8iv Click's Form Builder for Kirby 3",
     "type": "kirby-plugin",
     "license": "MIT",
+    "homepage": "https://gitlab.com/cre8ivclick/formbuilder",
     "authors": [
         {
-            "name": "Your Name",
-            "email": "you@example.com"
+            "name": "Cre8iv Click",
+            "email": "hello@cre8iv.click",
+            "homepage": "https://cre8iv.click"
         }
     ],
+    "support": {
+        "source": "https://gitlab.com/cre8ivclick/formbuilder",
+        "issues": "https://gitlab.com/cre8ivclick/formbuilder/issues",
+        "wiki": "https://gitlab.com/cre8ivclick/formbuilder/wikis/home"
+    },
     "require": {
         "getkirby/composer-installer": "^1.1"
     }
