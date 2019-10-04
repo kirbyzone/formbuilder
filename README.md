@@ -1,62 +1,18 @@
-# Kirby Pluginkit: Example plugin for Kirby
+# Cre8iv Click's FormBuilder
 
-> Variant "Basic setup"
+Forms are often a pain to implement. Unfortunately, many sites need them, so we at [Cre8iv Click](https://cre8iv.click) decided to try and create a Kirby plugin to make dealing with forms easier. The FormBuilder plugin tries to help by doing 3 things:
 
-This is a boilerplate for a Kirby plugin that can be installed via all three [supported installation methods](https://getkirby.com/docs/guide/plugins/plugin-setup-basic#the-three-plugin-installation-methods).
+### 1. Easy, Customised Form Creation in The Panel
+The plugin provides a pre-made interface that allows the end-user to create and configure their custom form directly in the Panel. This allows the creation of many different types of forms - from standard 'Contact Us', through to long questionnaires.
 
-You can find a list of Pluginkit variants on the [`master` branch](https://github.com/getkirby/pluginkit/tree/master).
+### 2. Auto-creation of Form HTML in Templates
+FormBuilder can generate the form's HTML code automatically, injecting it into your template or snippet with a single line of code.
 
-****
+### 3. Built-in Form Processing
+A big part of handling forms is processing the submitted responses. FormBuilder provides ready-made functions to submit responses via email, and to display received responses in the Kirby Panel, too.
 
-## How to use the Pluginkit
-
-1. Fork this repository
-2. Change the plugin name and description in the `composer.json`
-3. Change the plugin name in the `index.php`
-4. Change the license if you don't want to publish under MIT
-5. Add your plugin code to the `index.php`
-6. Update this `README` with instructions for your plugin
-
-We have a tutorial on how to build your own plugin based on the Pluginkit [in the Kirby documentation](https://getkirby.com/docs/guide/plugins/plugin-setup-basic).
-
-What follows is an example README for your plugin.
-
-****
-
-## Installation
-
-### Download
-
-Download and copy this repository to `/site/plugins/{{ plugin-name }}`.
-
-### Git submodule
-
-```
-git submodule add https://github.com/{{ your-name }}/{{ plugin-name }}.git site/plugins/{{ plugin-name }}
-```
-
-### Composer
-
-```
-composer require {{ your-name }}/{{ plugin-name }}
-```
-
-## Setup
-
-*Additional instructions on how to configure the plugin (e.g. blueprint setup, config options, etc.)*
-
-## Options
-
-*Document the options and APIs that this plugin offers*
-
-## Development
-
-*Add instructions on how to help working on the plugin (e.g. npm setup, Composer dev dependencies, etc.)*
+## Installation & User Guide
+For instructions on how to install FormBuilder, and how to use it in your Kirby site, please refer to the **[Wiki](https://gitlab.com/cre8ivclick/formbuilder/wikis/home)**.
 
 ## License
-
-MIT
-
-## Credits
-
-- [Your Name](https://github.com/ghost)
+Cre8iv Click's FormBuider is released under the MIT License - please see the included 'license' file for details.
