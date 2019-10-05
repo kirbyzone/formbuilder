@@ -1,0 +1,334 @@
+type: group
+fields:
+  form_show_settings:
+    type: toggle
+    label: Form Settings
+    translate: false
+    default: true
+    text:
+      - hidden
+      - showing
+    width: 1/3
+  form_id:
+    type: text
+    label: Form ID
+    counter: false
+    converter: slug
+    translate: false
+    spellcheck: false
+    placeholder: my-form
+    before: "#"
+    width: 1/3
+    help: A <strong>unique ID</strong> for your form - use lowercase letters only, and no spaces.
+  form_class:
+    type: text
+    label: Form Class
+    counter: false
+    converter: slug
+    translate: false
+    spellcheck: false
+    placeholder: form
+    before: "."
+    width: 1/3
+    help: An optional CSS class to be added to the &lt;form&gt; element.
+
+  form_fields:
+    type: structure
+    label: Form Fields
+    sortable: true
+    empty: No form fields defined yet.
+    fields:
+      form_field_id:
+        type: text
+        label: Field ID
+        counter: false
+        converter: slug
+        translate: false
+        spellcheck: false
+        before: "#"
+        width: 1/2
+        help: a <strong>unique ID</strong> for your field.
+      form_field_class:
+        type: text
+        label: Field Class
+        counter: false
+        translate: false
+        spellcheck: false
+        before: "."
+        width: 1/2
+        help: an optional CSS class to be added to the field's enclosing &lt;div&gt; element.
+      form_field_type:
+        type: select
+        label: Field Type
+        options:
+          text: Single-Line Text Field
+          textarea: Multi-Line Text Field
+          select: Select Menu
+          checkbox: Checkbox
+          radio: Radio Button
+          email: Email Address Field
+          tel: Telephone Number Field\
+          password: Password Field
+          date: Date Field
+          time: Time Field
+          datetime-local: Combined Date & Time Field
+          url: URL Field
+          hidden: Hidden Field
+        width: 1/2
+        default: text
+        required: true
+      # ===============================================
+      # HIDDEN FIELD OPTIONS
+      # ===============================================
+      form_field_hidden_value:
+        type: text
+        label: Field Value
+        counter: false
+        spellcheck: false
+        width: 1/2
+        when:
+          form_field_type: hidden
+      # ===============================================
+      # EMAIL FIELD OPTIONS
+      # ===============================================
+      form_field_email_req:
+        type: toggle
+        label: ""
+        translate: false
+        default: false
+        text:
+          - not required
+          - required
+        width: 1/2
+        when:
+          form_field_type: email
+      form_field_email_label:
+        type: text
+        label: Field Label
+        counter: false
+        width: 1/2
+        when:
+          form_field_type: email
+      form_field_email_placeholder:
+        type: text
+        label: Placeholder Text
+        counter: false
+        width: 1/2
+        when:
+          form_field_type: email
+      form_field_email_min:
+        type: number
+        label: Min Length
+        placeholder: 3
+        min: 0
+        width: 1/4
+        translate: false
+        when:
+          form_field_type: email
+      form_field_email_max:
+        type: number
+        label: Max Length
+        placeholder: 100
+        min: 0
+        width: 1/4
+        translate: false
+        when:
+          form_field_type: email
+      form_field_email_pattern:
+        type: text
+        label: Validation Regex Pattern
+        counter: false
+        spellcheck: false
+        translate: false
+        placeholder: "[0-9a-z._]+@example.com"
+        width: 1/2
+        when:
+          form_field_type: email
+      # ===============================================
+      # TEXT FIELD OPTIONS
+      # ===============================================
+      form_field_text_req:
+        type: toggle
+        label: ""
+        translate: false
+        default: false
+        text:
+          - not required
+          - required
+        width: 1/2
+        when:
+          form_field_type: text
+      form_field_text_label:
+        type: text
+        label: Field Label
+        counter: false
+        width: 1/2
+        when:
+          form_field_type: text
+      form_field_text_placeholder:
+        type: text
+        label: Placeholder Text
+        counter: false
+        width: 1/2
+        when:
+          form_field_type: text
+      form_field_text_min:
+        type: number
+        label: Min Length
+        placeholder: 3
+        min: 0
+        width: 1/4
+        translate: false
+        when:
+          form_field_type: text
+      form_field_text_max:
+        type: number
+        label: Max Length
+        placeholder: 100
+        min: 0
+        width: 1/4
+        translate: false
+        when:
+          form_field_type: text
+      form_field_text_pattern:
+        type: text
+        label: Validation Regex Pattern
+        counter: false
+        spellcheck: false
+        translate: false
+        placeholder: "[a-z]{4,8}"
+        width: 1/2
+        when:
+          form_field_type: text
+      # ===============================================
+      # CHECKBOX OPTIONS
+      # ===============================================
+      form_field_check_checked:
+        type: toggle
+        label: ""
+        translate: false
+        default: false
+        text:
+          - not checked
+          - checked
+        width: 1/2
+        when:
+          form_field_type: checkbox
+      form_field_check_label:
+        type: text
+        label: Checkbox Label
+        counter: false
+        width: 1/2
+        when:
+          form_field_type: checkbox
+
+
+    columns:
+      form_field_id:
+        width: 2/3
+      form_field_type:
+        width: 1/3
+        align: right
+    when:
+      form_show_settings: true
+
+  form_send_email_line:
+    type: line
+    when:
+      form_show_settings: true
+  form_send_email:
+    type: toggle
+    label: Submission Emails
+    translate: false
+    default: false
+    text:
+      - do not email form submissions
+      - send form submissions via email
+    when:
+      form_show_settings: true
+  form_email_recipient:
+    type: email
+    label: Recipient Email Address
+    placeholder: john@example.com
+    width: 1/2
+    help: Email address that will receive the form submissions.
+    when:
+      form_show_settings: true
+      form_send_email: true
+  form_email_subject:
+    type: text
+    label: Email Subject
+    placeholder: "Message from {{site.title}} Website"
+    width: 1/2
+    help: 'Subject' heading of emails - useful for filtering messages.
+    when:
+      form_show_settings: true
+      form_send_email: true
+  form_is_ajax_line:
+    type: line
+    when:
+      form_show_settings: true
+  form_is_ajax:
+    type: toggle
+    label: "Success/Error Action"
+    translate: false
+    default: false
+    text:
+      - go to another page
+      - show message in-page
+    when:
+      form_show_settings: true
+  form_success_page:
+    type: pages
+    label: Success Page
+    multiple: false
+    max: 1
+    empty: No success page selected yet.
+    width: 1/2
+    image:
+      query: false
+    help: The page the form will redirect the user to upon sucessfully submitting the form.
+    when:
+      form_show_settings: true
+      form_is_ajax: false
+  form_error_page:
+    type: pages
+    label: Error Page
+    multiple: false
+    max: 1
+    empty: No error page selected yet.
+    width: 1/2
+    image:
+      query: false
+    help: The page the form will redirect the user to if the form submission fails.
+    when:
+      form_show_settings: true
+      form_is_ajax: false
+  form_success_msg:
+    type: textarea
+    label: Success Message
+    size: small
+    buttons:
+      - bold
+      - italic
+    counter: false
+    placeholder: Your form was received successfully - thank you!
+    width: 1/2
+    help: The message that is displayed when the form is successfully submitted.
+    when:
+      form_show_settings: true
+      form_is_ajax: true
+  form_error_msg:
+    type: textarea
+    label: Error Message
+    size: small
+    buttons:
+      - bold
+      - italic
+    counter: false
+    placeholder: There was an issue sending your form data - please try again!
+    width: 1/2
+    help: The message that is displayed when there is an issue sending the form data.
+    when:
+      form_show_settings: true
+      form_is_ajax: true
