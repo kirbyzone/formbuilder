@@ -63,16 +63,15 @@ fields:
         options:
           text: Single-Line Text Field
           textarea: Multi-Line Text Field
+          email: Email Address Field
+          tel: Telephone Number Field
+          url: URL Field
           select: Select Menu
           checkbox: Checkbox
           radio: Radio Button
-          email: Email Address Field
-          tel: Telephone Number Field\
-          password: Password Field
           date: Date Field
           time: Time Field
-          datetime-local: Combined Date & Time Field
-          url: URL Field
+          password: Password Field
           hidden: Hidden Field
         width: 1/2
         default: text
@@ -88,62 +87,7 @@ fields:
         width: 1/2
         when:
           form_field_type: hidden
-      # ===============================================
-      # EMAIL FIELD OPTIONS
-      # ===============================================
-      form_field_email_req:
-        type: toggle
-        label: ""
-        translate: false
-        default: false
-        text:
-          - not required
-          - required
-        width: 1/2
-        when:
-          form_field_type: email
-      form_field_email_label:
-        type: text
-        label: Field Label
-        counter: false
-        width: 1/2
-        when:
-          form_field_type: email
-      form_field_email_placeholder:
-        type: text
-        label: Placeholder Text
-        counter: false
-        width: 1/2
-        when:
-          form_field_type: email
-      form_field_email_min:
-        type: number
-        label: Min Length
-        placeholder: 3
-        min: 0
-        width: 1/4
-        translate: false
-        when:
-          form_field_type: email
-      form_field_email_max:
-        type: number
-        label: Max Length
-        placeholder: 100
-        min: 0
-        width: 1/4
-        translate: false
-        when:
-          form_field_type: email
-      form_field_email_pattern:
-        type: text
-        label: Validation Regex Pattern
-        counter: false
-        spellcheck: false
-        translate: false
-        placeholder: "[0-9a-z._]+@example.com"
-        width: 1/2
-        when:
-          form_field_type: email
+
       # ===============================================
       # TEXT FIELD OPTIONS
       # ===============================================
@@ -178,7 +122,6 @@ fields:
         placeholder: 3
         min: 0
         width: 1/4
-        translate: false
         when:
           form_field_type: text
       form_field_text_max:
@@ -187,7 +130,6 @@ fields:
         placeholder: 100
         min: 0
         width: 1/4
-        translate: false
         when:
           form_field_type: text
       form_field_text_pattern:
@@ -195,11 +137,173 @@ fields:
         label: Validation Regex Pattern
         counter: false
         spellcheck: false
-        translate: false
         placeholder: "[a-z]{4,8}"
         width: 1/2
         when:
           form_field_type: text
+
+      # ===============================================
+      # EMAIL FIELD OPTIONS
+      # ===============================================
+      form_field_email_req:
+        type: toggle
+        label: ""
+        translate: false
+        default: false
+        text:
+          - not required
+          - required
+        width: 1/2
+        when:
+          form_field_type: email
+      form_field_email_label:
+        type: text
+        label: Field Label
+        counter: false
+        width: 1/2
+        when:
+          form_field_type: email
+      form_field_email_placeholder:
+        type: text
+        label: Placeholder Text
+        counter: false
+        width: 1/2
+        when:
+          form_field_type: email
+      form_field_email_min:
+        type: number
+        label: Min Length
+        placeholder: 3
+        min: 0
+        width: 1/4
+        when:
+          form_field_type: email
+      form_field_email_max:
+        type: number
+        label: Max Length
+        placeholder: 100
+        min: 0
+        width: 1/4
+        when:
+          form_field_type: email
+      form_field_email_pattern:
+        type: text
+        label: Validation Regex Pattern
+        counter: false
+        spellcheck: false
+        placeholder: "[0-9a-z._]+@example.com"
+        width: 1/2
+        when:
+          form_field_type: email
+
+      # ===============================================
+      # URL FIELD OPTIONS
+      # ===============================================
+      form_field_url_req:
+        type: toggle
+        label: ""
+        translate: false
+        default: false
+        text:
+          - not required
+          - required
+        width: 1/2
+        when:
+          form_field_type: url
+      form_field_url_label:
+        type: text
+        label: Field Label
+        counter: false
+        width: 1/2
+        when:
+          form_field_type: url
+      form_field_url_placeholder:
+        type: text
+        label: Placeholder Text
+        counter: false
+        width: 1/2
+        when:
+          form_field_type: url
+      form_field_url_min:
+        type: number
+        label: Min Length
+        placeholder: 3
+        min: 0
+        width: 1/4
+        when:
+          form_field_type: url
+      form_field_url_max:
+        type: number
+        label: Max Length
+        placeholder: 100
+        min: 0
+        width: 1/4
+        when:
+          form_field_type: url
+      form_field_url_pattern:
+        type: text
+        label: Validation Regex Pattern
+        counter: false
+        spellcheck: false
+        placeholder: "https://.*"
+        width: 1/2
+        when:
+          form_field_type: url
+
+      # ===============================================
+      # TEL FIELD OPTIONS
+      # ===============================================
+      form_field_tel_req:
+        type: toggle
+        label: ""
+        default: false
+        text:
+          - not required
+          - required
+        width: 1/2
+        when:
+          form_field_type: tel
+      form_field_tel_label:
+        type: text
+        label: Field Label
+        counter: false
+        width: 1/2
+        when:
+          form_field_type: tel
+      form_field_tel_placeholder:
+        type: text
+        label: Placeholder Text
+        counter: false
+        width: 1/2
+        when:
+          form_field_type: tel
+      form_field_tel_min:
+        type: number
+        label: Min Length
+        placeholder: 3
+        min: 0
+        width: 1/4
+        when:
+          form_field_type: tel
+      form_field_tel_max:
+        type: number
+        label: Max Length
+        placeholder: 100
+        min: 0
+        width: 1/4
+        when:
+          form_field_type: tel
+      form_field_tel_pattern:
+        type: text
+        label: Validation Regex Pattern
+        counter: false
+        spellcheck: false
+        translate: false
+        placeholder: "[0-9]{4}-[0-9]{4}"
+        width: 1/2
+        when:
+          form_field_type: tel
+
       # ===============================================
       # CHECKBOX OPTIONS
       # ===============================================
