@@ -66,9 +66,9 @@ fields:
           email: Email Address Field
           tel: Telephone Number Field
           url: URL Field
-          select: Select Menu
           checkbox: Checkbox
           radio: Radio Button
+          select: Select Menu
           date: Date Field
           time: Time Field
           password: Password Field
@@ -325,6 +325,112 @@ fields:
         width: 1/2
         when:
           form_field_type: checkbox
+
+      # ===============================================
+      # DATE FIELD OPTIONS
+      # ===============================================
+      form_field_date_req:
+        type: toggle
+        label: ""
+        translate: false
+        default: false
+        text:
+          - not required
+          - required
+        width: 1/2
+        when:
+          form_field_type: date
+      form_field_date_label:
+        type: text
+        label: Field Label
+        counter: false
+        width: 1/2
+        when:
+          form_field_type: date
+      form_field_date_placeholder:
+        type: text
+        label: Placeholder Text
+        counter: false
+        placeholder: "YYYY-MM-DD"
+        width: 1/2
+        when:
+          form_field_type: date
+      form_field_date_min:
+        type: text
+        label: Min Value
+        placeholder: "1970-01-01"
+        width: 1/4
+        when:
+          form_field_type: date
+      form_field_date_max:
+        type: text
+        label: Max Value
+        placeholder: "2050-12-31"
+        width: 1/4
+        when:
+          form_field_type: date
+      form_field_date_pattern:
+        type: text
+        label: Validation Regex Pattern
+        counter: false
+        spellcheck: false
+        placeholder: "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+        width: 1/2
+        when:
+          form_field_type: date
+
+      # ===============================================
+      # TIME FIELD OPTIONS
+      # ===============================================
+      form_field_time_req:
+        type: toggle
+        label: ""
+        translate: false
+        default: false
+        text:
+          - not required
+          - required
+        width: 1/2
+        when:
+          form_field_type: time
+      form_field_time_label:
+        type: text
+        label: Field Label
+        counter: false
+        width: 1/2
+        when:
+          form_field_type: time
+      form_field_time_placeholder:
+        type: text
+        label: Placeholder Text
+        counter: false
+        placeholder: "16:30"
+        width: 1/2
+        when:
+          form_field_type: time
+      form_field_date_min:
+        type: text
+        label: Min Value
+        placeholder: "13:30"
+        width: 1/4
+        when:
+          form_field_type: time
+      form_field_date_max:
+        type: text
+        label: Max Value
+        placeholder: "22:30"
+        width: 1/4
+        when:
+          form_field_type: time
+      form_field_date_pattern:
+        type: text
+        label: Validation Regex Pattern
+        counter: false
+        spellcheck: false
+        placeholder: "[0-9]{2}:[0-9]{2}"
+        width: 1/2
+        when:
+          form_field_type: time
 
 
     columns:
