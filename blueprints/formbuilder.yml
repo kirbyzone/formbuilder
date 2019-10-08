@@ -38,16 +38,16 @@ fields:
     sortable: true
     empty: No form fields defined yet.
     fields:
-      form_field_id:
+      form_field_name:
         type: text
-        label: Field ID
+        label: Field Name
         counter: false
         converter: slug
         translate: false
         spellcheck: false
         before: "#"
         width: 1/3
-        help: A <strong>unique ID</strong> for this field - used both for 'id' and 'name' attributes.
+        help: A <strong>unique name</strong> for this field - used both for 'id' and 'name' attributes.
       form_field_class:
         type: text
         label: Field Class
@@ -76,7 +76,7 @@ fields:
           number: Number Field
           url: URL Field
           checkbox: Checkbox
-          radio: Radio Button
+          radio: Radio Button Group
           select: Select Menu
           date: Date Field
           time: Time Field
@@ -395,6 +395,33 @@ fields:
           form_field_type: checkbox
 
       # ===============================================
+      # RADIO BUTTONS OPTIONS
+      # ===============================================
+      form_field_radio:
+        type: structure
+        label: Radio Button Group
+        sortable: true
+        empty: No radio buttons defined yet.
+        fields:
+          radio_btn_id:
+            type: text
+            label: Radio Button ID
+            counter: false
+            width: 1/3
+          radio_btn_label:
+            type: text
+            label: Radio Button Label
+            counter: false
+            width: 1/3
+          radio_btn_value:
+            type: text
+            label: Radio Button Value
+            counter: false
+            width: 1/3
+        when:
+          form_field_type: radio
+
+      # ===============================================
       # DATE FIELD OPTIONS
       # ===============================================
       form_field_date_req:
@@ -555,7 +582,7 @@ fields:
           form_field_type: password
 
     columns:
-      form_field_id:
+      form_field_name:
         width: 2/3
       form_field_type:
         width: 1/3
