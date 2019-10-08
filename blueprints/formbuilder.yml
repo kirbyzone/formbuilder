@@ -1,14 +1,5 @@
 type: group
 fields:
-  form_show_settings:
-    type: toggle
-    label: Form Configuration
-    translate: false
-    default: true
-    text:
-      - hide settings
-      - show settings
-    width: 1/3
   form_id:
     type: text
     label: Form ID
@@ -31,7 +22,15 @@ fields:
     before: "."
     width: 1/3
     help: An optional CSS class to be added to the &lt;form&gt; element.
-
+  form_show_settings:
+    type: toggle
+    label: Form Configuration
+    translate: false
+    default: true
+    text:
+      - hide settings
+      - show settings
+    width: 1/3
   form_fields:
     type: structure
     label: Form Fields
@@ -688,38 +687,25 @@ fields:
     when:
       form_show_settings: true
 
-  form_send_email_line:
-    type: line
-    when:
-      form_show_settings: true
-  form_send_email:
-    type: toggle
-    label: Submission Emails
-    translate: false
-    default: false
-    text:
-      - do not email form submissions
-      - send form submissions via email
-    when:
-      form_show_settings: true
-  form_email_recipient:
-    type: email
-    label: Recipient Email Address
-    placeholder: john@example.com
-    width: 1/2
-    help: Email address that will receive the form submissions.
-    when:
-      form_show_settings: true
-      form_send_email: true
-  form_email_subject:
+  form_submit_label:
     type: text
-    label: Email Subject
-    placeholder: "Message from {{site.title}} Website"
-    width: 1/2
-    help: 'Subject' heading of emails - useful for filtering messages.
+    label: 'Submit' Buton Label
+    placeholder: Send
+    width: 1/3
     when:
       form_show_settings: true
-      form_send_email: true
+  form_cancel_label:
+    type: text
+    label: 'Reset' Button label
+    placeholder: Reset
+    width: 1/3
+    help: Leave empty to omit the button from the form.
+    when:
+      form_show_settings: true
+
+  # ===============================================
+  # FORM RESPONSE CONFIGURATION
+  # ===============================================
   form_is_ajax_line:
     type: line
     when:
@@ -732,6 +718,7 @@ fields:
     text:
       - go to another page
       - show message in-page
+    width: 1/3
     when:
       form_show_settings: true
   form_success_page:
@@ -740,7 +727,7 @@ fields:
     multiple: false
     max: 1
     empty: No success page selected yet.
-    width: 1/2
+    width: 1/3
     image:
       query: false
     help: The page the user will go to when the form is successfully submitted.
@@ -753,7 +740,7 @@ fields:
     multiple: false
     max: 1
     empty: No error page selected yet.
-    width: 1/2
+    width: 1/3
     image:
       query: false
     help: The page the user will go to if the form submission fails.
@@ -769,7 +756,6 @@ fields:
       - italic
     counter: false
     placeholder: Your form was received successfully - thank you!
-    width: 1/2
     help: The message that is displayed when the form is successfully submitted.
     when:
       form_show_settings: true
@@ -783,8 +769,43 @@ fields:
       - italic
     counter: false
     placeholder: There was an issue sending your form data - please try again!
-    width: 1/2
     help: The message that is displayed when there is an issue sending the form data.
     when:
       form_show_settings: true
       form_is_ajax: true
+
+  # ===============================================
+  # FORM EMAIL CONFIGURATION
+  # ===============================================
+  form_send_email_line:
+    type: line
+    when:
+      form_show_settings: true
+  form_send_email:
+    type: toggle
+    label: Submission Emails
+    translate: false
+    default: false
+    text:
+      - do not send emails
+      - send form data via email
+    width: 1/2
+    when:
+      form_show_settings: true
+  form_email_recipient:
+    type: email
+    label: Recipient Email Address
+    placeholder: john@example.com
+    width: 1/2
+    help: Email address that will receive the form emails.
+    when:
+      form_show_settings: true
+      form_send_email: true
+  form_email_subject:
+    type: text
+    label: Email Subject
+    placeholder: "Message from {{site.title}} Website"
+    help: 'Subject' heading of emails sent by this form - useful for filtering and archiving messages in your email app.
+    when:
+      form_show_settings: true
+      form_send_email: true
