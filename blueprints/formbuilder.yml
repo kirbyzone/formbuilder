@@ -152,6 +152,58 @@ fields:
           form_field_type: text
 
       # ===============================================
+      # TEXTAREA FIELD OPTIONS
+      # ===============================================
+      form_field_textarea_req:
+        type: toggle
+        label: ""
+        translate: false
+        default: false
+        text:
+          - not required
+          - required
+        width: 1/2
+        when:
+          form_field_type: textarea
+      form_field_textarea_label:
+        type: text
+        label: Field Label
+        counter: false
+        width: 1/2
+        when:
+          form_field_type: textarea
+      form_field_textarea_placeholder:
+        type: text
+        label: Placeholder Text
+        counter: false
+        width: 1/2
+        when:
+          form_field_type: textarea
+      form_field_textarea_min:
+        type: number
+        label: Min Length
+        placeholder: 0
+        min: 0
+        width: 1/4
+        when:
+          form_field_type: textarea
+      form_field_textarea_max:
+        type: number
+        label: Max Length
+        placeholder: 300
+        min: 0
+        width: 1/4
+        when:
+          form_field_type: textarea
+      form_field_textarea_rows:
+        type: number
+        label: Visible Lines
+        min: 3
+        width: 1/4
+        when:
+          form_field_type: textarea
+
+      # ===============================================
       # EMAIL FIELD OPTIONS
       # ===============================================
       form_field_email_req:
