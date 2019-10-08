@@ -422,6 +422,52 @@ fields:
           form_field_type: radio
 
       # ===============================================
+      # SELECT MENU OPTIONS
+      # ===============================================
+      form_field_select:
+        type: structure
+        label: Select Menu Items
+        sortable: true
+        empty: No menu items defined yet.
+        fields:
+          select_item_id:
+            type: text
+            label: Menu Item ID
+            counter: false
+            width: 1/3
+          select_item_label:
+            type: text
+            label: Menu Item Label
+            counter: false
+            width: 1/3
+          select_item_value:
+            type: text
+            label: Menu Item Value
+            counter: false
+            width: 1/3
+        when:
+          form_field_type: select
+      form_field_select_multiple:
+        type: toggle
+        label: "Allowed Selection"
+        translate: false
+        default: false
+        width: 1/2
+        text:
+          - single item only
+          - multiple items
+        when:
+          form_field_type: select
+      form_field_select_size:
+        type: number
+        label: Visible Size
+        translate: false
+        width: 1/4
+        min: 0
+        when:
+          form_field_select_multiple: true
+
+      # ===============================================
       # DATE FIELD OPTIONS
       # ===============================================
       form_field_date_req:
