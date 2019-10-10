@@ -789,14 +789,14 @@ fields:
     text:
       - do not send emails
       - send form data via email
-    width: 1/2
+    width: 1/3
     when:
       form_show_settings: true
   form_email_recipient:
     type: email
     label: Recipient Email Address
     placeholder: john@example.com
-    width: 1/2
+    width: 2/3
     help: Email address that will receive the form emails.
     when:
       form_show_settings: true
