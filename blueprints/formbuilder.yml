@@ -834,7 +834,7 @@ fields:
     label: Key Field
     options: query
     query:
-      fetch: site.form_fields.toStructure
+      fetch: page.form_fields.toStructure
       text: "{{ structureItem.form_field_name }}"
       value: "{{ structureItem.form_field_name }}"
     width: 1/3
