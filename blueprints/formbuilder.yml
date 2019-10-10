@@ -10,7 +10,7 @@ fields:
     placeholder: my-form
     before: "#"
     width: 1/3
-    help: A <strong>unique ID</strong> for your form - use lowercase letters only, and no spaces.
+    help: A <strong>unique ID</strong> for your form.
   form_class:
     type: text
     label: Form Class
@@ -21,7 +21,7 @@ fields:
     placeholder: form
     before: "."
     width: 1/3
-    help: An optional CSS class to be added to the &lt;form&gt; element.
+    help: Optional CSS class to add to the &lt;form&gt; element.
   form_show_settings:
     type: toggle
     label: Form Configuration
@@ -809,3 +809,69 @@ fields:
     when:
       form_show_settings: true
       form_send_email: true
+
+
+  # ===============================================
+  # RECEIVED SUBMISSIONS LIST
+  # ===============================================
+  submissions_line:
+    type: line
+    when:
+      form_show_settings: true
+  form_save_submissions:
+    type: toggle
+    label: Save Submissions
+    default: false
+    text:
+      - do not save submissions
+      - save all submissions
+    width: 1/3
+    help: Turn off to <strong>DELETE</strong> all previously saved submissions.
+    when:
+      form_show_settings: true
+  form_key_field:
+    type: select
+    label: Key Field
+    options: query
+    query:
+      fetch: site.form_fields.toStructure
+      text: "{{ structureItem.form_field_name }}"
+      value: "{{ structureItem.form_field_name }}"
+    width: 1/3
+    help: Field that will be displayed in the Received Submissions table.
+    when:
+      form_show_settings: true
+      form_save_submissions: true
+  received_submissions:
+    type: structure
+    label: Received Submissions
+    empty: no submissions received yet.
+    sortable: false
+    sortBy: entry_date desc
+    limit: 20
+    fields:
+      entry_date:
+        type: date
+        label: When
+        time: true
+        format: "d-m-Y h:ia"
+        disabled: true
+      entry_key:
+        type: hidden
+        label: Key
+        counter: false
+      entry_content:
+        type: textarea
+        label: Content
+        counter: false
+        font: monospace
+        buttons: false
+        spellcheck: false
+        disabled: true
+    columns:
+      entry_date:
+        width: 1/4
+      entry_key:
+        width: 3/4
+    when:
+      form_save_submissions: true
