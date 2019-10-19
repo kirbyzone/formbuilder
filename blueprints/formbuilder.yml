@@ -704,6 +704,34 @@ fields:
     help: Leave empty to omit the button from the form.
     when:
       form_show_settings: true
+  form_captcha:
+    type: toggle
+    label: Use hCaptcha
+    translate: false
+    default: false
+    text:
+      - no hCaptcha
+      - use hCaptcha
+    width: 1/3
+    when:
+      form_show_settings: true
+    help: find out more and sign up for hCaptcha <strong><a href="https://hCaptcha.com/?r=5c848162fd88">here</a></strong>.
+  form_captcha_secretkey:
+    type: text
+    label: hCaptcha 'Secret Key'
+    placeholder: '0x0A00A00AA00AA0000A000b0000bA00000b0A0Ab0'
+    width: 2/3
+    when:
+      form_show_settings: true
+      form_captcha: true
+  form_captcha_sitekey:
+    type: text
+    label: hCaptcha 'Site Key'
+    placeholder: 'a00bbb00-000a-a0b0-a0b00000a0b0'
+    width: 2/3
+    when:
+      form_show_settings: true
+      form_captcha: true
 
   # ===============================================
   # FORM RESPONSE CONFIGURATION
