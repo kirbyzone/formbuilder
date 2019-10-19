@@ -26,6 +26,9 @@
             case 'checkbox':
                 snippet('formbuilder/checkbox', ['pg' => $page, 'fld' => $field]);
                 break;
+            case 'select':
+                snippet('formbuilder/select', ['pg' => $page, 'fld' => $field]);
+                break;
             case 'hidden':
                 snippet('formbuilder/hidden', ['fld' => $field]);
                 break;
