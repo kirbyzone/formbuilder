@@ -687,6 +687,8 @@ fields:
           value: "{{ structureItem.form_field_name }}"
         help: Another password field, whose entry this field must match.
         width: 1/2
+        when:
+          form_field_type: password
       # ===============================================
       # HIDDEN FIELD OPTIONS
       # ===============================================
