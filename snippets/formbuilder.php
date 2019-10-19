@@ -20,8 +20,8 @@
             case 'hidden':
                 snippet('formbuilder/hidden', ['fld' => $field]);
                 break;
-            default:
-                # code...
+            case 'honeypot':
+                snippet('formbuilder/honeypot', ['pg' => $page, 'fld' => $field]);
                 break;
         }
     endforeach;
