@@ -23,6 +23,9 @@
             case 'number':
                 snippet('formbuilder/number', ['pg' => $page, 'fld' => $field]);
                 break;
+            case 'checkbox':
+                snippet('formbuilder/checkbox', ['pg' => $page, 'fld' => $field]);
+                break;
             case 'hidden':
                 snippet('formbuilder/hidden', ['fld' => $field]);
                 break;
