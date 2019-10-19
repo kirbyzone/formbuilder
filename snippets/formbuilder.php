@@ -17,6 +17,9 @@
             case 'password':
                 snippet('formbuilder/input', ['pg' => $page, 'fld' => $field]);
                 break;
+            case 'textarea':
+                snippet('formbuilder/textarea', ['pg' => $page, 'fld' => $field]);
+                break;
             case 'hidden':
                 snippet('formbuilder/hidden', ['fld' => $field]);
                 break;
