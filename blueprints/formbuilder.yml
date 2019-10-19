@@ -8,7 +8,6 @@ fields:
     text:
       - hide configuration
       - show configuration
-    width: 1/3
   form_id:
     type: text
     label: Form ID
@@ -35,46 +34,28 @@ fields:
     help: Optional CSS class to add to the &lt;form&gt; element.
     when:
       form_show_settings: true
+  form_field_structure:
+    type: toggle
+    label: Field Structure
+    default: false
+    text:
+      - plain &lt;input&gt;
+      - enclosed in &lt;div&gt;
+    width: 1/3
+    when:
+      form_show_settings: true
   form_fields:
     type: structure
     label: Form Fields
     sortable: true
     empty: No form fields defined yet.
     fields:
-      form_field_name:
-        type: text
-        label: Field Name
-        counter: false
-        converter: slug
-        translate: false
-        spellcheck: false
-        required: true
-        before: "#"
-        width: 1/3
-        help: A <strong>unique name</strong> for this field - used both for 'id' and 'name' attributes.
-      form_field_class:
-        type: text
-        label: Field Class
-        counter: false
-        translate: false
-        spellcheck: false
-        before: "."
-        width: 1/3
-        help: Optional CSS class for this field.
-      form_field_structure:
-        type: toggle
-        label: Field Structure
-        default: false
-        text:
-          - plain element
-          - enclose in &lt;div&gt;
-        width: 1/3
       form_field_type:
         type: select
         label: Field Type
         options:
           text: Single-Line Text Field
-          textarea: Multi-Line Text Field
+          textarea: Multi-Line Text Area
           email: Email Address Field
           tel: Telephone Number Field
           number: Number Field
@@ -87,24 +68,47 @@ fields:
           password: Password Field
           hidden: Hidden Field
           honeypot: Honeypot Field
-        width: 1/2
+        # width: 1/2
         default: text
         required: true
-      # ===============================================
-      # HIDDEN FIELD OPTIONS
-      # ===============================================
-      form_field_hidden_value:
+      form_field_name:
         type: text
-        label: Field Value
+        label: Field Name
         counter: false
+        converter: slug
+        translate: false
         spellcheck: false
+        required: true
+        before: "#"
         width: 1/2
-        when:
-          form_field_type: hidden
+        help: A <strong>unique name</strong> for this field - used both for 'id' and 'name' attributes.
+      form_field_class:
+        type: text
+        label: Field Class
+        counter: false
+        translate: false
+        spellcheck: false
+        before: "."
+        width: 1/2
+        help: Optional CSS class for this field.
 
       # ===============================================
       # TEXT FIELD OPTIONS
       # ===============================================
+      form_field_text_label:
+        type: text
+        label: Field Label
+        counter: false
+        width: 1/3
+        when:
+          form_field_type: text
+      form_field_text_placeholder:
+        type: text
+        label: Placeholder Text
+        counter: false
+        width: 1/3
+        when:
+          form_field_type: text
       form_field_text_req:
         type: toggle
         label: ""
@@ -113,21 +117,7 @@ fields:
         text:
           - not required
           - required
-        width: 1/2
-        when:
-          form_field_type: text
-      form_field_text_label:
-        type: text
-        label: Field Label
-        counter: false
-        width: 1/2
-        when:
-          form_field_type: text
-      form_field_text_placeholder:
-        type: text
-        label: Placeholder Text
-        counter: false
-        width: 1/2
+        width: 1/3
         when:
           form_field_type: text
       form_field_text_min:
@@ -159,6 +149,20 @@ fields:
       # ===============================================
       # TEXTAREA FIELD OPTIONS
       # ===============================================
+      form_field_textarea_label:
+        type: text
+        label: Field Label
+        counter: false
+        width: 1/3
+        when:
+          form_field_type: textarea
+      form_field_textarea_placeholder:
+        type: text
+        label: Placeholder Text
+        counter: false
+        width: 1/3
+        when:
+          form_field_type: textarea
       form_field_textarea_req:
         type: toggle
         label: ""
@@ -167,21 +171,7 @@ fields:
         text:
           - not required
           - required
-        width: 1/2
-        when:
-          form_field_type: textarea
-      form_field_textarea_label:
-        type: text
-        label: Field Label
-        counter: false
-        width: 1/2
-        when:
-          form_field_type: textarea
-      form_field_textarea_placeholder:
-        type: text
-        label: Placeholder Text
-        counter: false
-        width: 1/2
+        width: 1/3
         when:
           form_field_type: textarea
       form_field_textarea_min:
@@ -202,7 +192,7 @@ fields:
           form_field_type: textarea
       form_field_textarea_rows:
         type: number
-        label: Visible Lines
+        label: Number of Lines
         min: 3
         width: 1/4
         when:
@@ -211,6 +201,20 @@ fields:
       # ===============================================
       # EMAIL FIELD OPTIONS
       # ===============================================
+      form_field_email_label:
+        type: text
+        label: Field Label
+        counter: false
+        width: 1/3
+        when:
+          form_field_type: email
+      form_field_email_placeholder:
+        type: text
+        label: Placeholder Text
+        counter: false
+        width: 1/3
+        when:
+          form_field_type: email
       form_field_email_req:
         type: toggle
         label: ""
@@ -219,21 +223,7 @@ fields:
         text:
           - not required
           - required
-        width: 1/2
-        when:
-          form_field_type: email
-      form_field_email_label:
-        type: text
-        label: Field Label
-        counter: false
-        width: 1/2
-        when:
-          form_field_type: email
-      form_field_email_placeholder:
-        type: text
-        label: Placeholder Text
-        counter: false
-        width: 1/2
+        width: 1/3
         when:
           form_field_type: email
       form_field_email_min:
@@ -265,6 +255,20 @@ fields:
       # ===============================================
       # TEL FIELD OPTIONS
       # ===============================================
+      form_field_tel_label:
+        type: text
+        label: Field Label
+        counter: false
+        width: 1/3
+        when:
+          form_field_type: tel
+      form_field_tel_placeholder:
+        type: text
+        label: Placeholder Text
+        counter: false
+        width: 1/3
+        when:
+          form_field_type: tel
       form_field_tel_req:
         type: toggle
         label: ""
@@ -272,21 +276,7 @@ fields:
         text:
           - not required
           - required
-        width: 1/2
-        when:
-          form_field_type: tel
-      form_field_tel_label:
-        type: text
-        label: Field Label
-        counter: false
-        width: 1/2
-        when:
-          form_field_type: tel
-      form_field_tel_placeholder:
-        type: text
-        label: Placeholder Text
-        counter: false
-        width: 1/2
+        width: 1/3
         when:
           form_field_type: tel
       form_field_tel_min:
@@ -319,6 +309,20 @@ fields:
       # ===============================================
       # NUMBER FIELD OPTIONS
       # ===============================================
+      form_field_number_label:
+        type: text
+        label: Field Label
+        counter: false
+        width: 1/3
+        when:
+          form_field_type: number
+      form_field_number_placeholder:
+        type: text
+        label: Placeholder Text
+        counter: false
+        width: 1/3
+        when:
+          form_field_type: number
       form_field_number_req:
         type: toggle
         label: ""
@@ -327,21 +331,7 @@ fields:
         text:
           - not required
           - required
-        width: 1/2
-        when:
-          form_field_type: number
-      form_field_number_label:
-        type: text
-        label: Field Label
-        counter: false
-        width: 1/2
-        when:
-          form_field_type: number
-      form_field_number_placeholder:
-        type: text
-        label: Placeholder Text
-        counter: false
-        width: 1/2
+        width: 1/3
         when:
           form_field_type: number
       form_field_number_min:
@@ -371,6 +361,20 @@ fields:
       # ===============================================
       # URL FIELD OPTIONS
       # ===============================================
+      form_field_url_label:
+        type: text
+        label: Field Label
+        counter: false
+        width: 1/3
+        when:
+          form_field_type: url
+      form_field_url_placeholder:
+        type: text
+        label: Placeholder Text
+        counter: false
+        width: 1/3
+        when:
+          form_field_type: url
       form_field_url_req:
         type: toggle
         label: ""
@@ -379,21 +383,7 @@ fields:
         text:
           - not required
           - required
-        width: 1/2
-        when:
-          form_field_type: url
-      form_field_url_label:
-        type: text
-        label: Field Label
-        counter: false
-        width: 1/2
-        when:
-          form_field_type: url
-      form_field_url_placeholder:
-        type: text
-        label: Placeholder Text
-        counter: false
-        width: 1/2
+        width: 1/3
         when:
           form_field_type: url
       form_field_url_min:
@@ -425,6 +415,20 @@ fields:
       # ===============================================
       # CHECKBOX OPTIONS
       # ===============================================
+      form_field_check_label:
+        type: text
+        label: Checkbox Label
+        counter: false
+        width: 1/3
+        when:
+          form_field_type: checkbox
+      form_field_check_value:
+        type: text
+        label: Checkbox Value
+        counter: false
+        width: 1/3
+        when:
+          form_field_type: checkbox
       form_field_check_checked:
         type: toggle
         label: ""
@@ -433,21 +437,7 @@ fields:
         text:
           - not checked
           - checked
-        width: 1/2
-        when:
-          form_field_type: checkbox
-      form_field_check_label:
-        type: text
-        label: Checkbox Label
-        counter: false
-        width: 1/2
-        when:
-          form_field_type: checkbox
-      form_field_check_value:
-        type: text
-        label: Checkbox Value
-        counter: false
-        width: 1/2
+        width: 1/3
         when:
           form_field_type: checkbox
 
@@ -527,6 +517,21 @@ fields:
       # ===============================================
       # DATE FIELD OPTIONS
       # ===============================================
+      form_field_date_label:
+        type: text
+        label: Field Label
+        counter: false
+        width: 1/3
+        when:
+          form_field_type: date
+      form_field_date_placeholder:
+        type: text
+        label: Placeholder Text
+        counter: false
+        placeholder: "YYYY-MM-DD"
+        width: 1/3
+        when:
+          form_field_type: date
       form_field_date_req:
         type: toggle
         label: ""
@@ -535,22 +540,7 @@ fields:
         text:
           - not required
           - required
-        width: 1/2
-        when:
-          form_field_type: date
-      form_field_date_label:
-        type: text
-        label: Field Label
-        counter: false
-        width: 1/2
-        when:
-          form_field_type: date
-      form_field_date_placeholder:
-        type: text
-        label: Placeholder Text
-        counter: false
-        placeholder: "YYYY-MM-DD"
-        width: 1/2
+        width: 1/3
         when:
           form_field_type: date
       form_field_date_min:
@@ -558,6 +548,7 @@ fields:
         label: Min Value
         placeholder: "1970-01-01"
         width: 1/4
+        counter: false
         when:
           form_field_type: date
       form_field_date_max:
@@ -565,6 +556,7 @@ fields:
         label: Max Value
         placeholder: "2050-12-31"
         width: 1/4
+        counter: false
         when:
           form_field_type: date
       form_field_date_pattern:
@@ -580,6 +572,21 @@ fields:
       # ===============================================
       # TIME FIELD OPTIONS
       # ===============================================
+      form_field_time_label:
+        type: text
+        label: Field Label
+        counter: false
+        width: 1/3
+        when:
+          form_field_type: time
+      form_field_time_placeholder:
+        type: text
+        label: Placeholder Text
+        counter: false
+        placeholder: "16:30"
+        width: 1/3
+        when:
+          form_field_type: time
       form_field_time_req:
         type: toggle
         label: ""
@@ -588,22 +595,7 @@ fields:
         text:
           - not required
           - required
-        width: 1/2
-        when:
-          form_field_type: time
-      form_field_time_label:
-        type: text
-        label: Field Label
-        counter: false
-        width: 1/2
-        when:
-          form_field_type: time
-      form_field_time_placeholder:
-        type: text
-        label: Placeholder Text
-        counter: false
-        placeholder: "16:30"
-        width: 1/2
+        width: 1/3
         when:
           form_field_type: time
       form_field_time_min:
@@ -611,6 +603,7 @@ fields:
         label: Min Value
         placeholder: "13:30"
         width: 1/4
+        counter: false
         when:
           form_field_type: time
       form_field_time_max:
@@ -618,6 +611,7 @@ fields:
         label: Max Value
         placeholder: "22:30"
         width: 1/4
+        counter: false
         when:
           form_field_type: time
       form_field_time_pattern:
@@ -633,6 +627,20 @@ fields:
       # ===============================================
       # PASSWORD FIELD OPTIONS
       # ===============================================
+      form_field_password_label:
+        type: text
+        label: Field Label
+        counter: false
+        width: 1/3
+        when:
+          form_field_type: password
+      form_field_password_placeholder:
+        type: text
+        label: Placeholder Text
+        counter: false
+        width: 1/3
+        when:
+          form_field_type: password
       form_field_password_req:
         type: toggle
         label: ""
@@ -641,21 +649,7 @@ fields:
         text:
           - not required
           - required
-        width: 1/2
-        when:
-          form_field_type: password
-      form_field_password_label:
-        type: text
-        label: Field Label
-        counter: false
-        width: 1/2
-        when:
-          form_field_type: password
-      form_field_password_placeholder:
-        type: text
-        label: Placeholder Text
-        counter: false
-        width: 1/2
+        width: 1/3
         when:
           form_field_type: password
       form_field_password_min:
@@ -683,7 +677,26 @@ fields:
         width: 1/2
         when:
           form_field_type: password
-
+      form_field_password_verify:
+        type: select
+        label: Password Verify
+        options: query
+        query:
+          fetch: page.form_fields.toStructure.filterBy('form_field_type','password')
+          text: "{{ structureItem.form_field_name }}"
+          value: "{{ structureItem.form_field_name }}"
+        help: Another password field, whose entry this field must match.
+        width: 1/2
+      # ===============================================
+      # HIDDEN FIELD OPTIONS
+      # ===============================================
+      form_field_hidden_value:
+        type: text
+        label: Field Value
+        counter: false
+        spellcheck: false
+        when:
+          form_field_type: hidden
 
     columns:
       form_field_name:
