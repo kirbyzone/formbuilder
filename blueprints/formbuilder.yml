@@ -48,6 +48,7 @@ fields:
         converter: slug
         translate: false
         spellcheck: false
+        required: true
         before: "#"
         width: 1/3
         help: A <strong>unique name</strong> for this field - used both for 'id' and 'name' attributes.
