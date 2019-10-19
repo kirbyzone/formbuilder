@@ -1,3 +1,4 @@
+/* hiding the 'Add +' button above the 'Received Submissions' list */
 .k-field-name-received_submissions > header.k-field-header > button.k-button {
   display: none;
 }

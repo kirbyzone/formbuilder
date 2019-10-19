@@ -1,5 +1,14 @@
 type: group
 fields:
+  form_show_settings:
+    type: toggle
+    label: Form Settings
+    translate: false
+    default: true
+    text:
+      - hide configuration
+      - show configuration
+    width: 1/3
   form_id:
     type: text
     label: Form ID
@@ -11,6 +20,8 @@ fields:
     before: "#"
     width: 1/3
     help: A <strong>unique ID</strong> for your form.
+    when:
+      form_show_settings: true
   form_class:
     type: text
     label: Form Class
@@ -22,15 +33,8 @@ fields:
     before: "."
     width: 1/3
     help: Optional CSS class to add to the &lt;form&gt; element.
-  form_show_settings:
-    type: toggle
-    label: Form Configuration
-    translate: false
-    default: true
-    text:
-      - hide settings
-      - show settings
-    width: 1/3
+    when:
+      form_show_settings: true
   form_fields:
     type: structure
     label: Form Fields
@@ -715,7 +719,7 @@ fields:
     width: 1/3
     when:
       form_show_settings: true
-    help: find out more and sign up for hCaptcha <strong><a href="https://hCaptcha.com/?r=5c848162fd88">here</a></strong>.
+    help: Sign up for hCaptcha <strong><a href="https://hCaptcha.com/?r=5c848162fd88">here</a></strong>.
   form_captcha_secretkey:
     type: text
     label: hCaptcha 'Secret Key'
@@ -891,7 +895,7 @@ fields:
       - do not save submissions
       - save all submissions
     width: 1/3
-    help: Turn off to <strong>DELETE</strong> all previously saved submissions.
+    help: Turning off <strong>DELETES</strong> any previously saved submissions.
     when:
       form_show_settings: true
   form_key_field:
@@ -903,7 +907,7 @@ fields:
       text: "{{ structureItem.form_field_name }}"
       value: "{{ structureItem.form_field_name }}"
     width: 1/3
-    help: Field that will be displayed in the Received Submissions table.
+    help: Field to display in 'Key' column of the Received Submissions table.
     when:
       form_show_settings: true
       form_save_submissions: true
