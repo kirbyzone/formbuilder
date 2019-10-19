@@ -6,6 +6,7 @@ Kirby::plugin('cre8ivclick/formbuilder', [
     ],
     'snippets' => [
         'formbuilder' => __DIR__ . '/snippets/formbuilder.php',
-        'formbuilder/input' => __DIR__ . '/snippets/fields/input.php'
+        'formbuilder/input' => __DIR__ . '/snippets/fields/input.php',
+        'formbuilder/hidden' => __DIR__ . '/snippets/fields/hidden.php'
     ]
 ]);
