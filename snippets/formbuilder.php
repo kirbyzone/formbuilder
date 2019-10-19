@@ -20,6 +20,9 @@
             case 'textarea':
                 snippet('formbuilder/textarea', ['pg' => $page, 'fld' => $field]);
                 break;
+            case 'number':
+                snippet('formbuilder/number', ['pg' => $page, 'fld' => $field]);
+                break;
             case 'hidden':
                 snippet('formbuilder/hidden', ['fld' => $field]);
                 break;
