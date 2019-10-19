@@ -803,6 +803,41 @@ fields:
     when:
       form_show_settings: true
       form_send_email: true
+  form_email_sender_type:
+    type: toggle
+    label: Sender Email
+    default: false
+    text:
+      - is always the same
+      - is based on a form field
+    width: 1/3
+    when:
+      form_show_settings: true
+      form_send_email: true
+  form_email_sender:
+    type: email
+    label: Sender Email Address
+    placeholder: admin@example.com
+    width: 2/3
+    help: Email address that will send the form emails.
+    when:
+      form_show_settings: true
+      form_send_email: true
+      form_email_sender_type: false
+  form_email_sender_field:
+    type: select
+    label: Sender Email Field
+    options: query
+    query:
+      fetch: page.form_fields.toStructure
+      text: "{{ structureItem.form_field_name }}"
+      value: "{{ structureItem.form_field_name }}"
+    help: Form field which will hold the sender's email address.
+    width: 2/3
+    when:
+      form_show_settings: true
+      form_send_email: true
+      form_email_sender_type: true
   form_email_subject:
     type: text
     label: Email Subject
