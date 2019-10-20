@@ -2,6 +2,7 @@
     $id = $page->fb_form_id()->or('form-'.time());
     $class = $page->fb_form_class()->isEmpty() ? false : $page->fb_form_class()->html();
     $fields = $page->fb_fields()->toStructure();
+    $useDiv = $page->fb_usediv()->toBool();
 ?>
 
 <form action="" id="<?= $id ?>"<?php if($class):?> class="<?= $class ?>"<?php endif; ?>>
@@ -38,6 +39,16 @@
                 break;
         }
     endforeach;
-?>
 
+    if($useDiv):
+?>
+<div<?php if($class): ?> class="<?= $class ?>"<?php endif; ?>>
+<?php endif; ?>
+    <button type="submit" name="submit"><?= $page->fb_submit_label()->or("Submit")->html() ?></button>
+<?php if($page->fb_cancel_label()->isNotEmpty()): ?>
+    <button type="reset"><?= $page->fb_cancel_label()->html() ?></button>
+<?php endif; ?>
+<?php if($useDiv): ?>
+</div>
+<?php endif; ?>
 </form>

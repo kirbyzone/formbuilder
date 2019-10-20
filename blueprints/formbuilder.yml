@@ -37,7 +37,7 @@ fields:
   fb_usediv:
     type: toggle
     label: Field Structure
-    default: false
+    default: true
     text:
       - plain &lt;input&gt;
       - enclosed in &lt;div&gt;
