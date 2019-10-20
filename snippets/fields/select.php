@@ -15,11 +15,16 @@
 
     <select name="<?= $name ?>" id="<?= $name ?>"<?php if(!$useDiv and $class): ?> class="<?= $class ?>"<?php endif; ?><?php if($multiple):?> multiple<?php endif; ?><?php if($req): ?> required<?php endif; ?>>
 <?php
+        $canSelect = true;
         foreach($fld->fbf_select()->toStructure() as $option):
             $value = $option->select_item_value()->html();
             $optlabel = $option->select_item_label()->or($option->select_item_value())->html();
+            if(($multiple or $canSelect) and $option->select_item_state()->toBool()) {
+                $selected = true;
+                $canSelect = false;
+            }
 ?>
-        <option value="<?= $value ?>"><?= $optlabel ?></option>
+        <option value="<?= $value ?>"<?php if($selected):?> selected<?php endif; ?>><?= $optlabel ?></option>
 <?php   endforeach; ?>
     </select>
 <?php if($useDiv): ?>

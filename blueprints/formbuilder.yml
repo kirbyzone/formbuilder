@@ -510,13 +510,20 @@ fields:
             type: text
             label: Menu Item Label
             counter: false
-            width: 1/2
+            width: 1/3
           select_item_value:
             type: text
             label: Menu Item Value
             required: true
             counter: false
-            width: 1/2
+            width: 1/3
+          select_item_state:
+            type: toggle
+            label: State
+            width: 1/3
+            text:
+              - not selected
+              - selected
         when:
           fbf_type: select
 
