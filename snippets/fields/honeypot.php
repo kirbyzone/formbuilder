@@ -1,8 +1,16 @@
-<?php if($pg->form_field_structure()->toBool()): ?>
-<div<?php if($fld->form_field_class()->isNotEmpty()): ?> class="<?= $fld->form_field_class() ?>"<?php endif; ?> style="display: none;" aria-hidden="true">
+<?php
+
+    // FLAGS and VARIABLES that make our code easier to read:
+    $name = $fld->fbf_name();
+    $class = $fld->fbf_class()->isEmpty() ? false : $fld->fbf_class()->html();
+    $useDiv = $pg->fb_usediv()->toBool();
+
+    if($pg->fb_usediv()->toBool()):
+?>
+<div<?php if($class): ?> class="<?= $class ?>"<?php endif; ?> style="display: none;" aria-hidden="true">
 <?php endif; ?>
-    <label for="<?= $fld->form_field_name() ?>"<?php if(!$pg->form_field_structure()->toBool()):?> style="display: none;" aria-hidden="true"<?php endif; ?>><?= $fld->form_field_name()->html() ?></label>
-    <input type="text" name="<?= $fld->form_field_name() ?>" id="<?= $fld->form_field_name() ?>"<?php if(!$pg->form_field_structure()->toBool() and $fld->form_field_class()->isNotEmpty()): ?> class="<?= $fld->form_field_class() ?>"<?php endif; ?><?php if(!$pg->form_field_structure()->toBool()):?> style="display: none;" aria-hidden="true"<?php endif; ?> autocomplete="off" value="">
-<?php if($pg->form_field_structure()->toBool()): ?>
+    <label for="<?= $name ?>"<?php if(!$useDiv):?> style="display: none;" aria-hidden="true"<?php endif; ?>><?= $name ?></label>
+    <input type="text" name="<?= $name ?>" id="<?= $name ?>"<?php if(!$useDiv and $class): ?> class="<?= $class ?>"<?php endif; ?><?php if(!$useDiv):?> style="display: none;" aria-hidden="true"<?php endif; ?> autocomplete="off" value="">
+<?php if($useDiv): ?>
 </div>
 <?php endif; ?>

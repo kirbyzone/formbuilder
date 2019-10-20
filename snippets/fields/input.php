@@ -1,17 +1,30 @@
 <?php
-    $label = 'form_field_' . $fld->form_field_type() . '_label';
-    $placeholder = 'form_field_' . $fld->form_field_type() . '_placeholder';
-    $min = 'form_field_' . $fld->form_field_type() . '_min';
-    $max = 'form_field_' . $fld->form_field_type() . '_max';
-    $pattern = 'form_field_' . $fld->form_field_type() . '_pattern';
-    $req = 'form_field_' . $fld->form_field_type() . '_req';
 
-    if($pg->form_field_structure()->toBool()): ?>
-<div<?php if($fld->form_field_class()->isNotEmpty()): ?> class="<?= $fld->form_field_class() ?>"<?php endif; ?>>
+    // FLAGS and VARIABLES that make our code easier to read:
+    $name = $fld->fbf_name();
+    $class = $fld->fbf_class()->isEmpty() ? false : $fld->fbf_class()->html();
+    $useDiv = $pg->fb_usediv()->toBool();
+    $label = 'fbf_' . $fld->fbf_type() . '_label';
+    $label = $fld->$label()->isEmpty() ? false : $fld->$label()->html();
+    $placeholder = 'fbf_' . $fld->fbf_type() . '_placeholder';
+    $placeholder = $fld->$placeholder()->isEmpty() ? false : $fld->$placeholder()->html();
+    $min = 'fbf_' . $fld->fbf_type() . '_min';
+    $min = $fld->$min()->isEmpty() ? false : $fld->$min();
+    $max = 'fbf_' . $fld->fbf_type() . '_max';
+    $max = $fld->$max()->isEmpty() ? false : $fld->$max();
+    $pattern = 'fbf_' . $fld->fbf_type() . '_pattern';
+    $pattern = $fld->$pattern()->isEmpty() ? false : $fld->$pattern();
+    $req = 'fbf_' . $fld->fbf_type() . '_req';
+    $req = $fld->$req()->toBool();
+
+    if($useDiv):
+?>
+<div<?php if($class): ?> class="<?= $class ?>"<?php endif; ?>>
 <?php endif; ?>
-    <?php if($fld->$label()->isNotEmpty()):?><label for="<?= $fld->form_field_name() ?>"><?= $fld->$label()->html() ?></label><?php endif; ?>
-
-    <input type="<?= $fld->form_field_type() ?>" name="<?= $fld->form_field_name() ?>" id="<?= $fld->form_field_name() ?>"<?php if(!$pg->form_field_structure()->toBool() and $fld->form_field_class()->isNotEmpty()): ?> class="<?= $fld->form_field_class() ?>"<?php endif; ?><?php if($fld->$placeholder()->isNotEmpty()): ?> placeholder="<?= $fld->$placeholder()->html() ?>"<?php endif; ?><?php if($fld->$min()->isNotEmpty()):?> minlength="<?= $fld->$min() ?>"<?php endif; ?><?php if($fld->$max()->isNotEmpty()):?> maxlength="<?= $fld->$max() ?>"<?php endif; ?><?php if($fld->$pattern()->isNotEmpty()):?> pattern="<?= $fld->$pattern() ?>"<?php endif; ?><?php if($fld->$req()->toBool()):?> required<?php endif; ?>>
-<?php if($pg->form_field_structure()->toBool()): ?>
+<?php if($label):?>
+    <label for="<?= $name ?>"><?= $label ?></label>
+<?php endif; ?>
+    <input type="<?= $fld->fbf_type() ?>" name="<?= $name ?>" id="<?= $name ?>"<?php if(!$useDiv and $class): ?> class="<?= $class ?>"<?php endif; ?><?php if($placeholder): ?> placeholder="<?= $placeholder ?>"<?php endif; ?><?php if($min):?> minlength="<?= $min ?>"<?php endif; ?><?php if($max):?> maxlength="<?= $max ?>"<?php endif; ?><?php if($pattern):?> pattern="<?= $pattern ?>"<?php endif; ?><?php if($req):?> required<?php endif; ?>>
+<?php if($useDiv): ?>
 </div>
 <?php endif; ?>

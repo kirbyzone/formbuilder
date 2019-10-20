@@ -1,13 +1,27 @@
-<?php if($pg->form_field_structure()->toBool()): ?>
-<div<?php if($fld->form_field_class()->isNotEmpty()): ?> class="<?= $fld->form_field_class() ?>"<?php endif; ?>>
-<?php endif; ?>
-    <?php if($fld->form_field_select_label()->isNotEmpty()):?><label for="<?= $fld->form_field_name() ?>"><?= $fld->form_field_select_label()->html() ?></label><?php endif; ?>
+<?php
+    // FLAGS and VARIABLES that make our code easier to read:
+    $name = $fld->fbf_name();
+    $class = $fld->fbf_class()->isEmpty() ? false : $fld->fbf_class()->html();
+    $useDiv = $pg->fb_usediv()->toBool();
+    $label = $fld->fbf_select_label()->isEmpty() ? false : $fld->fbf_select_label()->html();
+    $multiple = $fld->fbf_select_multiple()->toBool();
+    $req = $fld->fbf_select_req()->toBool();
 
-    <select name="<?= $fld->form_field_name() ?>" id="<?= $fld->form_field_name() ?>"<?php if(!$pg->form_field_structure()->toBool() and $fld->form_field_class()->isNotEmpty()): ?> class="<?= $fld->form_field_class() ?>"<?php endif; ?><?php if($fld->form_field_select_multiple()->toBool()):?> multiple<?php if($fld->form_field_select_size()->isNotEmpty()):?> size="<?= $fld->form_field_select_size() ?>"<?php endif; ?><?php endif; ?>>
-<?php foreach($fld->form_field_select()->toStructure() as $option): ?>
-        <option value="<?= $option->select_item_value()->html() ?>"><?= $option->select_item_label()->or($option->select_item_value())->html() ?></option>
-<?php endforeach; ?>
+    if($useDiv):
+?>
+<div<?php if($class): ?> class="<?= $class ?>"<?php endif; ?>>
+<?php endif; ?>
+    <?php if($label):?><label for="<?= $name ?>"><?= $label ?></label><?php endif; ?>
+
+    <select name="<?= $name ?>" id="<?= $name ?>"<?php if(!$useDiv and $class): ?> class="<?= $class ?>"<?php endif; ?><?php if($multiple):?> multiple<?php endif; ?><?php if($req): ?> required<?php endif; ?>>
+<?php
+        foreach($fld->fbf_select()->toStructure() as $option):
+            $value = $option->select_item_value()->html();
+            $optlabel = $option->select_item_label()->or($option->select_item_value())->html();
+?>
+        <option value="<?= $value ?>"><?= $optlabel ?></option>
+<?php   endforeach; ?>
     </select>
-<?php if($pg->form_field_structure()->toBool()): ?>
+<?php if($useDiv): ?>
 </div>
 <?php endif; ?>

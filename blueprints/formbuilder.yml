@@ -1,6 +1,6 @@
 type: group
 fields:
-  form_show_settings:
+  fb_form_settings:
     type: toggle
     label: Form Settings
     translate: false
@@ -8,7 +8,7 @@ fields:
     text:
       - hide configuration
       - show configuration
-  form_id:
+  fb_form_id:
     type: text
     label: Form ID
     counter: false
@@ -20,8 +20,8 @@ fields:
     width: 1/3
     help: A <strong>unique ID</strong> for your form.
     when:
-      form_show_settings: true
-  form_class:
+      fb_form_settings: true
+  fb_form_class:
     type: text
     label: Form Class
     counter: false
@@ -33,8 +33,8 @@ fields:
     width: 1/3
     help: Optional CSS class to add to the &lt;form&gt; element.
     when:
-      form_show_settings: true
-  form_field_structure:
+      fb_form_settings: true
+  fb_usediv:
     type: toggle
     label: Field Structure
     default: false
@@ -43,14 +43,14 @@ fields:
       - enclosed in &lt;div&gt;
     width: 1/3
     when:
-      form_show_settings: true
-  form_fields:
+      fb_form_settings: true
+  fb_fields:
     type: structure
     label: Form Fields
     sortable: true
     empty: No form fields defined yet.
     fields:
-      form_field_type:
+      fbf_type:
         type: select
         label: Field Type
         options:
@@ -71,7 +71,7 @@ fields:
         # width: 1/2
         default: text
         required: true
-      form_field_name:
+      fbf_name:
         type: text
         label: Field Name
         counter: false
@@ -82,7 +82,7 @@ fields:
         before: "#"
         width: 1/2
         help: A <strong>unique name</strong> for this field - used both for 'id' and 'name' attributes.
-      form_field_class:
+      fbf_class:
         type: text
         label: Field Class
         counter: false
@@ -95,21 +95,21 @@ fields:
       # ===============================================
       # TEXT FIELD OPTIONS
       # ===============================================
-      form_field_text_label:
+      fbf_text_label:
         type: text
         label: Field Label
         counter: false
         width: 1/3
         when:
-          form_field_type: text
-      form_field_text_placeholder:
+          fbf_type: text
+      fbf_text_placeholder:
         type: text
         label: Placeholder Text
         counter: false
         width: 1/3
         when:
-          form_field_type: text
-      form_field_text_req:
+          fbf_type: text
+      fbf_text_req:
         type: toggle
         label: ""
         translate: false
@@ -119,24 +119,24 @@ fields:
           - required
         width: 1/3
         when:
-          form_field_type: text
-      form_field_text_min:
+          fbf_type: text
+      fbf_text_min:
         type: number
         label: Min Length
         placeholder: 3
         min: 0
         width: 1/4
         when:
-          form_field_type: text
-      form_field_text_max:
+          fbf_type: text
+      fbf_text_max:
         type: number
         label: Max Length
         placeholder: 100
         min: 0
         width: 1/4
         when:
-          form_field_type: text
-      form_field_text_pattern:
+          fbf_type: text
+      fbf_text_pattern:
         type: text
         label: Validation Regex Pattern
         counter: false
@@ -144,26 +144,26 @@ fields:
         placeholder: "[a-z]{4,8}"
         width: 1/2
         when:
-          form_field_type: text
+          fbf_type: text
 
       # ===============================================
       # TEXTAREA FIELD OPTIONS
       # ===============================================
-      form_field_textarea_label:
+      fbf_textarea_label:
         type: text
         label: Field Label
         counter: false
         width: 1/3
         when:
-          form_field_type: textarea
-      form_field_textarea_placeholder:
+          fbf_type: textarea
+      fbf_textarea_placeholder:
         type: text
         label: Placeholder Text
         counter: false
         width: 1/3
         when:
-          form_field_type: textarea
-      form_field_textarea_req:
+          fbf_type: textarea
+      fbf_textarea_req:
         type: toggle
         label: ""
         translate: false
@@ -173,49 +173,49 @@ fields:
           - required
         width: 1/3
         when:
-          form_field_type: textarea
-      form_field_textarea_min:
+          fbf_type: textarea
+      fbf_textarea_min:
         type: number
         label: Min Length
         placeholder: 0
         min: 0
         width: 1/4
         when:
-          form_field_type: textarea
-      form_field_textarea_max:
+          fbf_type: textarea
+      fbf_textarea_max:
         type: number
         label: Max Length
         placeholder: 300
         min: 0
         width: 1/4
         when:
-          form_field_type: textarea
-      form_field_textarea_rows:
+          fbf_type: textarea
+      fbf_textarea_rows:
         type: number
         label: Number of Lines
         min: 3
         width: 1/4
         when:
-          form_field_type: textarea
+          fbf_type: textarea
 
       # ===============================================
       # EMAIL FIELD OPTIONS
       # ===============================================
-      form_field_email_label:
+      fbf_email_label:
         type: text
         label: Field Label
         counter: false
         width: 1/3
         when:
-          form_field_type: email
-      form_field_email_placeholder:
+          fbf_type: email
+      fbf_email_placeholder:
         type: text
         label: Placeholder Text
         counter: false
         width: 1/3
         when:
-          form_field_type: email
-      form_field_email_req:
+          fbf_type: email
+      fbf_email_req:
         type: toggle
         label: ""
         translate: false
@@ -225,24 +225,24 @@ fields:
           - required
         width: 1/3
         when:
-          form_field_type: email
-      form_field_email_min:
+          fbf_type: email
+      fbf_email_min:
         type: number
         label: Min Length
         placeholder: 3
         min: 0
         width: 1/4
         when:
-          form_field_type: email
-      form_field_email_max:
+          fbf_type: email
+      fbf_email_max:
         type: number
         label: Max Length
         placeholder: 100
         min: 0
         width: 1/4
         when:
-          form_field_type: email
-      form_field_email_pattern:
+          fbf_type: email
+      fbf_email_pattern:
         type: text
         label: Validation Regex Pattern
         counter: false
@@ -250,26 +250,26 @@ fields:
         placeholder: "[0-9a-z._]+@example.com"
         width: 1/2
         when:
-          form_field_type: email
+          fbf_type: email
 
       # ===============================================
       # TEL FIELD OPTIONS
       # ===============================================
-      form_field_tel_label:
+      fbf_tel_label:
         type: text
         label: Field Label
         counter: false
         width: 1/3
         when:
-          form_field_type: tel
-      form_field_tel_placeholder:
+          fbf_type: tel
+      fbf_tel_placeholder:
         type: text
         label: Placeholder Text
         counter: false
         width: 1/3
         when:
-          form_field_type: tel
-      form_field_tel_req:
+          fbf_type: tel
+      fbf_tel_req:
         type: toggle
         label: ""
         default: false
@@ -278,24 +278,24 @@ fields:
           - required
         width: 1/3
         when:
-          form_field_type: tel
-      form_field_tel_min:
+          fbf_type: tel
+      fbf_tel_min:
         type: number
         label: Min Length
         placeholder: 3
         min: 0
         width: 1/4
         when:
-          form_field_type: tel
-      form_field_tel_max:
+          fbf_type: tel
+      fbf_tel_max:
         type: number
         label: Max Length
         placeholder: 100
         min: 0
         width: 1/4
         when:
-          form_field_type: tel
-      form_field_tel_pattern:
+          fbf_type: tel
+      fbf_tel_pattern:
         type: text
         label: Validation Regex Pattern
         counter: false
@@ -304,26 +304,26 @@ fields:
         placeholder: "[0-9]{4}-[0-9]{4}"
         width: 1/2
         when:
-          form_field_type: tel
+          fbf_type: tel
 
       # ===============================================
       # NUMBER FIELD OPTIONS
       # ===============================================
-      form_field_number_label:
+      fbf_number_label:
         type: text
         label: Field Label
         counter: false
         width: 1/3
         when:
-          form_field_type: number
-      form_field_number_placeholder:
+          fbf_type: number
+      fbf_number_placeholder:
         type: text
         label: Placeholder Text
         counter: false
         width: 1/3
         when:
-          form_field_type: number
-      form_field_number_req:
+          fbf_type: number
+      fbf_number_req:
         type: toggle
         label: ""
         translate: false
@@ -333,22 +333,22 @@ fields:
           - required
         width: 1/3
         when:
-          form_field_type: number
-      form_field_number_min:
+          fbf_type: number
+      fbf_number_min:
         type: number
         label: Min Value
         placeholder: 0
         width: 1/4
         when:
-          form_field_type: number
-      form_field_number_max:
+          fbf_type: number
+      fbf_number_max:
         type: number
         label: Max Value
         placeholder: 100
         width: 1/4
         when:
-          form_field_type: number
-      form_field_number_step:
+          fbf_type: number
+      fbf_number_step:
         type: text
         label: Step Value
         counter: false
@@ -356,26 +356,26 @@ fields:
         placeholder: "0.01"
         width: 1/4
         when:
-          form_field_type: number
+          fbf_type: number
 
       # ===============================================
       # URL FIELD OPTIONS
       # ===============================================
-      form_field_url_label:
+      fbf_url_label:
         type: text
         label: Field Label
         counter: false
         width: 1/3
         when:
-          form_field_type: url
-      form_field_url_placeholder:
+          fbf_type: url
+      fbf_url_placeholder:
         type: text
         label: Placeholder Text
         counter: false
         width: 1/3
         when:
-          form_field_type: url
-      form_field_url_req:
+          fbf_type: url
+      fbf_url_req:
         type: toggle
         label: ""
         translate: false
@@ -385,24 +385,24 @@ fields:
           - required
         width: 1/3
         when:
-          form_field_type: url
-      form_field_url_min:
+          fbf_type: url
+      fbf_url_min:
         type: number
         label: Min Length
         placeholder: 3
         min: 0
         width: 1/4
         when:
-          form_field_type: url
-      form_field_url_max:
+          fbf_type: url
+      fbf_url_max:
         type: number
         label: Max Length
         placeholder: 100
         min: 0
         width: 1/4
         when:
-          form_field_type: url
-      form_field_url_pattern:
+          fbf_type: url
+      fbf_url_pattern:
         type: text
         label: Validation Regex Pattern
         counter: false
@@ -410,26 +410,26 @@ fields:
         placeholder: "https://.*"
         width: 1/2
         when:
-          form_field_type: url
+          fbf_type: url
 
       # ===============================================
       # CHECKBOX OPTIONS
       # ===============================================
-      form_field_check_label:
+      fbf_check_label:
         type: text
         label: Checkbox Label
         counter: false
         width: 1/3
         when:
-          form_field_type: checkbox
-      form_field_check_value:
+          fbf_type: checkbox
+      fbf_check_value:
         type: text
         label: Checkbox Value
         counter: false
         width: 1/3
         when:
-          form_field_type: checkbox
-      form_field_check_checked:
+          fbf_type: checkbox
+      fbf_check_checked:
         type: toggle
         label: ""
         translate: false
@@ -439,12 +439,12 @@ fields:
           - checked
         width: 1/3
         when:
-          form_field_type: checkbox
+          fbf_type: checkbox
 
       # ===============================================
       # RADIO BUTTONS OPTIONS
       # ===============================================
-      form_field_radio:
+      fbf_radio:
         type: structure
         label: Radio Button Group
         sortable: true
@@ -466,19 +466,30 @@ fields:
             counter: false
             width: 1/3
         when:
-          form_field_type: radio
+          fbf_type: radio
 
       # ===============================================
       # SELECT MENU OPTIONS
       # ===============================================
-      form_field_select_label:
+      fbf_select_label:
         type: text
         label: Select Menu Label
         counter: false
         width: 1/3
         when:
-          form_field_type: select
-      form_field_select_multiple:
+          fbf_type: select
+      fbf_select_req:
+        type: toggle
+        label: ""
+        translate: false
+        default: false
+        text:
+          - not required
+          - required
+        width: 1/3
+        when:
+          fbf_type: select
+      fbf_select_multiple:
         type: toggle
         label: "Allowed Selection"
         translate: false
@@ -488,16 +499,8 @@ fields:
           - single item only
           - multiple items
         when:
-          form_field_type: select
-      form_field_select_size:
-        type: number
-        label: Visible Size
-        translate: false
-        width: 1/3
-        min: 0
-        when:
-          form_field_select_multiple: true
-      form_field_select:
+          fbf_type: select
+      fbf_select:
         type: structure
         label: Select Menu Items
         sortable: true
@@ -515,27 +518,27 @@ fields:
             counter: false
             width: 1/2
         when:
-          form_field_type: select
+          fbf_type: select
 
       # ===============================================
       # DATE FIELD OPTIONS
       # ===============================================
-      form_field_date_label:
+      fbf_date_label:
         type: text
         label: Field Label
         counter: false
         width: 1/3
         when:
-          form_field_type: date
-      form_field_date_placeholder:
+          fbf_type: date
+      fbf_date_placeholder:
         type: text
         label: Placeholder Text
         counter: false
         placeholder: "YYYY-MM-DD"
         width: 1/3
         when:
-          form_field_type: date
-      form_field_date_req:
+          fbf_type: date
+      fbf_date_req:
         type: toggle
         label: ""
         translate: false
@@ -545,24 +548,24 @@ fields:
           - required
         width: 1/3
         when:
-          form_field_type: date
-      form_field_date_min:
+          fbf_type: date
+      fbf_date_min:
         type: text
         label: Min Value
         placeholder: "1970-01-01"
         width: 1/4
         counter: false
         when:
-          form_field_type: date
-      form_field_date_max:
+          fbf_type: date
+      fbf_date_max:
         type: text
         label: Max Value
         placeholder: "2050-12-31"
         width: 1/4
         counter: false
         when:
-          form_field_type: date
-      form_field_date_pattern:
+          fbf_type: date
+      fbf_date_pattern:
         type: text
         label: Validation Regex Pattern
         counter: false
@@ -570,27 +573,27 @@ fields:
         placeholder: "[0-9]{4}-[0-9]{2}-[0-9]{2}"
         width: 1/2
         when:
-          form_field_type: date
+          fbf_type: date
 
       # ===============================================
       # TIME FIELD OPTIONS
       # ===============================================
-      form_field_time_label:
+      fbf_time_label:
         type: text
         label: Field Label
         counter: false
         width: 1/3
         when:
-          form_field_type: time
-      form_field_time_placeholder:
+          fbf_type: time
+      fbf_time_placeholder:
         type: text
         label: Placeholder Text
         counter: false
         placeholder: "16:30"
         width: 1/3
         when:
-          form_field_type: time
-      form_field_time_req:
+          fbf_type: time
+      fbf_time_req:
         type: toggle
         label: ""
         translate: false
@@ -600,24 +603,24 @@ fields:
           - required
         width: 1/3
         when:
-          form_field_type: time
-      form_field_time_min:
+          fbf_type: time
+      fbf_time_min:
         type: text
         label: Min Value
         placeholder: "13:30"
         width: 1/4
         counter: false
         when:
-          form_field_type: time
-      form_field_time_max:
+          fbf_type: time
+      fbf_time_max:
         type: text
         label: Max Value
         placeholder: "22:30"
         width: 1/4
         counter: false
         when:
-          form_field_type: time
-      form_field_time_pattern:
+          fbf_type: time
+      fbf_time_pattern:
         type: text
         label: Validation Regex Pattern
         counter: false
@@ -625,26 +628,26 @@ fields:
         placeholder: "[0-9]{2}:[0-9]{2}"
         width: 1/2
         when:
-          form_field_type: time
+          fbf_type: time
 
       # ===============================================
       # PASSWORD FIELD OPTIONS
       # ===============================================
-      form_field_password_label:
+      fbf_password_label:
         type: text
         label: Field Label
         counter: false
         width: 1/3
         when:
-          form_field_type: password
-      form_field_password_placeholder:
+          fbf_type: password
+      fbf_password_placeholder:
         type: text
         label: Placeholder Text
         counter: false
         width: 1/3
         when:
-          form_field_type: password
-      form_field_password_req:
+          fbf_type: password
+      fbf_password_req:
         type: toggle
         label: ""
         translate: false
@@ -654,24 +657,24 @@ fields:
           - required
         width: 1/3
         when:
-          form_field_type: password
-      form_field_password_min:
+          fbf_type: password
+      fbf_password_min:
         type: number
         label: Min Length
         placeholder: 8
         min: 0
         width: 1/4
         when:
-          form_field_type: password
-      form_field_password_max:
+          fbf_type: password
+      fbf_password_max:
         type: number
         label: Max Length
         placeholder: 16
         min: 0
         width: 1/4
         when:
-          form_field_type: password
-      form_field_password_pattern:
+          fbf_type: password
+      fbf_password_pattern:
         type: text
         label: Validation Regex Pattern
         counter: false
@@ -679,55 +682,55 @@ fields:
         placeholder: "[0-9a-zA-Z!*+#$@^-_]{8,16}"
         width: 1/2
         when:
-          form_field_type: password
-      form_field_password_verify:
+          fbf_type: password
+      fbf_password_verify:
         type: select
         label: Password Verify
         options: query
         query:
-          fetch: page.form_fields.toStructure.filterBy('form_field_type','password')
-          text: "{{ structureItem.form_field_name }}"
-          value: "{{ structureItem.form_field_name }}"
+          fetch: page.fb_fields.toStructure.filterBy('fbf_type','password')
+          text: "{{ structureItem.fbf_name }}"
+          value: "{{ structureItem.fbf_name }}"
         help: Another password field, whose entry this field must match.
         width: 1/2
         when:
-          form_field_type: password
+          fbf_type: password
       # ===============================================
       # HIDDEN FIELD OPTIONS
       # ===============================================
-      form_field_hidden_value:
+      fbf_hidden_value:
         type: text
         label: Field Value
         counter: false
         spellcheck: false
         when:
-          form_field_type: hidden
+          fbf_type: hidden
 
     columns:
-      form_field_name:
+      fbf_name:
         width: 2/3
-      form_field_type:
+      fbf_type:
         width: 1/3
         align: right
     when:
-      form_show_settings: true
+      fb_form_settings: true
 
-  form_submit_label:
+  fb_submit_label:
     type: text
     label: 'Submit' Buton Label
     placeholder: Send
     width: 1/3
     when:
-      form_show_settings: true
-  form_cancel_label:
+      fb_form_settings: true
+  fb_cancel_label:
     type: text
     label: 'Reset' Button label
     placeholder: Reset
     width: 1/3
     help: Leave empty to omit the button from the form.
     when:
-      form_show_settings: true
-  form_captcha:
+      fb_form_settings: true
+  fb_captcha:
     type: toggle
     label: Use hCaptcha
     translate: false
@@ -737,33 +740,33 @@ fields:
       - use hCaptcha
     width: 1/3
     when:
-      form_show_settings: true
+      fb_form_settings: true
     help: Sign up for hCaptcha <strong><a href="https://hCaptcha.com/?r=5c848162fd88">here</a></strong>.
-  form_captcha_secretkey:
+  fb_captcha_secretkey:
     type: text
     label: hCaptcha 'Secret Key'
     placeholder: '0x0A00A00AA00AA0000A000b0000bA00000b0A0Ab0'
     width: 2/3
     when:
-      form_show_settings: true
-      form_captcha: true
-  form_captcha_sitekey:
+      fb_form_settings: true
+      fb_captcha: true
+  fb_captcha_sitekey:
     type: text
     label: hCaptcha 'Site Key'
     placeholder: 'a00bbb00-000a-a0b0-a0b00000a0b0'
     width: 2/3
     when:
-      form_show_settings: true
-      form_captcha: true
+      fb_form_settings: true
+      fb_captcha: true
 
   # ===============================================
   # FORM RESPONSE CONFIGURATION
   # ===============================================
-  form_is_ajax_line:
+  fb_is_ajax_line:
     type: line
     when:
-      form_show_settings: true
-  form_is_ajax:
+      fb_form_settings: true
+  fb_is_ajax:
     type: toggle
     label: "Success/Error Action"
     translate: false
@@ -773,8 +776,8 @@ fields:
       - show message in-page
     width: 1/3
     when:
-      form_show_settings: true
-  form_success_page:
+      fb_form_settings: true
+  fb_success_page:
     type: pages
     label: Success Page
     multiple: false
@@ -785,9 +788,9 @@ fields:
       query: false
     help: The page the user will go to when the form is successfully submitted.
     when:
-      form_show_settings: true
-      form_is_ajax: false
-  form_error_page:
+      fb_form_settings: true
+      fb_is_ajax: false
+  fb_error_page:
     type: pages
     label: Error Page
     multiple: false
@@ -798,9 +801,9 @@ fields:
       query: false
     help: The page the user will go to if the form submission fails.
     when:
-      form_show_settings: true
-      form_is_ajax: false
-  form_success_msg:
+      fb_form_settings: true
+      fb_is_ajax: false
+  fb_success_msg:
     type: textarea
     label: Success Message
     size: small
@@ -811,9 +814,9 @@ fields:
     placeholder: Your form was received successfully - thank you!
     help: The message that is displayed when the form is successfully submitted.
     when:
-      form_show_settings: true
-      form_is_ajax: true
-  form_error_msg:
+      fb_form_settings: true
+      fb_is_ajax: true
+  fb_error_msg:
     type: textarea
     label: Error Message
     size: small
@@ -824,17 +827,17 @@ fields:
     placeholder: There was an issue sending your form data - please try again!
     help: The message that is displayed when there is an issue sending the form data.
     when:
-      form_show_settings: true
-      form_is_ajax: true
+      fb_form_settings: true
+      fb_is_ajax: true
 
   # ===============================================
   # FORM EMAIL CONFIGURATION
   # ===============================================
-  form_send_email_line:
+  fb_send_email_line:
     type: line
     when:
-      form_show_settings: true
-  form_send_email:
+      fb_form_settings: true
+  fb_send_email:
     type: toggle
     label: Submission Emails
     translate: false
@@ -844,17 +847,17 @@ fields:
       - send form data via email
     width: 1/3
     when:
-      form_show_settings: true
-  form_email_recipient:
+      fb_form_settings: true
+  fb_email_recipient:
     type: email
     label: Recipient Email Address
     placeholder: john@example.com
     width: 2/3
     help: Email address that will receive the form emails.
     when:
-      form_show_settings: true
-      form_send_email: true
-  form_email_sender_type:
+      fb_form_settings: true
+      fb_send_email: true
+  fb_email_sender_type:
     type: toggle
     label: Sender Email
     default: false
@@ -863,50 +866,50 @@ fields:
       - is based on a form field
     width: 1/3
     when:
-      form_show_settings: true
-      form_send_email: true
-  form_email_sender:
+      fb_form_settings: true
+      fb_send_email: true
+  fb_email_sender:
     type: email
     label: Sender Email Address
     placeholder: admin@example.com
     width: 2/3
     help: Email address that will send the form emails.
     when:
-      form_show_settings: true
-      form_send_email: true
-      form_email_sender_type: false
-  form_email_sender_field:
+      fb_form_settings: true
+      fb_send_email: true
+      fb_email_sender_type: false
+  fb_email_sender_field:
     type: select
     label: Sender Email Field
     options: query
     query:
-      fetch: page.form_fields.toStructure
-      text: "{{ structureItem.form_field_name }}"
-      value: "{{ structureItem.form_field_name }}"
+      fetch: page.fb_fields.toStructure
+      text: "{{ structureItem.fbf_name }}"
+      value: "{{ structureItem.fbf_name }}"
     help: Form field which will hold the sender's email address.
     width: 2/3
     when:
-      form_show_settings: true
-      form_send_email: true
-      form_email_sender_type: true
-  form_email_subject:
+      fb_form_settings: true
+      fb_send_email: true
+      fb_email_sender_type: true
+  fb_email_subject:
     type: text
     label: Email Subject
     placeholder: "Message from {{site.title}} Website"
     help: 'Subject' heading of emails sent by this form - useful for filtering and archiving messages in your email app.
     when:
-      form_show_settings: true
-      form_send_email: true
+      fb_form_settings: true
+      fb_send_email: true
 
 
   # ===============================================
   # RECEIVED SUBMISSIONS LIST
   # ===============================================
-  submissions_line:
+  fb_submissions_line:
     type: line
     when:
-      form_show_settings: true
-  form_save_submissions:
+      fb_form_settings: true
+  fb_save_submissions:
     type: toggle
     label: Save Submissions
     default: false
@@ -916,21 +919,21 @@ fields:
     width: 1/3
     help: Turning off <strong>DELETES</strong> any previously saved submissions.
     when:
-      form_show_settings: true
-  form_key_field:
+      fb_form_settings: true
+  fb_key_field:
     type: select
     label: Key Field
     options: query
     query:
-      fetch: page.form_fields.toStructure
-      text: "{{ structureItem.form_field_name }}"
-      value: "{{ structureItem.form_field_name }}"
+      fetch: page.fb_fields.toStructure
+      text: "{{ structureItem.fbf_name }}"
+      value: "{{ structureItem.fbf_name }}"
     width: 1/3
     help: Field to display in 'Key' column of the Received Submissions table.
     when:
-      form_show_settings: true
-      form_save_submissions: true
-  received_submissions:
+      fb_form_settings: true
+      fb_save_submissions: true
+  fb_received_submissions:
     type: structure
     label: Received Submissions
     empty: no submissions received yet.
@@ -962,4 +965,4 @@ fields:
       entry_key:
         width: 3/4
     when:
-      form_save_submissions: true
+      fb_save_submissions: true

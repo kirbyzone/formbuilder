@@ -1,9 +1,20 @@
-<?php if($pg->form_field_structure()->toBool()): ?>
-<div<?php if($fld->form_field_class()->isNotEmpty()): ?> class="<?= $fld->form_field_class() ?>"<?php endif; ?>>
-<?php endif; ?>
-    <input type="checkbox" name="<?= $fld->form_field_name() ?>" id="<?= $fld->form_field_name() ?>"<?php if(!$pg->form_field_structure()->toBool() and $fld->form_field_class()->isNotEmpty()): ?> class="<?= $fld->form_field_class() ?>"<?php endif; ?><?php if($fld->form_field_check_value()->isNotEmpty()):?> value="<?= $fld->form_field_check_value()->html() ?>"<?php endif; ?><?php if($fld->form_field_check_checked()->toBool()):?> checked<?php endif; ?>>
-    <?php if($fld->form_field_check_label()->isNotEmpty()):?><label for="<?= $fld->form_field_name() ?>"><?= $fld->form_field_check_label()->html() ?></label><?php endif; ?>
+<?php
 
-<?php if($pg->form_field_structure()->toBool()): ?>
+    // // FLAGS and VARIABLES that make our code easier to read:
+    $name = $fld->fbf_name();
+    $class = $fld->fbf_class()->isEmpty() ? false : $fld->fbf_class()->html();
+    $useDiv = $pg->fb_usediv()->toBool();
+    $label = $fld->fbf_check_label()->isEmpty() ? false : $fld->fbf_check_label()->html();
+    $value = $fld->fbf_check_value()->isEmpty() ? false : $fld->fbf_check_value()->html();
+    $checked = $fld->fbf_check_checked()->toBool();
+
+    if($useDiv):
+?>
+<div<?php if($class): ?> class="<?= $class ?>"<?php endif; ?>>
+<?php endif; ?>
+    <input type="checkbox" name="<?= $name ?>" id="<?= $name ?>"<?php if(!$useDiv and $class): ?> class="<?= $class ?>"<?php endif; ?><?php if($value):?> value="<?= $value ?>"<?php endif; ?><?php if($checked):?> checked<?php endif; ?>>
+    <?php if($label):?><label for="<?= $name ?>"><?= $label ?></label><?php endif; ?>
+
+<?php if($useDiv): ?>
 </div>
 <?php endif; ?>

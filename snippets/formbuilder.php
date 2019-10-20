@@ -1,13 +1,14 @@
 <?php
-    $id = $page->form_id()->or('form-'.time());
-    $fields = $page->form_fields()->toStructure();
+    $id = $page->fb_form_id()->or('form-'.time());
+    $class = $page->fb_form_class()->isEmpty() ? false : $page->fb_form_class()->html();
+    $fields = $page->fb_fields()->toStructure();
 ?>
 
-<form action="" id="<?= $id ?>"<?php if($page->form_class()->isNotEmpty()):?> class="<?= $page->form_class()->html() ?>"<?php endif; ?>>
+<form action="" id="<?= $id ?>"<?php if($class):?> class="<?= $class ?>"<?php endif; ?>>
 
 <?php
     foreach($fields as $field):
-        switch ($field->form_field_type()) {
+        switch ($field->fbf_type()) {
             case 'text':
             case 'email':
             case 'url':
