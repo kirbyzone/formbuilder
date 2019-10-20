@@ -30,6 +30,9 @@
             case 'select':
                 snippet('formbuilder/select', ['pg' => $page, 'fld' => $field]);
                 break;
+            case 'radio':
+                snippet('formbuilder/radio', ['pg' => $page, 'fld' => $field]);
+                break;
             case 'hidden':
                 snippet('formbuilder/hidden', ['fld' => $field]);
                 break;

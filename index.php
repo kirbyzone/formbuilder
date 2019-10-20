@@ -11,6 +11,7 @@ Kirby::plugin('cre8ivclick/formbuilder', [
         'formbuilder/number' => __DIR__ . '/snippets/fields/number.php',
         'formbuilder/checkbox' => __DIR__ . '/snippets/fields/checkbox.php',
         'formbuilder/select' => __DIR__ . '/snippets/fields/select.php',
+        'formbuilder/radio' => __DIR__ . '/snippets/fields/radio.php',
         'formbuilder/hidden' => __DIR__ . '/snippets/fields/hidden.php',
         'formbuilder/honeypot' => __DIR__ . '/snippets/fields/honeypot.php'
     ]

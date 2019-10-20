@@ -16,6 +16,7 @@
     <select name="<?= $name ?>" id="<?= $name ?>"<?php if(!$useDiv and $class): ?> class="<?= $class ?>"<?php endif; ?><?php if($multiple):?> multiple<?php endif; ?><?php if($req): ?> required<?php endif; ?>>
 <?php
         $canSelect = true;
+        $selected = false;
         foreach($fld->fbf_select()->toStructure() as $option):
             $value = $option->select_item_value()->html();
             $optlabel = $option->select_item_label()->or($option->select_item_value())->html();
@@ -24,7 +25,7 @@
                 $canSelect = false;
             }
 ?>
-        <option value="<?= $value ?>"<?php if($selected):?> selected<?php endif; ?>><?= $optlabel ?></option>
+        <option value="<?= $value ?>"<?php if($selected):?> selected<?php $selected = false; endif; ?>><?= $optlabel ?></option>
 <?php   endforeach; ?>
     </select>
 <?php if($useDiv): ?>

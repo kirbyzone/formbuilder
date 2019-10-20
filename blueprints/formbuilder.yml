@@ -444,17 +444,30 @@ fields:
       # ===============================================
       # RADIO BUTTONS OPTIONS
       # ===============================================
+      fbf_radio_label:
+        type: text
+        label: Radio Group Label
+        counter: false
+        width: 1/3
+        when:
+          fbf_type: radio
+      fbf_radio_req:
+        type: toggle
+        label: ""
+        translate: false
+        default: false
+        text:
+          - not required
+          - required
+        width: 1/3
+        when:
+          fbf_type: radio
       fbf_radio:
         type: structure
         label: Radio Button Group
         sortable: true
         empty: No radio buttons defined yet.
         fields:
-          radio_btn_id:
-            type: text
-            label: Radio Button ID
-            counter: false
-            width: 1/3
           radio_btn_label:
             type: text
             label: Radio Button Label
@@ -464,7 +477,15 @@ fields:
             type: text
             label: Radio Button Value
             counter: false
+            required: true
             width: 1/3
+          radio_btn_state:
+            type: toggle
+            label: State
+            width: 1/3
+            text:
+              - 'not selected'
+              - 'selected'
         when:
           fbf_type: radio
 
