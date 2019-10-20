@@ -6,6 +6,7 @@
     $useDiv = $pg->fb_usediv()->toBool();
     $label = $fld->fbf_textarea_label()->isEmpty() ? false : $fld->fbf_textarea_label()->html();
     $placeholder = $fld->fbf_textarea_placeholder()->isEmpty() ? false : $fld->fbf_textarea_placeholder()->html();
+    $value = $fld->fbf_textarea_value()->isEmpty() ? '' : $fld->fbf_textarea_value()->html();
     $min = $fld->fbf_textarea_min()->isEmpty() ? false : $fld->fbf_textarea_min();
     $max = $fld->fbf_textarea_max()->isEmpty() ? false : $fld->fbf_textarea_max();
     $rows = $fld->fbf_textarea_rows()->isEmpty() ? false : $fld->fbf_textarea_rows();
@@ -18,7 +19,7 @@
 <?php if($label):?>
     <label for="<?= $name ?>"><?= $label ?></label>
 <?php endif; ?>
-    <textarea name="<?= $name ?>" id="<?= $name ?>"<?php if(!$useDiv and $class): ?> class="<?= $class ?>"<?php endif; ?><?php if($placeholder): ?> placeholder="<?= $placeholder ?>"<?php endif; ?><?php if($min):?> minlength="<?= $min ?>"<?php endif; ?><?php if($max):?> maxlength="<?= $max ?>"<?php endif; ?><?php if($rows):?> rows="<?= $rows ?>"<?php endif; ?><?php if($req):?> required<?php endif; ?>></textarea>
+    <textarea name="<?= $name ?>" id="<?= $name ?>"<?php if(!$useDiv and $class): ?> class="<?= $class ?>"<?php endif; ?><?php if($placeholder): ?> placeholder="<?= $placeholder ?>"<?php endif; ?><?php if($min):?> minlength="<?= $min ?>"<?php endif; ?><?php if($max):?> maxlength="<?= $max ?>"<?php endif; ?><?php if($rows):?> rows="<?= $rows ?>"<?php endif; ?><?php if($req):?> required<?php endif; ?>><?= $value ?></textarea>
 <?php if($useDiv): ?>
 </div>
 <?php endif; ?>

@@ -68,7 +68,7 @@ fields:
           password: Password Field
           hidden: Hidden Field
           honeypot: Honeypot Field
-        # width: 1/2
+        # width: 1/3
         default: text
         required: true
       fbf_name:
@@ -80,7 +80,7 @@ fields:
         spellcheck: false
         required: true
         before: "#"
-        width: 1/2
+        width: 1/4
         help: A <strong>unique name</strong> for this field - used both for 'id' and 'name' attributes.
       fbf_class:
         type: text
@@ -95,6 +95,17 @@ fields:
       # ===============================================
       # TEXT FIELD OPTIONS
       # ===============================================
+      fbf_text_req:
+        type: toggle
+        label: ""
+        translate: false
+        default: false
+        text:
+          - not required
+          - required
+        width: 1/4
+        when:
+          fbf_type: text
       fbf_text_label:
         type: text
         label: Field Label
@@ -109,14 +120,10 @@ fields:
         width: 1/3
         when:
           fbf_type: text
-      fbf_text_req:
-        type: toggle
-        label: ""
-        translate: false
-        default: false
-        text:
-          - not required
-          - required
+      fbf_text_value:
+        type: text
+        label: Default Text
+        counter: false
         width: 1/3
         when:
           fbf_type: text
@@ -149,6 +156,17 @@ fields:
       # ===============================================
       # TEXTAREA FIELD OPTIONS
       # ===============================================
+      fbf_textarea_req:
+        type: toggle
+        label: ""
+        translate: false
+        default: false
+        text:
+          - not required
+          - required
+        width: 1/4
+        when:
+          fbf_type: textarea
       fbf_textarea_label:
         type: text
         label: Field Label
@@ -163,14 +181,10 @@ fields:
         width: 1/3
         when:
           fbf_type: textarea
-      fbf_textarea_req:
-        type: toggle
-        label: ""
-        translate: false
-        default: false
-        text:
-          - not required
-          - required
+      fbf_textarea_value:
+        type: text
+        label: Initial Text
+        counter: false
         width: 1/3
         when:
           fbf_type: textarea
@@ -201,6 +215,17 @@ fields:
       # ===============================================
       # EMAIL FIELD OPTIONS
       # ===============================================
+      fbf_email_req:
+        type: toggle
+        label: ""
+        translate: false
+        default: false
+        text:
+          - not required
+          - required
+        width: 1/4
+        when:
+          fbf_type: email
       fbf_email_label:
         type: text
         label: Field Label
@@ -215,14 +240,10 @@ fields:
         width: 1/3
         when:
           fbf_type: email
-      fbf_email_req:
-        type: toggle
-        label: ""
-        translate: false
-        default: false
-        text:
-          - not required
-          - required
+      fbf_email_value:
+        type: text
+        label: Default Email
+        counter: false
         width: 1/3
         when:
           fbf_type: email
@@ -255,6 +276,16 @@ fields:
       # ===============================================
       # TEL FIELD OPTIONS
       # ===============================================
+      fbf_tel_req:
+        type: toggle
+        label: ""
+        default: false
+        text:
+          - not required
+          - required
+        width: 1/4
+        when:
+          fbf_type: tel
       fbf_tel_label:
         type: text
         label: Field Label
@@ -269,13 +300,10 @@ fields:
         width: 1/3
         when:
           fbf_type: tel
-      fbf_tel_req:
-        type: toggle
-        label: ""
-        default: false
-        text:
-          - not required
-          - required
+      fbf_tel_value:
+        type: text
+        label: Default Number
+        counter: false
         width: 1/3
         when:
           fbf_type: tel
@@ -309,6 +337,17 @@ fields:
       # ===============================================
       # NUMBER FIELD OPTIONS
       # ===============================================
+      fbf_number_req:
+        type: toggle
+        label: ""
+        translate: false
+        default: false
+        text:
+          - not required
+          - required
+        width: 1/4
+        when:
+          fbf_type: number
       fbf_number_label:
         type: text
         label: Field Label
@@ -323,14 +362,10 @@ fields:
         width: 1/3
         when:
           fbf_type: number
-      fbf_number_req:
-        type: toggle
-        label: ""
-        translate: false
-        default: false
-        text:
-          - not required
-          - required
+      fbf_number_value:
+        type: text
+        label: Default Number
+        counter: false
         width: 1/3
         when:
           fbf_type: number
@@ -361,6 +396,17 @@ fields:
       # ===============================================
       # URL FIELD OPTIONS
       # ===============================================
+      fbf_url_req:
+        type: toggle
+        label: ""
+        translate: false
+        default: false
+        text:
+          - not required
+          - required
+        width: 1/4
+        when:
+          fbf_type: url
       fbf_url_label:
         type: text
         label: Field Label
@@ -375,14 +421,10 @@ fields:
         width: 1/3
         when:
           fbf_type: url
-      fbf_url_req:
-        type: toggle
-        label: ""
-        translate: false
-        default: false
-        text:
-          - not required
-          - required
+      fbf_url_value:
+        type: text
+        label: Default URL
+        counter: false
         width: 1/3
         when:
           fbf_type: url
@@ -444,13 +486,6 @@ fields:
       # ===============================================
       # RADIO BUTTONS OPTIONS
       # ===============================================
-      fbf_radio_label:
-        type: text
-        label: Radio Group Label
-        counter: false
-        width: 1/3
-        when:
-          fbf_type: radio
       fbf_radio_req:
         type: toggle
         label: ""
@@ -459,6 +494,13 @@ fields:
         text:
           - not required
           - required
+        width: 1/4
+        when:
+          fbf_type: radio
+      fbf_radio_label:
+        type: text
+        label: Radio Group Label
+        counter: false
         width: 1/3
         when:
           fbf_type: radio
@@ -492,13 +534,6 @@ fields:
       # ===============================================
       # SELECT MENU OPTIONS
       # ===============================================
-      fbf_select_label:
-        type: text
-        label: Select Menu Label
-        counter: false
-        width: 1/3
-        when:
-          fbf_type: select
       fbf_select_req:
         type: toggle
         label: ""
@@ -507,6 +542,13 @@ fields:
         text:
           - not required
           - required
+        width: 1/4
+        when:
+          fbf_type: select
+      fbf_select_label:
+        type: text
+        label: Select Menu Label
+        counter: false
         width: 1/3
         when:
           fbf_type: select
@@ -551,6 +593,17 @@ fields:
       # ===============================================
       # DATE FIELD OPTIONS
       # ===============================================
+      fbf_date_req:
+        type: toggle
+        label: ""
+        translate: false
+        default: false
+        text:
+          - not required
+          - required
+        width: 1/4
+        when:
+          fbf_type: date
       fbf_date_label:
         type: text
         label: Field Label
@@ -566,14 +619,11 @@ fields:
         width: 1/3
         when:
           fbf_type: date
-      fbf_date_req:
-        type: toggle
-        label: ""
-        translate: false
-        default: false
-        text:
-          - not required
-          - required
+      fbf_date_value:
+        type: text
+        label: Default Date
+        counter: false
+        placeholder: "YYYY-MM-DD"
         width: 1/3
         when:
           fbf_type: date
@@ -606,6 +656,17 @@ fields:
       # ===============================================
       # TIME FIELD OPTIONS
       # ===============================================
+      fbf_time_req:
+        type: toggle
+        label: ""
+        translate: false
+        default: false
+        text:
+          - not required
+          - required
+        width: 1/4
+        when:
+          fbf_type: time
       fbf_time_label:
         type: text
         label: Field Label
@@ -621,14 +682,11 @@ fields:
         width: 1/3
         when:
           fbf_type: time
-      fbf_time_req:
-        type: toggle
-        label: ""
-        translate: false
-        default: false
-        text:
-          - not required
-          - required
+      fbf_time_value:
+        type: text
+        label: Default Time
+        counter: false
+        placeholder: "16:30"
         width: 1/3
         when:
           fbf_type: time
@@ -661,6 +719,17 @@ fields:
       # ===============================================
       # PASSWORD FIELD OPTIONS
       # ===============================================
+      fbf_password_req:
+        type: toggle
+        label: ""
+        translate: false
+        default: true
+        text:
+          - not required
+          - required
+        width: 1/4
+        when:
+          fbf_type: password
       fbf_password_label:
         type: text
         label: Field Label
@@ -668,22 +737,16 @@ fields:
         width: 1/3
         when:
           fbf_type: password
-      fbf_password_placeholder:
-        type: text
-        label: Placeholder Text
-        counter: false
-        width: 1/3
-        when:
-          fbf_type: password
-      fbf_password_req:
-        type: toggle
-        label: ""
-        translate: false
-        default: false
-        text:
-          - not required
-          - required
-        width: 1/3
+      fbf_password_verify:
+        type: select
+        label: Password Verify
+        options: query
+        query:
+          fetch: page.fb_fields.toStructure.filterBy('fbf_type','password')
+          text: "{{ structureItem.fbf_name }}"
+          value: "{{ structureItem.fbf_name }}"
+        help: Another password field, whose entry this field must match.
+        width: 1/2
         when:
           fbf_type: password
       fbf_password_min:
@@ -708,18 +771,6 @@ fields:
         counter: false
         spellcheck: false
         placeholder: "[0-9a-zA-Z!*+#$@^-_]{8,16}"
-        width: 1/2
-        when:
-          fbf_type: password
-      fbf_password_verify:
-        type: select
-        label: Password Verify
-        options: query
-        query:
-          fetch: page.fb_fields.toStructure.filterBy('fbf_type','password')
-          text: "{{ structureItem.fbf_name }}"
-          value: "{{ structureItem.fbf_name }}"
-        help: Another password field, whose entry this field must match.
         width: 1/2
         when:
           fbf_type: password

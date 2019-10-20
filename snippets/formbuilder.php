@@ -9,14 +9,8 @@
 <?php
     foreach($fields as $field):
         switch ($field->fbf_type()) {
-            case 'text':
-            case 'email':
-            case 'url':
-            case 'tel':
-            case 'date':
-            case 'time':
             case 'password':
-                snippet('formbuilder/input', ['pg' => $page, 'fld' => $field]);
+                snippet('formbuilder/password', ['pg' => $page, 'fld' => $field]);
                 break;
             case 'textarea':
                 snippet('formbuilder/textarea', ['pg' => $page, 'fld' => $field]);
@@ -38,6 +32,9 @@
                 break;
             case 'honeypot':
                 snippet('formbuilder/honeypot', ['pg' => $page, 'fld' => $field]);
+                break;
+            default:
+                snippet('formbuilder/input', ['pg' => $page, 'fld' => $field]);
                 break;
         }
     endforeach;
