@@ -966,7 +966,7 @@ fields:
     label: Sender Email Field
     options: query
     query:
-      fetch: page.fb_fields.toStructure
+      fetch: page.fb_fields.toStructure.filterBy('fbf_type','==','email')
       text: "{{ structureItem.fbf_name }}"
       value: "{{ structureItem.fbf_name }}"
     help: Form field which will hold the sender's email address.
