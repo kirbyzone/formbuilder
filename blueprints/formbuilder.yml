@@ -798,6 +798,7 @@ fields:
     type: text
     label: 'Submit' Buton Label
     placeholder: Send
+    counter: false
     width: 1/3
     when:
       fb_form_settings: true
@@ -805,6 +806,7 @@ fields:
     type: text
     label: 'Reset' Button label
     placeholder: Reset
+    counter: false
     width: 1/3
     help: Leave empty to omit the button from the form.
     when:
@@ -825,6 +827,7 @@ fields:
     type: text
     label: hCaptcha 'Secret Key'
     placeholder: '0x0A00A00AA00AA0000A000b0000bA00000b0A0Ab0'
+    counter: false
     width: 2/3
     when:
       fb_form_settings: true
@@ -833,6 +836,7 @@ fields:
     type: text
     label: hCaptcha 'Site Key'
     placeholder: 'a00bbb00-000a-a0b0-a0b00000a0b0'
+    counter: false
     width: 2/3
     when:
       fb_form_settings: true

@@ -39,9 +39,12 @@
                 break;
         }
     endforeach;
-
-    if($useDiv):
 ?>
+<?php if($page->fb_captcha()->toBool() and $page->fb_captcha_sitekey()->isNotEmpty() and $page->fb_captcha_secretkey()->isNotEmpty()): ?>
+<div class="h-captcha" data-sitekey="<?= $page->fb_captcha_sitekey() ?>"></div>
+<script src="https://hcaptcha.com/1/api.js" async defer></script>
+<?php endif; ?>
+<?php if($useDiv): ?>
 <div<?php if($class): ?> class="<?= $class ?>"<?php endif; ?>>
 <?php endif; ?>
     <button type="submit" name="submit"><?= $page->fb_submit_label()->or("Submit")->html() ?></button>
