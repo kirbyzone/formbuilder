@@ -11,7 +11,9 @@ FormBuilder can generate the form's HTML code automatically, injecting it into y
 ### 3. Built-in Form Processing
 A big part of handling forms is processing the submitted responses. FormBuilder provides ready-made functions to submit responses via email, and to display received responses in the Kirby Panel, too.
 
-## Installation & User Guide
+## Requirements, Installation & User Guide
+FormBuilder requires the **[Kirby Builder Plugin](https://github.com/TimOetting/kirby-builder)** for its panel interface - make sure you install it, before installing FormBuilder.
+
 For instructions on how to install FormBuilder, and how to use it in your Kirby site, please refer to the **[Wiki](https://gitlab.com/cre8ivclick/formbuilder/wikis/home)**.
 
 ## License
