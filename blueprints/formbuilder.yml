@@ -54,6 +54,7 @@ fields:
       fb_tel: formbuilder/blocks/fb_tel
       fb_number: formbuilder/blocks/fb_number
       fb_url: formbuilder/blocks/fb_url
+      fb_checkbox: formbuilder/blocks/fb_checkbox
 
   fb_fields:
     type: structure
