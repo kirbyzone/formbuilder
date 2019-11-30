@@ -24,7 +24,8 @@ Kirby::plugin('cre8ivclick/formbuilder', [
         'formbuilder/blocks/fb_date' => __DIR__ . '/blueprints/blocks/fb_date.yml',
         'formbuilder/blocks/fb_time' => __DIR__ . '/blueprints/blocks/fb_time.yml',
         'formbuilder/blocks/fb_password' => __DIR__ . '/blueprints/blocks/fb_password.yml',
-        'formbuilder/blocks/fb_hidden' => __DIR__ . '/blueprints/blocks/fb_hidden.yml'
+        'formbuilder/blocks/fb_hidden' => __DIR__ . '/blueprints/blocks/fb_hidden.yml',
+        'formbuilder/blocks/fb_honeypot' => __DIR__ . '/blueprints/blocks/fb_honeypot.yml'
     ],
     'snippets' => [
         'formbuilder' => __DIR__ . '/snippets/formbuilder.php',

@@ -1,0 +1,7 @@
+ name: Honeypot Field
+ label: "#{{field_name}}"
+ fields:
+    field_name:
+      extends: formbuilder/fields/name
+    field_class:
+      extends: formbuilder/fields/class
