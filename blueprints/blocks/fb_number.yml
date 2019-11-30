@@ -13,7 +13,7 @@
       extends: formbuilder/fields/placeholder
     default:
       extends: formbuilder/fields/value
-      label: Default Text
+      label: Default Number
     min:
       extends: formbuilder/fields/min
       label: Min Value

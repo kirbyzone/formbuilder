@@ -14,7 +14,7 @@
       placeholder: https://example.com
     default:
       extends: formbuilder/fields/value
-      label: Default Text
+      label: Default URL
     min:
       extends: formbuilder/fields/min
     max:

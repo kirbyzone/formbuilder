@@ -14,7 +14,7 @@
       placeholder: "YYYY-MM-DD"
     default:
       extends: formbuilder/fields/value
-      label: Default Text
+      label: Default Date
       help: Must be in 'YYYY-MM-DD' format
     min:
       extends: formbuilder/fields/min
