@@ -1,0 +1,27 @@
+ name: Phone Number Field
+ label: "#{{field_name}}"
+ fields:
+    field_name:
+      extends: formbuilder/fields/name
+    field_class:
+      extends: formbuilder/fields/class
+    req:
+      extends: formbuilder/fields/req
+    field_label:
+      extends: formbuilder/fields/label
+    placeholder:
+      extends: formbuilder/fields/placeholder
+    default:
+      extends: formbuilder/fields/value
+      label: Default Text
+    min_length:
+      extends: formbuilder/fields/min
+    max_length:
+      extends: formbuilder/fields/max
+    pattern:
+      extends: formbuilder/fields/pattern
+      spellcheck: false
+      placeholder: "[0-9]{4}-[0-9]{4}"
+preview:
+  snippet: formbuilder/text_preview
+defaultView: preview
