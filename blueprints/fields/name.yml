@@ -1,0 +1,10 @@
+type: text
+label: Field Name
+counter: false
+converter: slug
+translate: false
+spellcheck: false
+required: true
+before: "#"
+width: 1/4
+help: <strong>unique name</strong> used for 'id' and 'name' attributes.

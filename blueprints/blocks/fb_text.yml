@@ -1,0 +1,43 @@
+ name: Single-Line Text Field
+ label: "#{{field_name}}"
+ fields:
+    field_name:
+      extends: formbuilder/fields/name
+    field_class:
+      extends: formbuilder/fields/class
+    req:
+      extends: formbuilder/fields/req
+    field_label:
+      extends: formbuilder/fields/label
+    placeholder:
+      type: text
+      label: Placeholder Text
+      counter: false
+      width: 1/3
+    default:
+      type: text
+      label: Default Text
+      counter: false
+      width: 1/3
+    min_length:
+      type: number
+      label: Min Length
+      placeholder: 3
+      min: 0
+      width: 1/4
+    max_length:
+      type: number
+      label: Max Length
+      placeholder: 100
+      min: 0
+      width: 1/4
+    pattern:
+      type: text
+      label: Validation Regex Pattern
+      counter: false
+      spellcheck: false
+      placeholder: "[a-z]{4,8}"
+      width: 1/2
+preview:
+  snippet: formbuilder/text_preview
+defaultView: preview

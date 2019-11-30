@@ -1,0 +1,8 @@
+type: text
+label: Field Class
+counter: false
+translate: false
+spellcheck: false
+before: "."
+width: 1/2
+help: Optional CSS class(es) for this field.

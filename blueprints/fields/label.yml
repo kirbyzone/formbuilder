@@ -1,0 +1,5 @@
+type: text
+label: Field Label
+counter: false
+width: 1/3
+help: Optional label for the field.

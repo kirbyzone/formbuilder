@@ -6,8 +6,8 @@ fields:
     translate: false
     default: true
     text:
-      - hide configuration
-      - show configuration
+      - hide
+      - show
   fb_form_id:
     type: text
     label: Form ID
@@ -44,6 +44,13 @@ fields:
     width: 1/3
     when:
       fb_form_settings: true
+  fb_builder:
+    type: builder
+    label: Form Fields
+    fieldsets:
+      fb_text: formbuilder/fb_text
+      fb_textarea: formbuilder/fb_textarea
+
   fb_fields:
     type: structure
     label: Form Fields
