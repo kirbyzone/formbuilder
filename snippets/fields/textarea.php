@@ -1,16 +1,16 @@
 <?php
 
     // FLAGS and VARIABLES that make our code easier to read:
-    $name = $fld->fbf_name();
-    $class = $fld->fbf_class()->isEmpty() ? false : $fld->fbf_class()->html();
+    $name = $fld->field_name();
+    $class = $fld->field_class()->isEmpty() ? false : $fld->field_class()->html();
     $useDiv = $pg->fb_usediv()->toBool();
-    $label = $fld->fbf_textarea_label()->isEmpty() ? false : $fld->fbf_textarea_label()->html();
-    $placeholder = $fld->fbf_textarea_placeholder()->isEmpty() ? false : $fld->fbf_textarea_placeholder()->html();
-    $value = $fld->fbf_textarea_value()->isEmpty() ? '' : $fld->fbf_textarea_value()->html();
-    $min = $fld->fbf_textarea_min()->isEmpty() ? false : $fld->fbf_textarea_min();
-    $max = $fld->fbf_textarea_max()->isEmpty() ? false : $fld->fbf_textarea_max();
-    $rows = $fld->fbf_textarea_rows()->isEmpty() ? false : $fld->fbf_textarea_rows();
-    $req = $fld->fbf_textarea_req()->toBool();
+    $label = $fld->field_label()->isEmpty() ? false : $fld->field_label()->html();
+    $placeholder = $fld->placeholder()->isEmpty() ? false : $fld->placeholder()->html();
+    $value = $fld->default()->isEmpty() ? '' : $fld->default()->html();
+    $min = $fld->min()->isEmpty() ? false : $fld->min()->toInt();
+    $max = $fld->max()->isEmpty() ? false : $fld->max()->toInt();
+    $rows = $fld->rows()->isEmpty() ? false : $fld->rows()->toInt();
+    $req = $fld->req()->toBool();
 
     if($useDiv):
 ?>

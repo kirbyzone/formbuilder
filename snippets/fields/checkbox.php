@@ -1,12 +1,12 @@
 <?php
 
     // // FLAGS and VARIABLES that make our code easier to read:
-    $name = $fld->fbf_name();
-    $class = $fld->fbf_class()->isEmpty() ? false : $fld->fbf_class()->html();
+    $name = $fld->field_name();
+    $class = $fld->field_class()->isEmpty() ? false : $fld->field_class()->html();
     $useDiv = $pg->fb_usediv()->toBool();
-    $label = $fld->fbf_check_label()->isEmpty() ? false : $fld->fbf_check_label()->html();
-    $value = $fld->fbf_check_value()->isEmpty() ? false : $fld->fbf_check_value()->html();
-    $checked = $fld->fbf_check_checked()->toBool();
+    $label = $fld->field_label()->isEmpty() ? false : $fld->field_label()->html();
+    $value = $fld->default()->isEmpty() ? false : $fld->default()->html();
+    $checked = $fld->checked()->toBool();
 
     if($useDiv):
 ?>

@@ -1,8 +1,8 @@
 <?php
 
     // FLAGS and VARIABLES that make our code easier to read:
-    $name = $fld->fbf_name();
-    $class = $fld->fbf_class()->isEmpty() ? false : $fld->fbf_class()->html();
+    $name = $fld->field_name();
+    $class = $fld->field_class()->isEmpty() ? false : $fld->field_class()->html();
     $useDiv = $pg->fb_usediv()->toBool();
 
     if($pg->fb_usediv()->toBool()):

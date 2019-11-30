@@ -1,7 +1,7 @@
 <?php
     $id = $page->fb_form_id()->or('form-'.time());
     $class = $page->fb_form_class()->isEmpty() ? false : $page->fb_form_class()->html();
-    $fields = $page->fb_fields()->toStructure();
+    $fields = $page->fb_builder()->toBuilderBlocks();
     $useDiv = $page->fb_usediv()->toBool();
 ?>
 
@@ -9,29 +9,29 @@
 
 <?php
     foreach($fields as $field):
-        switch ($field->fbf_type()) {
-            case 'password':
+        switch ($field->_key()) {
+            case 'fb_password':
                 snippet('formbuilder/password', ['pg' => $page, 'fld' => $field]);
                 break;
-            case 'textarea':
+            case 'fb_textarea':
                 snippet('formbuilder/textarea', ['pg' => $page, 'fld' => $field]);
                 break;
-            case 'number':
+            case 'fb_number':
                 snippet('formbuilder/number', ['pg' => $page, 'fld' => $field]);
                 break;
-            case 'checkbox':
+            case 'fb_checkbox':
                 snippet('formbuilder/checkbox', ['pg' => $page, 'fld' => $field]);
                 break;
-            case 'select':
+            case 'fb_select':
                 snippet('formbuilder/select', ['pg' => $page, 'fld' => $field]);
                 break;
-            case 'radio':
+            case 'fb_radio':
                 snippet('formbuilder/radio', ['pg' => $page, 'fld' => $field]);
                 break;
-            case 'hidden':
+            case 'fb_hidden':
                 snippet('formbuilder/hidden', ['fld' => $field]);
                 break;
-            case 'honeypot':
+            case 'fb_honeypot':
                 snippet('formbuilder/honeypot', ['pg' => $page, 'fld' => $field]);
                 break;
             default:

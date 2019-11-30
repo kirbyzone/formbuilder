@@ -1,10 +1,10 @@
 <?php
     // FLAGS and VARIABLES that make our code easier to read:
-    $name = $fld->fbf_name();
-    $class = $fld->fbf_class()->isEmpty() ? false : $fld->fbf_class()->html();
+    $name = $fld->field_name();
+    $class = $fld->field_class()->isEmpty() ? false : $fld->field_class()->html();
     $useDiv = $pg->fb_usediv()->toBool();
-    $label = $fld->fbf_radio_label()->isEmpty() ? false : $fld->fbf_radio_label()->html();
-    $req = $fld->fbf_radio_req()->toBool();
+    $label = $fld->field_label()->isEmpty() ? false : $fld->field_label()->html();
+    $req = $fld->req()->toBool();
 
     if($useDiv):
 ?>
@@ -15,7 +15,7 @@
 <?php
         $canSelect = true;
         $selected = false;
-        foreach($fld->fbf_radio()->toStructure() as $option):
+        foreach($fld->btns()->toStructure() as $option):
             $id = 'rb-'. uniqid();
             $value = $option->radio_btn_value()->html();
             $label = $option->radio_btn_label()->or($option->radio_btn_value())->html();

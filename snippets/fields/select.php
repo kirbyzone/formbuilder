@@ -1,11 +1,11 @@
 <?php
     // FLAGS and VARIABLES that make our code easier to read:
-    $name = $fld->fbf_name();
-    $class = $fld->fbf_class()->isEmpty() ? false : $fld->fbf_class()->html();
+    $name = $fld->field_name();
+    $class = $fld->field_class()->isEmpty() ? false : $fld->field_class()->html();
     $useDiv = $pg->fb_usediv()->toBool();
-    $label = $fld->fbf_select_label()->isEmpty() ? false : $fld->fbf_select_label()->html();
-    $multiple = $fld->fbf_select_multiple()->toBool();
-    $req = $fld->fbf_select_req()->toBool();
+    $label = $fld->field_label()->isEmpty() ? false : $fld->field_label()->html();
+    $multiple = $fld->multiple()->toBool();
+    $req = $fld->req()->toBool();
 
     if($useDiv):
 ?>
@@ -17,10 +17,10 @@
 <?php
         $canSelect = true;
         $selected = false;
-        foreach($fld->fbf_select()->toStructure() as $option):
-            $value = $option->select_item_value()->html();
-            $optlabel = $option->select_item_label()->or($option->select_item_value())->html();
-            if(($multiple or $canSelect) and $option->select_item_state()->toBool()) {
+        foreach($fld->menuitems()->toStructure() as $option):
+            $value = $option->item_value()->html();
+            $optlabel = $option->item_label()->or($option->item_value())->html();
+            if(($multiple or $canSelect) and $option->item_state()->toBool()) {
                 $selected = true;
                 $canSelect = false;
             }

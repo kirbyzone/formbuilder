@@ -1,16 +1,16 @@
 <?php
 
     // FLAGS and VARIABLES that make our code easier to read:
-    $name = $fld->fbf_name();
-    $class = $fld->fbf_class()->isEmpty() ? false : $fld->fbf_class()->html();
+    $name = $fld->field_name();
+    $class = $fld->field_class()->isEmpty() ? false : $fld->field_class()->html();
     $useDiv = $pg->fb_usediv()->toBool();
-    $label = $fld->fbf_number_label()->isEmpty() ? false : $fld->fbf_number_label()->html();
-    $placeholder = $fld->fbf_number_placeholder()->isEmpty() ? false : $fld->fbf_number_placeholder()->html();
-    $value = $fld->fbf_number_value()->isEmpty() ? '' : $fld->fbf_number_value()->html();
-    $min = $fld->fbf_number_min()->isEmpty() ? false : $fld->fbf_number_min();
-    $max = $fld->fbf_number_max()->isEmpty() ? false : $fld->fbf_number_max();
-    $step = $fld->fbf_number_step()->isEmpty() ? false : $fld->fbf_number_step();
-    $req = $fld->fbf_number_req()->toBool();
+    $label = $fld->field_label()->isEmpty() ? false : $fld->field_label()->html();
+    $placeholder = $fld->placeholder()->isEmpty() ? false : $fld->placeholder()->html();
+    $value = $fld->default()->isEmpty() ? '' : $fld->default()->html();
+    $min = $fld->min()->isEmpty() ? false : $fld->min()->toInt();
+    $max = $fld->max()->isEmpty() ? false : $fld->max()->toInt();
+    $step = $fld->step()->isEmpty() ? false : $fld->step()->value();
+    $req = $fld->req()->toBool();
 
     if($useDiv):
 ?>

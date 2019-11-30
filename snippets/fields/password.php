@@ -1,14 +1,14 @@
 <?php
 
     // FLAGS and VARIABLES that make our code easier to read:
-    $name = $fld->fbf_name();
-    $class = $fld->fbf_class()->isEmpty() ? false : $fld->fbf_class()->html();
+    $name = $fld->field_name();
+    $class = $fld->field_class()->isEmpty() ? false : $fld->field_class()->html();
     $useDiv = $pg->fb_usediv()->toBool();
-    $label = $fld->fbf_password_label()->isEmpty() ? false : $fld->fbf_password_label()->html();
-    $min = $fld->fbf_password_min()->isEmpty() ? false : $fld->fbf_password_min();
-    $max = $fld->fbf_password_max()->isEmpty() ? false : $fld->fbf_password_max();
-    $pattern = $fld->fbf_password_pattern()->isEmpty() ? false : $fld->fbf_password_pattern();
-    $req = $fld->fbf_password_req()->toBool();
+    $label = $fld->field_label()->isEmpty() ? false : $fld->field_label()->html();
+    $min = $fld->min()->isEmpty() ? false : $fld->min()->toInt();
+    $max = $fld->max()->isEmpty() ? false : $fld->max()->toInt();
+    $pattern = $fld->pattern()->isEmpty() ? false : $fld->pattern();
+    $req = $fld->req()->toBool();
 
     if($useDiv):
 ?>
