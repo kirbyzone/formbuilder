@@ -16,7 +16,8 @@ Kirby::plugin('cre8ivclick/formbuilder', [
         'formbuilder/blocks/fb_textarea' => __DIR__ . '/blueprints/blocks/fb_textarea.yml',
         'formbuilder/blocks/fb_email' => __DIR__ . '/blueprints/blocks/fb_email.yml',
         'formbuilder/blocks/fb_tel' => __DIR__ . '/blueprints/blocks/fb_tel.yml',
-        'formbuilder/blocks/fb_number' => __DIR__ . '/blueprints/blocks/fb_number.yml'
+        'formbuilder/blocks/fb_number' => __DIR__ . '/blueprints/blocks/fb_number.yml',
+        'formbuilder/blocks/fb_url' => __DIR__ . '/blueprints/blocks/fb_url.yml'
     ],
     'snippets' => [
         'formbuilder' => __DIR__ . '/snippets/formbuilder.php',
