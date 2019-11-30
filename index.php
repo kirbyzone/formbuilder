@@ -19,7 +19,8 @@ Kirby::plugin('cre8ivclick/formbuilder', [
         'formbuilder/blocks/fb_number' => __DIR__ . '/blueprints/blocks/fb_number.yml',
         'formbuilder/blocks/fb_url' => __DIR__ . '/blueprints/blocks/fb_url.yml',
         'formbuilder/blocks/fb_checkbox' => __DIR__ . '/blueprints/blocks/fb_checkbox.yml',
-        'formbuilder/blocks/fb_radio' => __DIR__ . '/blueprints/blocks/fb_radio.yml'
+        'formbuilder/blocks/fb_radio' => __DIR__ . '/blueprints/blocks/fb_radio.yml',
+        'formbuilder/blocks/fb_select' => __DIR__ . '/blueprints/blocks/fb_select.yml'
     ],
     'snippets' => [
         'formbuilder' => __DIR__ . '/snippets/formbuilder.php',
@@ -36,6 +37,7 @@ Kirby::plugin('cre8ivclick/formbuilder', [
         'formbuilder/textarea_preview' => __DIR__ . '/snippets/previews/textarea.php',
         'formbuilder/number_preview' => __DIR__ . '/snippets/previews/number.php',
         'formbuilder/checkbox_preview' => __DIR__ . '/snippets/previews/checkbox.php',
-        'formbuilder/radio_preview' => __DIR__ . '/snippets/previews/radio.php'
+        'formbuilder/radio_preview' => __DIR__ . '/snippets/previews/radio.php',
+        'formbuilder/select_preview' => __DIR__ . '/snippets/previews/select.php'
     ]
 ]);

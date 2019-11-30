@@ -47,6 +47,7 @@ fields:
   fb_builder:
     type: builder
     label: Form Fields
+    sort: true
     fieldsets:
       fb_text: formbuilder/blocks/fb_text
       fb_textarea: formbuilder/blocks/fb_textarea
@@ -56,6 +57,7 @@ fields:
       fb_url: formbuilder/blocks/fb_url
       fb_checkbox: formbuilder/blocks/fb_checkbox
       fb_radio: formbuilder/blocks/fb_radio
+      fb_select: formbuilder/blocks/fb_select
 
   fb_fields:
     type: structure
