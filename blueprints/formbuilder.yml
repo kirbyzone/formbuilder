@@ -58,6 +58,7 @@ fields:
       fb_checkbox: formbuilder/blocks/fb_checkbox
       fb_radio: formbuilder/blocks/fb_radio
       fb_select: formbuilder/blocks/fb_select
+      fb_date: formbuilder/blocks/fb_date
 
   fb_fields:
     type: structure

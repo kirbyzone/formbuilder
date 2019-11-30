@@ -1,0 +1,35 @@
+ name: Date Field
+ label: "#{{field_name}}"
+ fields:
+    field_name:
+      extends: formbuilder/fields/name
+    field_class:
+      extends: formbuilder/fields/class
+    req:
+      extends: formbuilder/fields/req
+    field_label:
+      extends: formbuilder/fields/label
+    placeholder:
+      extends: formbuilder/fields/placeholder
+      placeholder: "YYYY-MM-DD"
+    default:
+      extends: formbuilder/fields/value
+      label: Default Text
+      help: Must be in 'YYYY-MM-DD' format
+    min:
+      extends: formbuilder/fields/min
+      label: Min Date
+      placeholder: "1970-01-01"
+      help: Must be in 'YYYY-MM-DD' format
+    max:
+      extends: formbuilder/fields/max
+      label: Max Date
+      placeholder: "2050-12-31"
+      help: Must be in 'YYYY-MM-DD' format
+    pattern:
+      extends: formbuilder/fields/pattern
+      spellcheck: false
+      placeholder: "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+preview:
+  snippet: formbuilder/text_preview
+defaultView: preview

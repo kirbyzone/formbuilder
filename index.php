@@ -20,7 +20,8 @@ Kirby::plugin('cre8ivclick/formbuilder', [
         'formbuilder/blocks/fb_url' => __DIR__ . '/blueprints/blocks/fb_url.yml',
         'formbuilder/blocks/fb_checkbox' => __DIR__ . '/blueprints/blocks/fb_checkbox.yml',
         'formbuilder/blocks/fb_radio' => __DIR__ . '/blueprints/blocks/fb_radio.yml',
-        'formbuilder/blocks/fb_select' => __DIR__ . '/blueprints/blocks/fb_select.yml'
+        'formbuilder/blocks/fb_select' => __DIR__ . '/blueprints/blocks/fb_select.yml',
+        'formbuilder/blocks/fb_date' => __DIR__ . '/blueprints/blocks/fb_date.yml'
     ],
     'snippets' => [
         'formbuilder' => __DIR__ . '/snippets/formbuilder.php',
