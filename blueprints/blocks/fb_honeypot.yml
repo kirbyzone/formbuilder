@@ -3,5 +3,4 @@
  fields:
     field_name:
       extends: formbuilder/fields/name
-    field_class:
-      extends: formbuilder/fields/class
+      width: 1/2
