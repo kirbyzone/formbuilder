@@ -50,6 +50,7 @@ fields:
     fieldsets:
       fb_text: formbuilder/blocks/fb_text
       fb_textarea: formbuilder/blocks/fb_textarea
+      fb_email: formbuilder/blocks/fb_email
 
   fb_fields:
     type: structure
