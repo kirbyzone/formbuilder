@@ -47,7 +47,6 @@ fields:
   fb_builder:
     type: builder
     label: Form Fields
-    sort: true
     fieldsets:
       fb_text: formbuilder/blocks/fb_text
       fb_textarea: formbuilder/blocks/fb_textarea
@@ -63,6 +62,8 @@ fields:
       fb_password: formbuilder/blocks/fb_password
       fb_hidden: formbuilder/blocks/fb_hidden
       fb_honeypot: formbuilder/blocks/fb_honeypot
+    when:
+      fb_form_settings: true
 
   fb_submit_label:
     type: text
