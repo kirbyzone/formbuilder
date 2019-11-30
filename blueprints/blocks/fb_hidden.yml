@@ -1,0 +1,14 @@
+ name: Hidden Field
+ label: "#{{field_name}}"
+ fields:
+    field_name:
+      extends: formbuilder/fields/name
+    field_class:
+      extends: formbuilder/fields/class
+    default:
+      extends: formbuilder/fields/value
+      label: Field value
+      width: 1/4
+preview:
+  snippet: formbuilder/hidden_preview
+defaultView: preview

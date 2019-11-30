@@ -61,6 +61,7 @@ fields:
       fb_date: formbuilder/blocks/fb_date
       fb_time: formbuilder/blocks/fb_time
       fb_password: formbuilder/blocks/fb_password
+      fb_hidden: formbuilder/blocks/fb_hidden
 
   fb_fields:
     type: structure
