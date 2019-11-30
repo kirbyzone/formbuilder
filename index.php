@@ -22,7 +22,8 @@ Kirby::plugin('cre8ivclick/formbuilder', [
         'formbuilder/blocks/fb_radio' => __DIR__ . '/blueprints/blocks/fb_radio.yml',
         'formbuilder/blocks/fb_select' => __DIR__ . '/blueprints/blocks/fb_select.yml',
         'formbuilder/blocks/fb_date' => __DIR__ . '/blueprints/blocks/fb_date.yml',
-        'formbuilder/blocks/fb_time' => __DIR__ . '/blueprints/blocks/fb_time.yml'
+        'formbuilder/blocks/fb_time' => __DIR__ . '/blueprints/blocks/fb_time.yml',
+        'formbuilder/blocks/fb_password' => __DIR__ . '/blueprints/blocks/fb_password.yml'
     ],
     'snippets' => [
         'formbuilder' => __DIR__ . '/snippets/formbuilder.php',
@@ -42,6 +43,7 @@ Kirby::plugin('cre8ivclick/formbuilder', [
         'formbuilder/radio_preview' => __DIR__ . '/snippets/previews/radio.php',
         'formbuilder/select_preview' => __DIR__ . '/snippets/previews/select.php',
         'formbuilder/date_preview' => __DIR__ . '/snippets/previews/date.php',
-        'formbuilder/time_preview' => __DIR__ . '/snippets/previews/time.php'
+        'formbuilder/time_preview' => __DIR__ . '/snippets/previews/time.php',
+        'formbuilder/password_preview' => __DIR__ . '/snippets/previews/password.php'
     ]
 ]);
