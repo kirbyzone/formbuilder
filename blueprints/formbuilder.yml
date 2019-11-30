@@ -52,6 +52,7 @@ fields:
       fb_textarea: formbuilder/blocks/fb_textarea
       fb_email: formbuilder/blocks/fb_email
       fb_tel: formbuilder/blocks/fb_tel
+      fb_number: formbuilder/blocks/fb_number
 
   fb_fields:
     type: structure

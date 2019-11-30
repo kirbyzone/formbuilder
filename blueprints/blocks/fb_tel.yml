@@ -11,12 +11,13 @@
       extends: formbuilder/fields/label
     placeholder:
       extends: formbuilder/fields/placeholder
+      placeholder: 02 9876 5432
     default:
       extends: formbuilder/fields/value
       label: Default Text
-    min_length:
+    min:
       extends: formbuilder/fields/min
-    max_length:
+    max:
       extends: formbuilder/fields/max
     pattern:
       extends: formbuilder/fields/pattern

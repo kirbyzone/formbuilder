@@ -1,4 +1,4 @@
- name: Email Field
+ name: Number Field
  label: "#{{field_name}}"
  fields:
     field_name:
@@ -11,18 +11,22 @@
       extends: formbuilder/fields/label
     placeholder:
       extends: formbuilder/fields/placeholder
-      placeholder: john@example.com
     default:
       extends: formbuilder/fields/value
       label: Default Text
     min:
       extends: formbuilder/fields/min
+      label: Min Value
     max:
       extends: formbuilder/fields/max
-    pattern:
-      extends: formbuilder/fields/pattern
+      label: Max Value
+    step:
+      type: text
+      label: Step Value
+      counter: false
       spellcheck: false
-      placeholder: "[0-9a-z._]+@example.com"
+      placeholder: "0.01"
+      width: 1/4
 preview:
-  snippet: formbuilder/text_preview
+  snippet: formbuilder/number_preview
 defaultView: preview

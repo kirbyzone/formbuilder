@@ -15,7 +15,8 @@ Kirby::plugin('cre8ivclick/formbuilder', [
         'formbuilder/blocks/fb_text' => __DIR__ . '/blueprints/blocks/fb_text.yml',
         'formbuilder/blocks/fb_textarea' => __DIR__ . '/blueprints/blocks/fb_textarea.yml',
         'formbuilder/blocks/fb_email' => __DIR__ . '/blueprints/blocks/fb_email.yml',
-        'formbuilder/blocks/fb_tel' => __DIR__ . '/blueprints/blocks/fb_tel.yml'
+        'formbuilder/blocks/fb_tel' => __DIR__ . '/blueprints/blocks/fb_tel.yml',
+        'formbuilder/blocks/fb_number' => __DIR__ . '/blueprints/blocks/fb_number.yml'
     ],
     'snippets' => [
         'formbuilder' => __DIR__ . '/snippets/formbuilder.php',
@@ -29,6 +30,7 @@ Kirby::plugin('cre8ivclick/formbuilder', [
         'formbuilder/hidden' => __DIR__ . '/snippets/fields/hidden.php',
         'formbuilder/honeypot' => __DIR__ . '/snippets/fields/honeypot.php',
         'formbuilder/text_preview' => __DIR__ . '/snippets/previews/text.php',
-        'formbuilder/textarea_preview' => __DIR__ . '/snippets/previews/textarea.php'
+        'formbuilder/textarea_preview' => __DIR__ . '/snippets/previews/textarea.php',
+        'formbuilder/number_preview' => __DIR__ . '/snippets/previews/number.php'
     ]
 ]);

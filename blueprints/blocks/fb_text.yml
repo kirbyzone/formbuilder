@@ -14,9 +14,9 @@
     default:
       extends: formbuilder/fields/value
       label: Default Text
-    min_length:
+    min:
       extends: formbuilder/fields/min
-    max_length:
+    max:
       extends: formbuilder/fields/max
     pattern:
       extends: formbuilder/fields/pattern
