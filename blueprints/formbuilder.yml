@@ -1,4 +1,4 @@
-type: group
+type: fields
 fields:
   fb_form_settings:
     type: toggle
