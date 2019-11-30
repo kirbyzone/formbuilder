@@ -3,6 +3,7 @@
  fields:
     field_name:
       extends: formbuilder/fields/name
+      help: <strong>Unique name</strong>, used for the radio group 'name' attribute.
     field_class:
       extends: formbuilder/fields/class
     req:
