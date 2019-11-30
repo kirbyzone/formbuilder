@@ -986,10 +986,10 @@ fields:
     label: Sender Email Field
     options: query
     query:
-      fetch: page.fb_fields.toStructure.filterBy('fbf_type','==','email')
-      text: "{{ structureItem.fbf_name }}"
-      value: "{{ structureItem.fbf_name }}"
-    help: Form field which will hold the sender's email address.
+      fetch: page.fb_builder.toStructure.filterBy('_key','==','fb_email')
+      text: "{{ structureItem.field_name }}"
+      value: "{{ structureItem.field_name }}"
+    help: Form field from which to get the sender's email address.
     width: 2/3
     when:
       fb_form_settings: true
@@ -998,7 +998,7 @@ fields:
   fb_email_subject:
     type: text
     label: Email Subject
-    placeholder: "Message from {{site.title}} Website"
+    placeholder: "Message from {{site.title}}"
     help: 'Subject' heading of emails sent by this form - useful for filtering and archiving messages in your email app.
     when:
       fb_form_settings: true
@@ -1020,7 +1020,7 @@ fields:
       - do not save submissions
       - save all submissions
     width: 1/3
-    help: Turning off <strong>DELETES</strong> any previously saved submissions.
+    help: Turning off <strong>DELETES</strong> all previously saved submissions.
     when:
       fb_form_settings: true
   fb_key_field:
@@ -1028,9 +1028,9 @@ fields:
     label: Key Field
     options: query
     query:
-      fetch: page.fb_fields.toStructure
-      text: "{{ structureItem.fbf_name }}"
-      value: "{{ structureItem.fbf_name }}"
+      fetch: page.fb_builder.toBuilderBlocks
+      text: "{{ structureItem.field_name }}"
+      value: "{{ structureItem.field_name }}"
     width: 1/3
     help: Field to display in 'Key' column of the Received Submissions table.
     when:
