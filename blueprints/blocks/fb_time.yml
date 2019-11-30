@@ -1,4 +1,4 @@
- name: Date Field
+ name: Time Field
  label: "#{{field_name}}"
  fields:
     field_name:
@@ -11,25 +11,26 @@
       extends: formbuilder/fields/label
     placeholder:
       extends: formbuilder/fields/placeholder
-      placeholder: "YYYY-MM-DD"
+      placeholder: "16:30"
     default:
       extends: formbuilder/fields/value
-      label: Default Text
-      help: Must be in 'YYYY-MM-DD' format
+      label: Default Time
+      placeholder: "16:30"
+      help: Must be in 'HH:MM' (24-hour) format
     min:
       extends: formbuilder/fields/min
-      label: Min Date
-      placeholder: "1970-01-01"
-      help: Must be in 'YYYY-MM-DD' format
+      label: Min Time
+      placeholder: "16:30"
+      help: Must be in 'HH:MM' (24-hour) format
     max:
       extends: formbuilder/fields/max
-      label: Max Date
-      placeholder: "2050-12-31"
-      help: Must be in 'YYYY-MM-DD' format
+      label: Max Time
+      placeholder: "22:30"
+      help: Must be in 'HH:MM' (24-hour) format
     pattern:
       extends: formbuilder/fields/pattern
       spellcheck: false
-      placeholder: "[0-9]{4}-[0-9]{2}-[0-9]{2}"
+      placeholder: "[0-9]{2}:[0-9]{2}"
 preview:
-  snippet: formbuilder/date_preview
+  snippet: formbuilder/time_preview
 defaultView: preview

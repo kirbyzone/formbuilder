@@ -21,7 +21,8 @@ Kirby::plugin('cre8ivclick/formbuilder', [
         'formbuilder/blocks/fb_checkbox' => __DIR__ . '/blueprints/blocks/fb_checkbox.yml',
         'formbuilder/blocks/fb_radio' => __DIR__ . '/blueprints/blocks/fb_radio.yml',
         'formbuilder/blocks/fb_select' => __DIR__ . '/blueprints/blocks/fb_select.yml',
-        'formbuilder/blocks/fb_date' => __DIR__ . '/blueprints/blocks/fb_date.yml'
+        'formbuilder/blocks/fb_date' => __DIR__ . '/blueprints/blocks/fb_date.yml',
+        'formbuilder/blocks/fb_time' => __DIR__ . '/blueprints/blocks/fb_time.yml'
     ],
     'snippets' => [
         'formbuilder' => __DIR__ . '/snippets/formbuilder.php',
@@ -39,6 +40,8 @@ Kirby::plugin('cre8ivclick/formbuilder', [
         'formbuilder/number_preview' => __DIR__ . '/snippets/previews/number.php',
         'formbuilder/checkbox_preview' => __DIR__ . '/snippets/previews/checkbox.php',
         'formbuilder/radio_preview' => __DIR__ . '/snippets/previews/radio.php',
-        'formbuilder/select_preview' => __DIR__ . '/snippets/previews/select.php'
+        'formbuilder/select_preview' => __DIR__ . '/snippets/previews/select.php',
+        'formbuilder/date_preview' => __DIR__ . '/snippets/previews/date.php',
+        'formbuilder/time_preview' => __DIR__ . '/snippets/previews/time.php'
     ]
 ]);

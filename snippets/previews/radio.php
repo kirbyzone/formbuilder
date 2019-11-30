@@ -2,7 +2,7 @@
 <?php
 if($data->field_label()->isNotEmpty()):
 ?>
-<p style="font-family: sans-serif; font-size: 1em; margin-bottom: 6px; padding-left: 6px;"><?= $data->field_label()->html() ?></p>
+<p style="font-family: sans-serif; font-size: 0.85em; margin-bottom: 6px; padding-left: 6px;"><?= $data->field_label()->html() ?></p>
 <?php
 endif;
 foreach ($data->btns()->toStructure() as $btn):

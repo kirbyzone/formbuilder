@@ -2,7 +2,7 @@
 <?php if($data->field_label()->isNotEmpty()): ?>
     <label
         for="<?= $data->field_name()->html() ?>"
-        style="font-family: sans-serif; font-size: 1em; display: block; padding: 9px;"
+        style="font-family: sans-serif; font-size: 0.85em; display: block; padding: 9px;"
         ><?= $data->field_label()->html() ?></label>
 <?php endif; ?>
     <select
