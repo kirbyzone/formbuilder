@@ -1,0 +1,41 @@
+ name: Radio Button Group
+ label: "#{{field_name}}"
+ fields:
+    field_name:
+      extends: formbuilder/fields/name
+    field_class:
+      extends: formbuilder/fields/class
+    req:
+      extends: formbuilder/fields/req
+    field_label:
+      extends: formbuilder/fields/label
+      label: Radio Group Label
+      help: Optional label for the radio button group.
+    btns:
+      type: structure
+      label: Radio Buttons
+      sortable: true
+      empty: No radio buttons defined yet.
+      fields:
+        radio_btn_label:
+          type: text
+          label: Radio Button Label
+          counter: false
+          width: 1/3
+        radio_btn_value:
+          type: text
+          label: Radio Button Value
+          counter: false
+          required: true
+          width: 1/3
+        radio_btn_state:
+          type: toggle
+          label: State
+          width: 1/3
+          text:
+            - 'not selected'
+            - 'selected'
+      help: Only 1 radio button should be 'selected'.
+preview:
+  snippet: formbuilder/radio_preview
+defaultView: preview
