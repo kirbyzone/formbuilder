@@ -1,0 +1,5 @@
+type: number
+label: Min Length
+placeholder: 3
+min: 0
+width: 1/4

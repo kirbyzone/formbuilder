@@ -1,0 +1,6 @@
+type: text
+label: Validation Regex Pattern
+counter: false
+spellcheck: false
+placeholder: "[a-z]{4,8}"
+width: 1/2

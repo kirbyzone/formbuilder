@@ -7,8 +7,13 @@ Kirby::plugin('cre8ivclick/formbuilder', [
         'formbuilder/fields/class' => __DIR__ . '/blueprints/fields/class.yml',
         'formbuilder/fields/req' => __DIR__ . '/blueprints/fields/req.yml',
         'formbuilder/fields/label' => __DIR__ . '/blueprints/fields/label.yml',
-        'formbuilder/fb_text' => __DIR__ . '/blueprints/blocks/fb_text.yml',
-        'formbuilder/fb_textarea' => __DIR__ . '/blueprints/blocks/fb_textarea.yml'
+        'formbuilder/fields/placeholder' => __DIR__ . '/blueprints/fields/placeholder.yml',
+        'formbuilder/fields/value' => __DIR__ . '/blueprints/fields/value.yml',
+        'formbuilder/fields/min' => __DIR__ . '/blueprints/fields/min.yml',
+        'formbuilder/fields/max' => __DIR__ . '/blueprints/fields/max.yml',
+        'formbuilder/fields/pattern' => __DIR__ . '/blueprints/fields/pattern.yml',
+        'formbuilder/blocks/fb_text' => __DIR__ . '/blueprints/blocks/fb_text.yml',
+        'formbuilder/blocks/fb_textarea' => __DIR__ . '/blueprints/blocks/fb_textarea.yml'
     ],
     'snippets' => [
         'formbuilder' => __DIR__ . '/snippets/formbuilder.php',

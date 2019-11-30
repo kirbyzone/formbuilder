@@ -1,0 +1,5 @@
+type: number
+label: Max Length
+placeholder: 100
+min: 0
+width: 1/4

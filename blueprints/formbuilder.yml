@@ -48,8 +48,8 @@ fields:
     type: builder
     label: Form Fields
     fieldsets:
-      fb_text: formbuilder/fb_text
-      fb_textarea: formbuilder/fb_textarea
+      fb_text: formbuilder/blocks/fb_text
+      fb_textarea: formbuilder/blocks/fb_textarea
 
   fb_fields:
     type: structure

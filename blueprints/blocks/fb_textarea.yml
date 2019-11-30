@@ -2,61 +2,22 @@
  label: "#{{field_name}}"
  fields:
     field_name:
-      type: text
-      label: Field Name
-      counter: false
-      converter: slug
-      translate: false
-      spellcheck: false
-      required: true
-      before: "#"
-      width: 1/4
-      help: A <strong>unique name</strong> for this field - used both for 'id' and 'name' attributes.
+      extends: formbuilder/fields/name
     field_class:
-      type: text
-      label: Field Class
-      counter: false
-      translate: false
-      spellcheck: false
-      before: "."
-      width: 1/2
-      help: Optional CSS class for this field.
+      extends: formbuilder/fields/class
     req:
-      type: toggle
-      label: ""
-      translate: false
-      default: false
-      text:
-        - not required
-        - required
-      width: 1/4
+      extends: formbuilder/fields/req
     field_label:
-      type: text
-      label: Field Label
-      counter: false
-      width: 1/3
+      extends: formbuilder/fields/label
     placeholder:
-      type: text
-      label: Placeholder Text
-      counter: false
-      width: 1/3
+      extends: formbuilder/fields/placeholder
     default:
-      type: text
+      extends: formbuilder/fields/value
       label: Default Text
-      counter: false
-      width: 1/3
     min_length:
-      type: number
-      label: Min Length
-      placeholder: 3
-      min: 0
-      width: 1/4
+      extends: formbuilder/fields/min
     max_length:
-      type: number
-      label: Max Length
-      placeholder: 100
-      min: 0
-      width: 1/4
+      extends: formbuilder/fields/max
     rows:
         type: number
         label: Number of Lines

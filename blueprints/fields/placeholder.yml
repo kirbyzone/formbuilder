@@ -1,0 +1,5 @@
+type: text
+label: Placeholder Text
+counter: false
+width: 1/3
+help: Optional sample text, shown before user types anything.
