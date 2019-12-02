@@ -145,6 +145,18 @@ fields:
     width: 1/3
     when:
       fb_form_settings: true
+  fb_msg_position:
+    type: toggle
+    label: Message Box Position
+    translate: false
+    default: false
+    text:
+      - bottom of the form
+      - top of the form
+    width: 1/3
+    when:
+      fb_form_settings: true
+      fb_is_ajax: true
   fb_success_page:
     type: pages
     label: Success Page

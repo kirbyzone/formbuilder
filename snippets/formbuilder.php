@@ -14,7 +14,7 @@
     }
 </style>
 <form id="<?= $id ?>"<?php if($class):?> class="<?= $class ?>"<?php endif; ?> action="<?= $actionURL ?>" method="post">
-
+<?php if($page->fb_msg_position()->toBool()): ?>    <div class="messagebox"></div><?php endif; ?>
 <?php
     foreach($fields as $field):
         switch ($field->_key()) {
@@ -64,7 +64,7 @@
 <?php if($useDiv): ?>
 </div>
 <?php endif; ?>
-<div class="messagebox"></div>
+<?php if(!$page->fb_msg_position()->toBool()): ?>    <div class="messagebox"></div><?php endif; ?>
 </form>
 <script type="text/javascript">
     // function to handle the form submission via ajax:
