@@ -72,7 +72,7 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                     return $result;
                 }
                 // then, check whether the page has formbuilder fields:
-                if(!$pg->fb_form_id()->exists()) {
+                if(!$pg->fb_form_id()->exists() and $pg->fb_builder()->exists()) {
                     $result['msg'] = 'unable to process - missing fields';
                     $result['errors'][] = 'field_missing';
                     return $result;
@@ -83,12 +83,19 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                     $result['errors'][] = 'csrf';
                     return $result;
                 }
-                $result['success'] = true;
-                $result['msg'] = 'reached the end';
-                $result['errors'] = array();
-                return $result;
                 // check honeypots:
-
+                $fields = $pg->fb_builder()->toBuilderBlocks()->filterBy('_key','==','fb_honeypot');
+                if(count($fields) > 0){
+                    foreach ($fields as $field) {
+                        // the honeypot field should be empty -
+                        // if it's not, it was probably filled in by a spammer bot:
+                        if(!empty($data[$field->field_name()->value()])) {
+                            $result['msg'] = 'unexpected value found in field';
+                            $result['errors'][] = $field->field_name()->value();
+                            return $result;
+                        }
+                    }
+                }
                 // check hCaptcha:
 
                 // if we did not pass the validation checks:
@@ -99,6 +106,10 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                 // check whether we need to send the data via email:
 
                 // return report on success/failure of operations:
+                $result['success'] = true;
+                $result['msg'] = 'reached the end';
+                $result['errors'] = array();
+                return $result;
 
           }
         ]
