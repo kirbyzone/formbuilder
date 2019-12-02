@@ -48,5 +48,59 @@ Kirby::plugin('cre8ivclick/formbuilder', [
         'formbuilder/time_preview' => __DIR__ . '/snippets/previews/time.php',
         'formbuilder/password_preview' => __DIR__ . '/snippets/previews/password.php',
         'formbuilder/hidden_preview' => __DIR__ . '/snippets/previews/hidden.php'
-    ]
+    ],
+    'routes' => [
+        [
+            'pattern' => 'formbuilder/formhandler',
+            'method' => 'POST',
+            'action'  => function () {
+                // VALIDATE RECEIVED DATA:
+                $data = get();
+                $result = array();
+                $result['success'] = false; // assume the worst
+                // start by checking whether this is a formbuilder submission -
+                // we do this by checking, for example, whether we can get a page id:
+                if(!isset($data['fb_pg_id'])) {
+                    $result['msg'] = 'unable to process - missing page ID';
+                    $result['errors'][] = 'page_id';
+                    return $result;
+                }
+                // then, check whether the page exists:
+                if(!$pg = page($data['fb_pg_id'])) {
+                    $result['msg'] = 'unable to process - page not found';
+                    $result['errors'][] = 'page_missing';
+                    return $result;
+                }
+                // then, check whether the page has formbuilder fields:
+                if(!$pg->fb_form_id()->exists()) {
+                    $result['msg'] = 'unable to process - missing fields';
+                    $result['errors'][] = 'field_missing';
+                    return $result;
+                }
+                // check the CSRF token:
+                if(csrf($data['fb_csrf']) !== true) {
+                    $result['msg'] = 'invalid CSRF token';
+                    $result['errors'][] = 'csrf';
+                    return $result;
+                }
+                $result['success'] = true;
+                $result['msg'] = 'reached the end';
+                $result['errors'] = array();
+                return $result;
+                // check honeypots:
+
+                // check hCaptcha:
+
+                // if we did not pass the validation checks:
+
+                // PROCESS RECEIVED DATA:
+                // check whether we need to store the data in the panel:
+
+                // check whether we need to send the data via email:
+
+                // return report on success/failure of operations:
+
+          }
+        ]
+      ]
 ]);
