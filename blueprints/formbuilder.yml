@@ -82,6 +82,8 @@ fields:
     help: Leave empty to omit the button from the form.
     when:
       fb_form_settings: true
+  fb_captcha_line:
+    type: line
   fb_captcha:
     type: toggle
     label: Use hCaptcha
@@ -94,6 +96,18 @@ fields:
     when:
       fb_form_settings: true
     help: Sign up for hCaptcha <strong><a href="https://hCaptcha.com/?r=5c848162fd88">here</a></strong>.
+  fb_captcha_theme:
+    type: toggle
+    label: hCaptcha Theme
+    translate: false
+    default: false
+    text:
+      - Light Theme
+      - Dark Theme
+    width: 1/3
+    when:
+      fb_form_settings: true
+      fb_captcha: true
   fb_captcha_secretkey:
     type: text
     label: hCaptcha 'Secret Key'
