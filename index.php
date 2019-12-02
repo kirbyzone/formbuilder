@@ -54,12 +54,12 @@ Kirby::plugin('cre8ivclick/formbuilder', [
             'pattern' => 'formbuilder/formhandler',
             'method' => 'POST',
             'action'  => function () {
-                // VALIDATE RECEIVED DATA:
+                // VALIDATION CHECKES:
                 $data = get();
                 $result = array();
                 $result['success'] = false; // assume the worst
                 // start by checking whether this is a formbuilder submission -
-                // we do this by checking, for example, whether we can get a page id:
+                // by checking, for example, whether we can get a page id:
                 if(!isset($data['fb_pg_id'])) {
                     $result['msg'] = 'unable to process - missing page ID';
                     $result['errors'][] = 'page_id';
@@ -96,10 +96,34 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                         }
                     }
                 }
-                // check hCaptcha:
-
-                // if we did not pass the validation checks:
-
+                // hCaptcha check - if it is being used:
+                if($pg->fb_captcha()->toBool() and $pg->fb_captcha_sitekey()->isNotEmpty() and $pg->fb_captcha_secretkey()->isNotEmpty()) {
+                    // check that the hCaptcha token has been set -
+                    // that is, the captcha has been answered and submitted::
+                    if(isset($data['h-captcha-response']) and !empty($data['h-captcha-response'])) {
+                        $hData = [
+                            'response' => $data['h-captcha-response'],
+                            'secret' => $pg->fb_captcha_secretkey()->value()
+                        ];
+                        $options = [
+                            'method'  => 'POST',
+                            'data'    => http_build_query($hData)
+                        ];
+                        $response = Remote::request('https://hcaptcha.com/siteverify',$options);
+                        $response = $response->json();
+                        // check whether the hCaptcha was answered successfully::
+                        if($response['success'] == false){
+                            $result['msg'] = "captcha was not successfull";
+                            $result['errors'][] = 'hcaptcha';
+                            return $result;
+                        }
+                    } else {
+                        // captcha token hasn't been set - possible form hijacking:
+                        $result['msg'] = 'no captcha response';
+                        $result['errors'][] = 'hcaptcha';
+                        return $result;
+                    }
+                }
                 // PROCESS RECEIVED DATA:
                 // check whether we need to store the data in the panel:
 
