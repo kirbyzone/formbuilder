@@ -14,14 +14,24 @@
 
 <?php
         $canSelect = true;
-        $selected = false;
         foreach($fld->btns()->toStructure() as $option):
             $id = 'rb-'. uniqid();
+            $selected = false;
             $value = $option->radio_btn_value()->html();
             $label = $option->radio_btn_label()->or($option->radio_btn_value())->html();
-            if($canSelect and $option->radio_btn_state()->toBool()) {
-                $selected = true;
-                $canSelect = false;
+            if($data != false and isset($data[$name->value()])) {
+                // this is a return to a previously entered form -
+                // we need to populate the field with the previously selected value:
+                if($value == $data[$name->value()]) {
+                    $selected = true;
+                    $canSelect = false;
+                }
+            } else {
+                // this is a brand new form - enter the default selection from the panel:
+                if($canSelect and $option->radio_btn_state()->toBool()) {
+                    $selected = true;
+                    $canSelect = false;
+                }
             }
 ?>
     <input type="radio" name="<?= $name ?>" id="<?= $id ?>" value="<?= $value ?>"<?php if(!$useDiv and $class): ?> class="<?= $class ?>"<?php endif; ?><?php if($req): ?> required<?php endif; ?><?php if($selected): ?> checked<?php $selected = false; endif; ?>>

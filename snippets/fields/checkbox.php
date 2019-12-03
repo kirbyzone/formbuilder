@@ -5,8 +5,20 @@
     $class = $fld->field_class()->isEmpty() ? false : $fld->field_class()->html();
     $useDiv = $pg->fb_usediv()->toBool();
     $label = $fld->field_label()->isEmpty() ? false : $fld->field_label()->html();
-    $value = $fld->default()->isEmpty() ? false : $fld->default()->html();
-    $checked = $fld->checked()->toBool();
+    $value = $fld->default()->html();
+
+    if($data != false){
+        // this is a return to a previously entered form -
+        // we need to set the checkbox to its previous checked state:
+        if(isset($data[$name->value()])) {
+            $checked = true;
+        } else {
+            $checked = false;
+        }
+    } else {
+        // this is a brand new form - enter the default checked state from the panel:
+        $checked = $fld->checked()->toBool();
+    }
 
     if($useDiv):
 ?>

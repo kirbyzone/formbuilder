@@ -61,26 +61,44 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                 // start by checking whether this is a formbuilder submission -
                 // by checking, for example, whether we can get a page id:
                 if(!isset($data['fb_pg_id'])) {
-                    return new Response('<h1>Error 500</h1><p>Invalid Page ID</p>','text/html', 500);
+                    $body = '<h1>Processing Error 400</h1><p>Page ID information not found.</p>';
+                    return new Response($body,'text/html', 400,['Warning'=>'Page ID not found']);
                 }
                 // then, check whether the page exists:
                 if(!$pg = page($data['fb_pg_id'])) {
-                    $result['msg'] = 'unable to process - page not found';
-                    $result['errors'][] = 'page_missing';
-                    return $result;
+                    $body = '<h1>Processing Error 406</h1><p>Referenced Page ID does not exist.</p>';
+                    return new Response($body,'text/html', 406,['Warning'=>'Page ID does not exist']);
                 }
                 // then, check whether the page has formbuilder fields:
                 if(!$pg->fb_form_id()->exists() and $pg->fb_builder()->exists()) {
-                    $result['msg'] = 'unable to process - missing fields';
-                    $result['errors'][] = 'field_missing';
-                    return $result;
+                    $body = '<h1>Processing Error 422</h1><p>Page does not contain needed fields.</p>';
+                    return new Response($body,'text/html', 422,['Warning'=>'Page does not have needed fields']);
                 }
+                // if user has selected to redirect to success/error pages,
+                // let's make sure these pages exist:
+                $ajax = $pg->fb_is_ajax()->exists() ? $pg->fb_is_ajax()->toBool() : false;
+                $sPage = $pg->fb_success_page()->exists() ? $pg->fb_success_page()->toPage() : false;
+                $ePage = $pg->fb_error_page()->exists() ? $pg->fb_error_page()->toPage() : false;
+                if(!$ajax and (!$sPage or !$ePage)){
+                    $body = '<h1>Processing Error 422</h1><p>Missing success/error page.</p>';
+                    return new Response($body,'text/html', 422,['Warning'=>'Missing success/error page']);
+                }
+
                 // check the CSRF token:
-                if(csrf($data['fb_csrf']) !== true) {
-                    $result['msg'] = 'invalid CSRF token';
-                    $result['errors'][] = 'csrf';
-                    return $result;
+                if(!isset($data['fb_csrf']) or csrf($data['fb_csrf']) !== true) {
+                    if (!$ajax) {
+                        $data = [
+                            'fb_data' => $data,
+                            'error' => 'No valid CSRF token received.'
+                        ];
+                        return $ePage->render($data);
+                    }
+                    $body = '<h1>Processing Error 403</h1><p>No valid CSRF token received.</p>';
+                    return new Response($body,'text/html', 403,['Warning'=>'No valid CSRF token']);
                 }
+
+                $formbuilder = ['data' => "data from route!"];
+                return $pg->fb_error_page()->toPage()->render($formbuilder);
                 // check honeypots:
                 $fields = $pg->fb_builder()->toBuilderBlocks()->filterBy('_key','==','fb_honeypot');
                 if(count($fields) > 0){
