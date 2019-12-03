@@ -87,18 +87,19 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                 // check the CSRF token:
                 if(!isset($data['fb_csrf']) or csrf($data['fb_csrf']) !== true) {
                     if (!$ajax) {
+                        // if the form is not using ajax, we send the user
+                        // to the error page, with appropriate data & info:
                         $data = [
                             'fb_data' => $data,
                             'error' => 'No valid CSRF token received.'
                         ];
                         return $ePage->render($data);
                     }
+                    // if the user is using ajax, we return an error:
                     $body = '<h1>Processing Error 403</h1><p>No valid CSRF token received.</p>';
                     return new Response($body,'text/html', 403,['Warning'=>'No valid CSRF token']);
                 }
 
-                $formbuilder = ['data' => "data from route!"];
-                return $pg->fb_error_page()->toPage()->render($formbuilder);
                 // check honeypots:
                 $fields = $pg->fb_builder()->toBuilderBlocks()->filterBy('_key','==','fb_honeypot');
                 if(count($fields) > 0){
@@ -106,14 +107,23 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                         // the honeypot field should be empty -
                         // if it's not, it was probably filled in by a spammer bot:
                         if(!empty($data[$field->field_name()->value()])) {
-                            $result['msg'] = 'unexpected value found in field';
-                            $result['errors'][] = $field->field_name()->value();
-                            return $result;
+                            if (!$ajax) {
+                                // if the form is not using ajax, we send the user
+                                // to the error page, with appropriate data & info:
+                                $data = [
+                                    'fb_data' => $data,
+                                    'error' => 'Bot submission violation.'
+                                ];
+                                return $ePage->render($data);
+                            }
+                            // if the user is using ajax, we return an error:
+                            $body = '<h1>Processing Error 403</h1><p>Bot submission detected.</p>';
+                            return new Response($body,'text/html', 403,['Warning'=>'Bot submission detected']);
                         }
                     }
                 }
                 // hCaptcha check - if it is being used:
-                if($pg->fb_captcha()->toBool() and $pg->fb_captcha_sitekey()->isNotEmpty() and $pg->fb_captcha_secretkey()->isNotEmpty()) {
+                if($pg->fb_captcha()->exists and $pg->fb_captcha()->toBool() and $pg->fb_captcha_sitekey()->isNotEmpty() and $pg->fb_captcha_secretkey()->isNotEmpty()) {
                     // check that the hCaptcha token has been set -
                     // that is, the captcha has been answered and submitted::
                     if(isset($data['h-captcha-response']) and !empty($data['h-captcha-response'])) {
@@ -129,15 +139,33 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                         $response = $response->json();
                         // check whether the hCaptcha was answered successfully::
                         if($response['success'] == false){
-                            $result['msg'] = "captcha was not successfull";
-                            $result['errors'][] = 'hcaptcha';
-                            return $result;
+                            if (!$ajax) {
+                                // if the form is not using ajax, we send the user
+                                // to the error page, with appropriate data & info:
+                                $data = [
+                                    'fb_data' => $data,
+                                    'error' => 'hCatpcha not validated.'
+                                ];
+                                return $ePage->render($data);
+                            }
+                            // if the user is using ajax, we return an error:
+                            $body = '<h1>Processing Error 403</h1><p>hCaptcha not validated.</p>';
+                            return new Response($body,'text/html', 403,['Warning'=>'hCaptcha not validated']);
                         }
                     } else {
                         // captcha token hasn't been set - possible form hijacking:
-                        $result['msg'] = 'no captcha response';
-                        $result['errors'][] = 'hcaptcha';
-                        return $result;
+                        if (!$ajax) {
+                            // if the form is not using ajax, we send the user
+                            // to the error page, with appropriate data & info:
+                            $data = [
+                                'fb_data' => $data,
+                                'error' => 'hCaptcha expected.'
+                            ];
+                            return $ePage->render($data);
+                        }
+                        // if the user is using ajax, we return an error:
+                        $body = '<h1>Processing Error 403</h1><p>hCaptcha expected.</p>';
+                        return new Response($body,'text/html', 403,['Warning'=>'hCaptcha expected']);
                     }
                 }
                 // PROCESS RECEIVED DATA:

@@ -51,7 +51,7 @@
     endforeach;
 ?>
     <input type="hidden" name="fb_pg_id" id="fb_pg_id" value="<?= $page->id() ?>">
-    <!-- <input type="hidden" name="fb_csrf" id="fb_csrf" value="<?= csrf() ?>"> -->
+    <input type="hidden" name="fb_csrf" id="fb_csrf" value="<?= csrf() ?>">
 <?php if($page->fb_captcha()->toBool() and $page->fb_captcha_sitekey()->isNotEmpty() and $page->fb_captcha_secretkey()->isNotEmpty()): ?>
 <div class="h-captcha" data-sitekey="<?= $page->fb_captcha_sitekey() ?>"<?php if($page->fb_captcha_theme()->toBool()): ?> data-theme="dark"<?php endif; ?>></div>
 <script src="https://hcaptcha.com/1/api.js" async defer></script>
