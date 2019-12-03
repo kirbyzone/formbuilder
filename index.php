@@ -61,9 +61,7 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                 // start by checking whether this is a formbuilder submission -
                 // by checking, for example, whether we can get a page id:
                 if(!isset($data['fb_pg_id'])) {
-                    $result['msg'] = 'unable to process - missing page ID';
-                    $result['errors'][] = 'page_id';
-                    return $result;
+                    return new Response('<h1>Error 500</h1><p>Invalid Page ID</p>','text/html', 500);
                 }
                 // then, check whether the page exists:
                 if(!$pg = page($data['fb_pg_id'])) {
@@ -133,8 +131,19 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                 $result['success'] = true;
                 $result['msg'] = 'reached the end';
                 $result['errors'] = array();
-                return $result;
+                if($pg->fb_is_ajax()->toBool()){
+                    // send response via ajax:
+                    return $result;
+                } else {
+                    // Try to direct the submitter to the success page.
+                    // If that fails, throw an error:
+                    if($p = $pg->fb_success_page()->toPage()) {
+                        return $p;
+                    } else {
+                        return new Response('<h1>Error 500</h1><p>Invalid Success Page ID</p>','text/html', 500);
+                    }
 
+                }
           }
         ]
       ]

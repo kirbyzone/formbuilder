@@ -13,8 +13,19 @@
         background: rgba(255,0,0,0.1);
     }
 </style>
+<?php if(isset($formbuilder)) {
+    $txt = '$formbuilder is set';
+} else if(isset($data)) {
+    $txt = '$data is set';
+} else if(isset($error)) {
+    $txt = '$error is set';
+} else {
+    $txt = 'nothing has been set';
+}
+?>
+<h3><?= $txt ?></h3>
 <form id="<?= $id ?>"<?php if($class):?> class="<?= $class ?>"<?php endif; ?> action="<?= $actionURL ?>" method="post">
-<?php if($page->fb_msg_position()->toBool()): ?>    <div class="messagebox"></div><?php endif; ?>
+<?php if($page->fb_is_ajax()->toBool() and $page->fb_msg_position()->toBool()): ?>    <div class="messagebox"></div><?php endif; ?>
 <?php
     foreach($fields as $field):
         switch ($field->_key()) {
@@ -48,7 +59,7 @@
         }
     endforeach;
 ?>
-    <input type="hidden" name="fb_pg_id" id="fb_pg_id" value="<?= $page->id() ?>">
+    <!-- <input type="hidden" name="fb_pg_id" id="fb_pg_id" value="<?= $page->id() ?>"> -->
     <input type="hidden" name="fb_csrf" id="fb_csrf" value="<?= csrf() ?>">
 <?php if($page->fb_captcha()->toBool() and $page->fb_captcha_sitekey()->isNotEmpty() and $page->fb_captcha_secretkey()->isNotEmpty()): ?>
 <div class="h-captcha" data-sitekey="<?= $page->fb_captcha_sitekey() ?>"<?php if($page->fb_captcha_theme()->toBool()): ?> data-theme="dark"<?php endif; ?>></div>
@@ -64,8 +75,9 @@
 <?php if($useDiv): ?>
 </div>
 <?php endif; ?>
-<?php if(!$page->fb_msg_position()->toBool()): ?>    <div class="messagebox"></div><?php endif; ?>
+<?php if($page->fb_is_ajax()->toBool() and !$page->fb_msg_position()->toBool()): ?>    <div class="messagebox"></div><?php endif; ?>
 </form>
+<?php if($page->fb_is_ajax()->toBool()): ?>
 <script type="text/javascript">
     // function to handle the form submission via ajax:
     const fbform = document.getElementById('<?= $id ?>');
@@ -117,3 +129,4 @@
         msgBox.setAttribute('hidden', '');
     });
 </script>
+<?php endif;

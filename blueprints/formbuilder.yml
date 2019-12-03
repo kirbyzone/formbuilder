@@ -205,7 +205,7 @@ fields:
       - italic
     counter: false
     placeholder: There was an issue sending your form data - please try again!
-    help: The message that is displayed when there is an issue sending the form data.
+    help: The message that is displayed when there is an issue processing the form data.
     when:
       fb_form_settings: true
       fb_is_ajax: true
