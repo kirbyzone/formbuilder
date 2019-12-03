@@ -116,14 +116,16 @@
           msgBox.classList.add('error');
         });
         msgBox.removeAttribute('hidden');
-        hcaptcha.reset();
+<?php if($page->fb_captcha()->toBool() and $page->fb_captcha_sitekey()->isNotEmpty() and $page->fb_captcha_secretkey()->isNotEmpty()): ?>        hcaptcha.reset();
+<?php endif; ?>
       });
 
     // function to hide the messagebox on reset:
     const fbreset = fbform.querySelector('button[type=reset]');
     fbreset.addEventListener('click',function(e){
         msgBox.setAttribute('hidden', '');
-        hcaptcha.reset();
+<?php if($page->fb_captcha()->toBool() and $page->fb_captcha_sitekey()->isNotEmpty() and $page->fb_captcha_secretkey()->isNotEmpty()): ?>        hcaptcha.reset();
+<?php endif; ?>
     });
 </script>
 <?php endif;
