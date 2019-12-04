@@ -74,8 +74,8 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                     // so we can remove the pg_id field from our data array:
                     unset($data['fb_pg_id']);
                 }
-                // then, check whether the page has formbuilder fields:
-                if(!$pg->fb_builder()->exists() or !$pg->fb_is_ajax()->exists() or !$pg->fb_captcha()->exists() or !$pg->fb_send_email()->exists()) {
+                // then, check whether the page has all the fields required for our logic:
+                if(!$pg->fb_builder()->exists() or !$pg->fb_is_ajax()->exists() or !$pg->fb_captcha()->exists() or !$pg->fb_send_email()->exists() or !$pg->fb_save_submissions()->exists()) {
                     $body = '<h1>Processing Error 422</h1><p>Page does not contain needed fields.</p>';
                     return new Response($body,'text/html', 422,['Warning'=>'Page does not have needed fields']);
                 }
@@ -189,7 +189,7 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                 // With all validation done, we now start data processing.
                 // We will store processing errors in an $errors array, and
                 // report to the user at the end if any of the functions fail:
-                $errors = [];
+                $errors = '';
 
                 // remove unnecessary fields from the data array,
                 // so they don't get included in the sent/stored data:
@@ -242,26 +242,75 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                         'data' => ['page_id' => $pg->id(), 'fields' => $data]
                       ]);
                     } catch (Exception $error) {
-                        // $errors[] = 'Unable to send form data - email error.';
-                        $error = $error->getMessage();
-                        if (!$ajax) {
-                            // if the form is not using ajax, we send the user
-                            // to the error page, with appropriate data & info:
-                            $data = [
-                                'fb_data' => $data,
-                                'error' => 'Mail server error: ' . $error . '.'
-                            ];
-                            return $ePage->render($data);
-                        }
-                        // if the user is using ajax, we return an error:
-                        $body = '<h1>Gateway Error 502</h1><p>Mail server error: '. $error . '.</p>';
-                        return new Response($body,'text/html', 502,['Warning'=>'mail server error: ' . $error]);
+                        $errors .= 'Mail server error: ' . $error->getMessage() . '. ';
                     }
                 }
 
+                // STORING THE SUBMISSION IN THE CONTENT FILE:
                 // check whether we need to store the data in the panel:
+                if($pg->fb_save_submissions()->toBool()){
+                    if($pg->fb_received_submissions()->exists()) {
+                        // gather the values we need to store:
+                        $submission_date = date('Y-m-d H:i:s'); // datetime stamp
+                        if($pg->fb_key_field()->exists() and $pg->fb_key_field()->isNotEmpty() and isset($data[$pg->fb_key_field()->value()])) {
+                            // this is the field that will be shown in the 'key' column in the panel:
+                            $submission_key = $data[$pg->fb_key_field()->value()];
+                        } else {
+                            // if we can't find the field, we'll show show info from
+                            // whatever is the first field in our data array:
+                            $submission_key = Str::excerpt(array_values($data)[0],50);
+                        }
+                        // build the content of the submission in readable format:
+                        $submission_content = '';
+                        foreach ($data as $field => $value) {
+                            $field = mb_strtoupper($field);
+                            $submission_content .= <<<CONTENT
 
+$field: $value
+
+CONTENT;
+                        }
+                        $submission = [
+                            'entry_date' => $submission_date,
+                            'entry_key' => $submission_key,
+                            'entry_content' => $submission_content
+                        ];
+                        // store the current contents of the log:
+                        $log = $pg->fb_received_submissions()->yaml();
+                        // add our new submission:
+                        $log[] = $submission;
+                        // finally, try to update the field in the content file:
+                        try {
+                            kirby()->impersonate('kirby');
+                            $pg->update([
+                              'fb_received_submissions' => Yaml::encode($log)
+                            ]);
+                        } catch (Exception $error) {
+                            $errors .= 'Submission logging failed: ' . $error->getMessage() . '. ';
+                        }
+
+                    } else {
+                        // the field where we're supposed to store our submissions
+                        // is not present on the page - we must advise the user:
+                        $errors .= 'Submission log field missing.';
+                    }
+                }
                 // return report on success/failure of operations:
+                if(!empty($errors)) {
+                    if (!$ajax) {
+                        // if the form is not using ajax, we send the user
+                        // to the error page, with appropriate data & info:
+                        $data = [
+                            'fb_data' => $data,
+                            'error' => $errors
+                        ];
+                        return $ePage->render($data);
+                    }
+                    // if the user is using ajax, we return an error:
+                    $body = '<h1>Server Error 500</h1><p>Server error: '. $errors . '.</p>';
+                    return new Response($body,'text/html', 500,['Warning'=>'Server error: ' . $errors]);
+                }
+                // everything went fine - we have a successfull submission!:
                 if(!$ajax) {
                     // if the form is not using ajax, we send the user
                     // to the success page, with appropriate data & info:

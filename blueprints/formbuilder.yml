@@ -297,7 +297,7 @@ fields:
       - do not save submissions
       - save all submissions
     width: 1/3
-    help: Turning off <strong>DELETES</strong> all previously saved submissions.
+    help: Log all form submissions here.
     when:
       fb_form_settings: true
   fb_key_field:
@@ -322,10 +322,10 @@ fields:
     limit: 20
     fields:
       entry_date:
-        type: date
+        type: text
         label: When
-        time: true
-        format: "d-m-Y h:ia"
+        counter: false
+        spellcheck: disabled
         disabled: true
       entry_key:
         type: hidden
