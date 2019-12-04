@@ -191,9 +191,13 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                 // report to the user at the end if any of the functions fail:
                 $errors = [];
 
-                // remove unnecessary 'submit field from the data array,
-                // so it doesn't get processed with the other fields:
-                unset($data['submit']);
+                // remove unnecessary fields from the data array,
+                // so they don't get included in the sent/stored data:
+                unset($data['submit']); // remove the value sent by the 'submit' button
+                foreach ($data as $field => $value) {
+                    // remove any fields with empty values:
+                    if(empty($data[$field])) { unset($data[$field]); }
+                }
 
                 // EMAILING THE RECEIVED DATA:
                 // check whether we need to send the data via email:

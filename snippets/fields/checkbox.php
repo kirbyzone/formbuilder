@@ -5,7 +5,7 @@
     $class = $fld->field_class()->isEmpty() ? false : $fld->field_class()->html();
     $useDiv = $pg->fb_usediv()->toBool();
     $label = $fld->field_label()->isEmpty() ? false : $fld->field_label()->html();
-    $value = $fld->default()->html();
+    $value = $fld->default()->isNotEmpty() ? $fld->default()->html() : false;
 
     if($data != false){
         // this is a return to a previously entered form -
