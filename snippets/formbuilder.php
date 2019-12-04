@@ -15,7 +15,6 @@
         background: rgba(255,0,0,0.1);
     }
 </style>
-<p><?= kirby()->request()->domain() ?></p>
 <form id="<?= $fb_id ?>"<?php if($fb_class):?> class="<?= $fb_class ?>"<?php endif; ?> action="<?= $actionURL ?>" method="post">
 <?php if($page->fb_is_ajax()->toBool() and $page->fb_msg_position()->toBool()): ?>    <div class="messagebox"></div><?php endif; ?>
 <?php

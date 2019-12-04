@@ -1,1 +1,1 @@
-    <input type="hidden" name="<?= $fld->field_name() ?>" id="<?= $fld->field_name() ?>"<?php if($fld->field_class()->isNotEmpty()): ?> class="<?= $fld->field_class() ?>"<?php endif; ?> value="<?= $fld->field_value()->html() ?>">
+    <input type="hidden" name="<?= $fld->field_name() ?>" id="<?= $fld->field_name() ?>"<?php if($fld->field_class()->isNotEmpty()): ?> class="<?= $fld->field_class() ?>"<?php endif; ?> value="<?= $fld->default()->html() ?>">
