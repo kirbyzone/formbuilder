@@ -1,6 +1,6 @@
 {
     "name": "cre8ivclick/formbuilder",
-    "description": "Cre8iv Click's Form Builder for Kirby 3",
+    "description": "Cre8iv Click's Form Builder Plugin for Kirby",
     "type": "kirby-plugin",
     "license": "MIT",
     "homepage": "https://gitlab.com/cre8ivclick/formbuilder",
