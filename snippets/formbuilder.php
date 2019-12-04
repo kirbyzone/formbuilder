@@ -15,6 +15,7 @@
         background: rgba(255,0,0,0.1);
     }
 </style>
+<p><?= kirby()->request()->domain() ?></p>
 <form id="<?= $fb_id ?>"<?php if($fb_class):?> class="<?= $fb_class ?>"<?php endif; ?> action="<?= $actionURL ?>" method="post">
 <?php if($page->fb_is_ajax()->toBool() and $page->fb_msg_position()->toBool()): ?>    <div class="messagebox"></div><?php endif; ?>
 <?php
@@ -96,15 +97,9 @@
           }
         })
         .then(data => {
-          if(data.success){
-            // truly successfull response:
-            msgBox.innerHTML = `<?= $page->fb_success_msg()->kt(); ?>`;
-            msgBox.classList.remove('error');
-          } else {
-            // If success == false, we have processing or validation errors -
-            // let's throw an error so we can warn the user:
-            throw new Error(data.msg + ' (' + data.errors.join() + ')');
-          }
+          // truly successfull response:
+          msgBox.innerHTML = `<?= $page->fb_success_msg()->kt(); ?>`;
+          msgBox.classList.remove('error');
         })
         .catch(error => {
           // Display error message along with response error info:

@@ -49,6 +49,9 @@ Kirby::plugin('cre8ivclick/formbuilder', [
         'formbuilder/password_preview' => __DIR__ . '/snippets/previews/password.php',
         'formbuilder/hidden_preview' => __DIR__ . '/snippets/previews/hidden.php'
     ],
+    'templates' => [
+        'emails/fb_default' => __DIR__ . '/templates/emails/fb_default.php'
+    ],
     'routes' => [
         [
             'pattern' => 'formbuilder/formhandler',
@@ -56,8 +59,6 @@ Kirby::plugin('cre8ivclick/formbuilder', [
             'action'  => function () {
                 // VALIDATION CHECKES:
                 $data = get();
-                $result = array();
-                $result['success'] = false; // assume the worst
                 // start by checking whether this is a formbuilder submission -
                 // by checking, for example, whether we can get a page id:
                 if(!isset($data['fb_pg_id'])) {
@@ -68,15 +69,19 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                 if(!$pg = page($data['fb_pg_id'])) {
                     $body = '<h1>Processing Error 406</h1><p>Referenced Page ID does not exist.</p>';
                     return new Response($body,'text/html', 406,['Warning'=>'Page ID does not exist']);
+                } else {
+                    // page ID has now been stored in the $pg variable,
+                    // so we can remove the pg_id field from our data array:
+                    unset($data['fb_pg_id']);
                 }
                 // then, check whether the page has formbuilder fields:
-                if(!$pg->fb_form_id()->exists() and $pg->fb_builder()->exists()) {
+                if(!$pg->fb_builder()->exists() or !$pg->fb_is_ajax()->exists() or !$pg->fb_captcha()->exists() or !$pg->fb_send_email()->exists()) {
                     $body = '<h1>Processing Error 422</h1><p>Page does not contain needed fields.</p>';
                     return new Response($body,'text/html', 422,['Warning'=>'Page does not have needed fields']);
                 }
                 // if user has selected to redirect to success/error pages,
                 // let's make sure these pages exist:
-                $ajax = $pg->fb_is_ajax()->exists() ? $pg->fb_is_ajax()->toBool() : false;
+                $ajax = $pg->fb_is_ajax()->toBool();
                 $sPage = $pg->fb_success_page()->exists() ? $pg->fb_success_page()->toPage() : false;
                 $ePage = $pg->fb_error_page()->exists() ? $pg->fb_error_page()->toPage() : false;
                 if(!$ajax and (!$sPage or !$ePage)){
@@ -98,6 +103,9 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                     // if the user is using ajax, we return an error:
                     $body = '<h1>Processing Error 403</h1><p>No valid CSRF token received.</p>';
                     return new Response($body,'text/html', 403,['Warning'=>'No valid CSRF token']);
+                } else {
+                    // passed CSRF check, so we can delete the CSRF field from our data array:
+                    unset($data['fb_csrf']);
                 }
 
                 // check honeypots:
@@ -120,10 +128,12 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                             $body = '<h1>Processing Error 403</h1><p>Bot submission detected.</p>';
                             return new Response($body,'text/html', 403,['Warning'=>'Bot submission detected']);
                         }
+                        // honeypot is empty - we can remove the field from our data array:
+                        unset($data[$field->field_name()->value()]);
                     }
                 }
                 // hCaptcha check - if it is being used:
-                if($pg->fb_captcha()->exists and $pg->fb_captcha()->toBool() and $pg->fb_captcha_sitekey()->isNotEmpty() and $pg->fb_captcha_secretkey()->isNotEmpty()) {
+                if($pg->fb_captcha()->toBool() and $pg->fb_captcha_sitekey()->isNotEmpty() and $pg->fb_captcha_secretkey()->isNotEmpty()) {
                     // check that the hCaptcha token has been set -
                     // that is, the captcha has been answered and submitted::
                     if(isset($data['h-captcha-response']) and !empty($data['h-captcha-response'])) {
@@ -151,6 +161,13 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                             // if the user is using ajax, we return an error:
                             $body = '<h1>Processing Error 403</h1><p>hCaptcha not validated.</p>';
                             return new Response($body,'text/html', 403,['Warning'=>'hCaptcha not validated']);
+                        } else {
+                            // captcha has been answered successfully,
+                            // so we can now remove it from our data array:
+                            unset($data['h-captcha-response']);
+                            if(isset($data['g-recaptcha-response'])) {
+                                unset($data['g-recaptcha-response']);
+                            }
                         }
                     } else {
                         // captcha token hasn't been set - possible form hijacking:
@@ -168,28 +185,90 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                         return new Response($body,'text/html', 403,['Warning'=>'hCaptcha expected']);
                     }
                 }
-                // PROCESS RECEIVED DATA:
+
+                // With all validation done, we now start data processing.
+                // We will store processing errors in an $errors array, and
+                // report to the user at the end if any of the functions fail:
+                $errors = [];
+
+                // remove unnecessary 'submit field from the data array,
+                // so it doesn't get processed with the other fields:
+                unset($data['submit']);
+
+                // EMAILING THE RECEIVED DATA:
+                // check whether we need to send the data via email:
+                if($pg->fb_send_email()->toBool() and $pg->fb_email_recipient()->exists() and $pg->fb_email_recipient()->isNotEmpty() and $pg->fb_email_sender_type()->exists()) {
+                    // determine the sender:
+                    if($pg->fb_email_sender_type()->toBool()) {
+                        // we get the sender from a form field:
+                        if(isset($data[$pg->fb_email_sender_field()->value()]) and !empty($data[$pg->fb_email_sender_field()->value()])){
+                            $sender = $data[$pg->fb_email_sender_field()->value()];
+                        } else {
+                            $sender = 'form@' . kirby()->request()->domain();
+                        }
+                    } else {
+                        // we get the sender from a panel field:
+                        $sender = $pg->fb_email_sender()->or('form@' . kirby()->request()->domain());
+                    }
+                    // determine the subject:
+                    if($pg->fb_email_subject()->exists()){
+                        $subject = $pg->fb_email_subject()->or('Website Form Submission');
+                    } else {
+                        $subject = 'Website Form Submission';
+                    }
+                    // determining which email template to use:
+                    if(file_exists(kirby()->roots()->templates() . '/emails/fb.html.php') and file_exists(kirby()->roots()->templates() . '/emails/fb.text.php')) {
+                        // user has created html email templates, so we use those:
+                        $template = 'fb';
+                    } else if(file_exists(kirby()->roots()->templates() . '/emails/fb.php')) {
+                        // user has created a plain-text email template, so we'll use that:
+                        $template = 'fb';
+                    } else {
+                        // we'll use our default template:
+                        $template = 'fb_default';
+                    }
+                    // sending the email:
+                    try {
+                      kirby()->email([
+                        'from' => $sender,
+                        'replyTo' => $sender,
+                        'to' => $pg->fb_email_recipient()->value(),
+                        'subject' => $subject,
+                        'template' => $template,
+                        'data' => ['page_id' => $pg->id(), 'fields' => $data]
+                      ]);
+                    } catch (Exception $error) {
+                        // $errors[] = 'Unable to send form data - email error.';
+                        $error = $error->getMessage();
+                        if (!$ajax) {
+                            // if the form is not using ajax, we send the user
+                            // to the error page, with appropriate data & info:
+                            $data = [
+                                'fb_data' => $data,
+                                'error' => 'Mail server error: ' . $error . '.'
+                            ];
+                            return $ePage->render($data);
+                        }
+                        // if the user is using ajax, we return an error:
+                        $body = '<h1>Gateway Error 502</h1><p>Mail server error: '. $error . '.</p>';
+                        return new Response($body,'text/html', 502,['Warning'=>'mail server error: ' . $error]);
+                    }
+                }
+
                 // check whether we need to store the data in the panel:
 
-                // check whether we need to send the data via email:
-
                 // return report on success/failure of operations:
-                $result['success'] = true;
-                $result['msg'] = 'reached the end';
-                $result['errors'] = array();
-                if($pg->fb_is_ajax()->toBool()){
-                    // send response via ajax:
-                    return $result;
-                } else {
-                    // Try to direct the submitter to the success page.
-                    // If that fails, throw an error:
-                    if($p = $pg->fb_success_page()->toPage()) {
-                        return $p;
-                    } else {
-                        return new Response('<h1>Error 500</h1><p>Invalid Success Page ID</p>','text/html', 500);
-                    }
-
+                if(!$ajax) {
+                    // if the form is not using ajax, we send the user
+                    // to the success page, with appropriate data & info:
+                    $data = [
+                        'fb_data' => $data,
+                        'error' => ''
+                    ];
+                    return $sPage->render($data);
                 }
+                // if the user is using ajax, we return a success message:
+                return ['msg' => 'Form submitted successfully'];
           }
         ]
       ]
