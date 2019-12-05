@@ -22,6 +22,6 @@
     pattern:
       extends: formbuilder/fields/pattern
       placeholder: "https://.*"
-preview:
-  snippet: formbuilder/text_preview
-defaultView: preview
+# preview:
+#   snippet: formbuilder/text_preview
+# defaultView: preview

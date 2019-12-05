@@ -20,6 +20,6 @@ fields:
       - not checked
       - checked
     width: 1/3
-preview:
-  snippet: formbuilder/checkbox_preview
-defaultView: preview
+# preview:
+#   snippet: formbuilder/checkbox_preview
+# defaultView: preview

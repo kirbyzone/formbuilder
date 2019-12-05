@@ -27,7 +27,7 @@ git submodule add https://gitlab.com/cre8ivclick/formbuilder.git site/plugins/fo
 ```
 
 ### Composer
-If you use composer, you can quickly add Sitemapper to your project like this:
+If you use composer, you can quickly add FormBuilder to your project like this:
 ```
 composer require cre8ivclick/formbuilder
 ```

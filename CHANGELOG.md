@@ -1,3 +1,8 @@
+### 1.0.1
+disable field previews, for compatibility with Safari.
+Fix readme typo.
+5 December 2019 7:15 pm AEDT
+
 ### 1.0
 Initial official release.
 Updated readme - full docs in project wiki.

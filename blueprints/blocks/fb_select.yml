@@ -44,6 +44,6 @@
           text:
             - 'not selected'
             - 'selected'
-preview:
-  snippet: formbuilder/select_preview
-defaultView: preview
+# preview:
+#   snippet: formbuilder/select_preview
+# defaultView: preview
