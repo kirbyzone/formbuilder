@@ -95,7 +95,7 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                         // if the form is not using ajax, we send the user
                         // to the error page, with appropriate data & info:
                         $data = [
-                            'fb_data' => $data,
+                            'fields' => $data,
                             'error' => 'No valid CSRF token received.'
                         ];
                         return $ePage->render($data);
@@ -109,9 +109,9 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                 }
 
                 // check honeypots:
-                $fields = $pg->fb_builder()->toBuilderBlocks()->filterBy('_key','==','fb_honeypot');
-                if(count($fields) > 0){
-                    foreach ($fields as $field) {
+                $honeyfields = $pg->fb_builder()->toBuilderBlocks()->filterBy('_key','==','fb_honeypot');
+                if(count($honeyfields) > 0){
+                    foreach ($honeyfields as $field) {
                         // the honeypot field should be empty -
                         // if it's not, it was probably filled in by a spammer bot:
                         if(!empty($data[$field->field_name()->value()])) {
@@ -119,7 +119,7 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                                 // if the form is not using ajax, we send the user
                                 // to the error page, with appropriate data & info:
                                 $data = [
-                                    'fb_data' => $data,
+                                    'fields' => $data,
                                     'error' => 'Bot submission violation.'
                                 ];
                                 return $ePage->render($data);
@@ -153,7 +153,7 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                                 // if the form is not using ajax, we send the user
                                 // to the error page, with appropriate data & info:
                                 $data = [
-                                    'fb_data' => $data,
+                                    'fields' => $data,
                                     'error' => 'hCatpcha not validated.'
                                 ];
                                 return $ePage->render($data);
@@ -175,7 +175,7 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                             // if the form is not using ajax, we send the user
                             // to the error page, with appropriate data & info:
                             $data = [
-                                'fb_data' => $data,
+                                'fields' => $data,
                                 'error' => 'hCaptcha expected.'
                             ];
                             return $ePage->render($data);
@@ -301,7 +301,7 @@ CONTENT;
                         // if the form is not using ajax, we send the user
                         // to the error page, with appropriate data & info:
                         $data = [
-                            'fb_data' => $data,
+                            'fields' => $data,
                             'error' => $errors
                         ];
                         return $ePage->render($data);
@@ -315,7 +315,7 @@ CONTENT;
                     // if the form is not using ajax, we send the user
                     // to the success page, with appropriate data & info:
                     $data = [
-                        'fb_data' => $data,
+                        'fields' => $data,
                         'error' => ''
                     ];
                     return $sPage->render($data);

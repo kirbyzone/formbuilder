@@ -1,11 +1,11 @@
 <?php
     $fb_id = $page->fb_form_id()->or('form-'.time());
     $fb_class = $page->fb_form_class()->isEmpty() ? false : $page->fb_form_class()->html();
-    $fb_fields = $page->fb_builder()->toBuilderBlocks();
+    $fb_blocks = $page->fb_builder()->toBuilderBlocks();
     $useDiv = $page->fb_usediv()->toBool();
     $actionURL = $site->url() . '/formbuilder/formhandler';
     $error = $error ?? false;
-    $fb_data = $fb_data ?? false;
+    $fields = $fields ?? false;
 ?>
 <style type="text/css">
     .messagebox {
@@ -18,34 +18,34 @@
 <form id="<?= $fb_id ?>"<?php if($fb_class):?> class="<?= $fb_class ?>"<?php endif; ?> action="<?= $actionURL ?>" method="post">
 <?php if($page->fb_is_ajax()->toBool() and $page->fb_msg_position()->toBool()): ?>    <div class="messagebox"></div><?php endif; ?>
 <?php
-    foreach($fb_fields as $field):
+    foreach($fb_blocks as $field):
         switch ($field->_key()) {
             case 'fb_password':
-                snippet('formbuilder/password', ['pg' => $page, 'fld' => $field, 'data' => $fb_data]);
+                snippet('formbuilder/password', ['pg' => $page, 'fld' => $field, 'data' => $fields]);
                 break;
             case 'fb_textarea':
-                snippet('formbuilder/textarea', ['pg' => $page, 'fld' => $field, 'data' => $fb_data]);
+                snippet('formbuilder/textarea', ['pg' => $page, 'fld' => $field, 'data' => $fields]);
                 break;
             case 'fb_number':
-                snippet('formbuilder/number', ['pg' => $page, 'fld' => $field, 'data' => $fb_data]);
+                snippet('formbuilder/number', ['pg' => $page, 'fld' => $field, 'data' => $fields]);
                 break;
             case 'fb_checkbox':
-                snippet('formbuilder/checkbox', ['pg' => $page, 'fld' => $field, 'data' => $fb_data]);
+                snippet('formbuilder/checkbox', ['pg' => $page, 'fld' => $field, 'data' => $fields]);
                 break;
             case 'fb_select':
-                snippet('formbuilder/select', ['pg' => $page, 'fld' => $field, 'data' => $fb_data]);
+                snippet('formbuilder/select', ['pg' => $page, 'fld' => $field, 'data' => $fields]);
                 break;
             case 'fb_radio':
-                snippet('formbuilder/radio', ['pg' => $page, 'fld' => $field, 'data' => $fb_data]);
+                snippet('formbuilder/radio', ['pg' => $page, 'fld' => $field, 'data' => $fields]);
                 break;
             case 'fb_hidden':
                 snippet('formbuilder/hidden', ['fld' => $field]);
                 break;
             case 'fb_honeypot':
-                snippet('formbuilder/honeypot', ['pg' => $page, 'fld' => $field, 'data' => $fb_data]);
+                snippet('formbuilder/honeypot', ['pg' => $page, 'fld' => $field, 'data' => $fields]);
                 break;
             default:
-                snippet('formbuilder/input', ['pg' => $page, 'fld' => $field, 'data' => $fb_data]);
+                snippet('formbuilder/input', ['pg' => $page, 'fld' => $field, 'data' => $fields]);
                 break;
         }
     endforeach;
