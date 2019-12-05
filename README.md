@@ -43,7 +43,6 @@ Please use the 'Issues' page of this project to report any bugs you find, and po
 We have tried to keep the code in the plugin reasonably simple, organised and well-commented. Feel free to fork this project, and send enhancements and bug fixes via merge requests. Please be aware, that we aim to keep the plugin _simple_ and _easy to maintain_.
 
 ## To-Do
-- [ ] make localisation easier
 - [ ] better submission log interface
 - [ ] export submissions to CSV file
 - [ ] storage of submissions into backend database
