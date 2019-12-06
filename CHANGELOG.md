@@ -1,3 +1,8 @@
+### 1.0.3
+Remove left-over hard-coded form styling from main snippet.
+Enables using page ID string in snippet parameter, instead of page object.
+6 December 2019 12:15 am AEDT
+
 ### 1.0.2
 Require passing page id where FormBuilder is located to snippet.
 Enables using FormBuilder from any page in any template.

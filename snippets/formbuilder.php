@@ -1,54 +1,58 @@
 <?php
-    $fb_id = $pg->fb_form_id()->or('form-'.time());
-    $fb_class = $pg->fb_form_class()->isEmpty() ? false : $pg->fb_form_class()->html();
-    $fb_blocks = $pg->fb_builder()->toBuilderBlocks();
-    $useDiv = $pg->fb_usediv()->toBool();
-    $actionURL = $site->url() . '/formbuilder/formhandler';
-    $error = $error ?? false;
-    $fields = $fields ?? false;
+//determining which page the FormBuilder is in:
+if(!isset($pg)): ?>
+<h3>Unable to generate form: missing page id</h3>
+<?php
+else:
+    // check whether the varibale is a page id string:
+    if(is_string($pg)) { $pg = page($pg); }
+    // check whether page exists:
+    if(!$pg->exists()): ?>
+<h3>Unable to generate form: invalid page info</h3>
+<?php
+    else:
+        $fb_id = $pg->fb_form_id()->or('form-'.time());
+        $fb_class = $pg->fb_form_class()->isEmpty() ? false : $pg->fb_form_class()->html();
+        $fb_blocks = $pg->fb_builder()->toBuilderBlocks();
+        $useDiv = $pg->fb_usediv()->toBool();
+        $actionURL = $site->url() . '/formbuilder/formhandler';
+        $error = $error ?? false;
+        $fields = $fields ?? false;
 ?>
-<style type="text/css">
-    .messagebox {
-        background: rgba(0,255,0,0.1);
-    }
-    .messagebox.error {
-        background: rgba(255,0,0,0.1);
-    }
-</style>
 <form id="<?= $fb_id ?>"<?php if($fb_class):?> class="<?= $fb_class ?>"<?php endif; ?> action="<?= $actionURL ?>" method="post">
 <?php if($pg->fb_is_ajax()->toBool() and $pg->fb_msg_position()->toBool()): ?>    <div class="messagebox"></div><?php endif; ?>
 <?php
-    foreach($fb_blocks as $field):
-        switch ($field->_key()) {
-            case 'fb_password':
-                snippet('formbuilder/password', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
-                break;
-            case 'fb_textarea':
-                snippet('formbuilder/textarea', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
-                break;
-            case 'fb_number':
-                snippet('formbuilder/number', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
-                break;
-            case 'fb_checkbox':
-                snippet('formbuilder/checkbox', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
-                break;
-            case 'fb_select':
-                snippet('formbuilder/select', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
-                break;
-            case 'fb_radio':
-                snippet('formbuilder/radio', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
-                break;
-            case 'fb_hidden':
-                snippet('formbuilder/hidden', ['fld' => $field]);
-                break;
-            case 'fb_honeypot':
-                snippet('formbuilder/honeypot', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
-                break;
-            default:
-                snippet('formbuilder/input', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
-                break;
-        }
-    endforeach;
+        foreach($fb_blocks as $field):
+            switch ($field->_key()) {
+                case 'fb_password':
+                    snippet('formbuilder/password', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
+                    break;
+                case 'fb_textarea':
+                    snippet('formbuilder/textarea', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
+                    break;
+                case 'fb_number':
+                    snippet('formbuilder/number', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
+                    break;
+                case 'fb_checkbox':
+                    snippet('formbuilder/checkbox', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
+                    break;
+                case 'fb_select':
+                    snippet('formbuilder/select', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
+                    break;
+                case 'fb_radio':
+                    snippet('formbuilder/radio', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
+                    break;
+                case 'fb_hidden':
+                    snippet('formbuilder/hidden', ['fld' => $field]);
+                    break;
+                case 'fb_honeypot':
+                    snippet('formbuilder/honeypot', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
+                    break;
+                default:
+                    snippet('formbuilder/input', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
+                    break;
+            }
+        endforeach;
 ?>
     <input type="hidden" name="fb_pg_id" id="fb_pg_id" value="<?= $pg->id() ?>">
     <input type="hidden" name="fb_csrf" id="fb_csrf" value="<?= csrf() ?>">
@@ -123,3 +127,5 @@
     });
 </script>
 <?php endif;
+    endif;
+endif;
