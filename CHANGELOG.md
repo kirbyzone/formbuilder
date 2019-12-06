@@ -1,3 +1,8 @@
+### 1.0.2
+Require passing page id where FormBuilder is located to snippet.
+Enables using FormBuilder from any page in any template.
+6 December 2019 11:55 am AEDT
+
 ### 1.0.1
 disable field previews, for compatibility with Safari.
 Fix readme typo.

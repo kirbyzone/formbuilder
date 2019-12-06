@@ -1,8 +1,8 @@
 <?php
-    $fb_id = $page->fb_form_id()->or('form-'.time());
-    $fb_class = $page->fb_form_class()->isEmpty() ? false : $page->fb_form_class()->html();
-    $fb_blocks = $page->fb_builder()->toBuilderBlocks();
-    $useDiv = $page->fb_usediv()->toBool();
+    $fb_id = $pg->fb_form_id()->or('form-'.time());
+    $fb_class = $pg->fb_form_class()->isEmpty() ? false : $pg->fb_form_class()->html();
+    $fb_blocks = $pg->fb_builder()->toBuilderBlocks();
+    $useDiv = $pg->fb_usediv()->toBool();
     $actionURL = $site->url() . '/formbuilder/formhandler';
     $error = $error ?? false;
     $fields = $fields ?? false;
@@ -16,59 +16,59 @@
     }
 </style>
 <form id="<?= $fb_id ?>"<?php if($fb_class):?> class="<?= $fb_class ?>"<?php endif; ?> action="<?= $actionURL ?>" method="post">
-<?php if($page->fb_is_ajax()->toBool() and $page->fb_msg_position()->toBool()): ?>    <div class="messagebox"></div><?php endif; ?>
+<?php if($pg->fb_is_ajax()->toBool() and $pg->fb_msg_position()->toBool()): ?>    <div class="messagebox"></div><?php endif; ?>
 <?php
     foreach($fb_blocks as $field):
         switch ($field->_key()) {
             case 'fb_password':
-                snippet('formbuilder/password', ['pg' => $page, 'fld' => $field, 'data' => $fields]);
+                snippet('formbuilder/password', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
                 break;
             case 'fb_textarea':
-                snippet('formbuilder/textarea', ['pg' => $page, 'fld' => $field, 'data' => $fields]);
+                snippet('formbuilder/textarea', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
                 break;
             case 'fb_number':
-                snippet('formbuilder/number', ['pg' => $page, 'fld' => $field, 'data' => $fields]);
+                snippet('formbuilder/number', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
                 break;
             case 'fb_checkbox':
-                snippet('formbuilder/checkbox', ['pg' => $page, 'fld' => $field, 'data' => $fields]);
+                snippet('formbuilder/checkbox', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
                 break;
             case 'fb_select':
-                snippet('formbuilder/select', ['pg' => $page, 'fld' => $field, 'data' => $fields]);
+                snippet('formbuilder/select', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
                 break;
             case 'fb_radio':
-                snippet('formbuilder/radio', ['pg' => $page, 'fld' => $field, 'data' => $fields]);
+                snippet('formbuilder/radio', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
                 break;
             case 'fb_hidden':
                 snippet('formbuilder/hidden', ['fld' => $field]);
                 break;
             case 'fb_honeypot':
-                snippet('formbuilder/honeypot', ['pg' => $page, 'fld' => $field, 'data' => $fields]);
+                snippet('formbuilder/honeypot', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
                 break;
             default:
-                snippet('formbuilder/input', ['pg' => $page, 'fld' => $field, 'data' => $fields]);
+                snippet('formbuilder/input', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
                 break;
         }
     endforeach;
 ?>
-    <input type="hidden" name="fb_pg_id" id="fb_pg_id" value="<?= $page->id() ?>">
+    <input type="hidden" name="fb_pg_id" id="fb_pg_id" value="<?= $pg->id() ?>">
     <input type="hidden" name="fb_csrf" id="fb_csrf" value="<?= csrf() ?>">
-<?php if($page->fb_captcha()->toBool() and $page->fb_captcha_sitekey()->isNotEmpty() and $page->fb_captcha_secretkey()->isNotEmpty()): ?>
-<div class="h-captcha" data-sitekey="<?= $page->fb_captcha_sitekey() ?>"<?php if($page->fb_captcha_theme()->toBool()): ?> data-theme="dark"<?php endif; ?>></div>
+<?php if($pg->fb_captcha()->toBool() and $pg->fb_captcha_sitekey()->isNotEmpty() and $pg->fb_captcha_secretkey()->isNotEmpty()): ?>
+<div class="h-captcha" data-sitekey="<?= $pg->fb_captcha_sitekey() ?>"<?php if($pg->fb_captcha_theme()->toBool()): ?> data-theme="dark"<?php endif; ?>></div>
 <script src="https://hcaptcha.com/1/api.js" async defer></script>
 <?php endif; ?>
 <?php if($useDiv): ?>
 <div<?php if($fb_class): ?> class="<?= $fb_class ?>"<?php endif; ?>>
 <?php endif; ?>
-    <button type="submit" name="submit"><?= $page->fb_submit_label()->or("Submit")->html() ?></button>
-<?php if($page->fb_cancel_label()->isNotEmpty()): ?>
-    <button type="reset"><?= $page->fb_cancel_label()->html() ?></button>
+    <button type="submit" name="submit"><?= $pg->fb_submit_label()->or("Submit")->html() ?></button>
+<?php if($pg->fb_cancel_label()->isNotEmpty()): ?>
+    <button type="reset"><?= $pg->fb_cancel_label()->html() ?></button>
 <?php endif; ?>
 <?php if($useDiv): ?>
 </div>
 <?php endif; ?>
-<?php if($page->fb_is_ajax()->toBool() and !$page->fb_msg_position()->toBool()): ?>    <div class="messagebox"></div><?php endif; ?>
+<?php if($pg->fb_is_ajax()->toBool() and !$pg->fb_msg_position()->toBool()): ?>    <div class="messagebox"></div><?php endif; ?>
 </form>
-<?php if($page->fb_is_ajax()->toBool()): ?>
+<?php if($pg->fb_is_ajax()->toBool()): ?>
 <script type="text/javascript">
     // function to handle the form submission via ajax:
     const fbform = document.getElementById('<?= $fb_id ?>');
@@ -97,12 +97,12 @@
         })
         .then(data => {
           // truly successfull response:
-          msgBox.innerHTML = `<?= $page->fb_success_msg()->kt(); ?>`;
+          msgBox.innerHTML = `<?= $pg->fb_success_msg()->kt(); ?>`;
           msgBox.classList.remove('error');
         })
         .catch(error => {
           // Display error message along with response error info:
-          let msg = `<?= $page->fb_error_msg()->kt(); ?>`;
+          let msg = `<?= $pg->fb_error_msg()->kt(); ?>`;
           msgBox.innerHTML = msg;
           let errorMsg = document.createElement('p');
           errorMsg.textContent = error;
@@ -110,7 +110,7 @@
           msgBox.classList.add('error');
         });
         msgBox.removeAttribute('hidden');
-<?php if($page->fb_captcha()->toBool() and $page->fb_captcha_sitekey()->isNotEmpty() and $page->fb_captcha_secretkey()->isNotEmpty()): ?>        hcaptcha.reset();
+<?php if($pg->fb_captcha()->toBool() and $pg->fb_captcha_sitekey()->isNotEmpty() and $pg->fb_captcha_secretkey()->isNotEmpty()): ?>        hcaptcha.reset();
 <?php endif; ?>
       });
 
@@ -118,7 +118,7 @@
     const fbreset = fbform.querySelector('button[type=reset]');
     fbreset.addEventListener('click',function(e){
         msgBox.setAttribute('hidden', '');
-<?php if($page->fb_captcha()->toBool() and $page->fb_captcha_sitekey()->isNotEmpty() and $page->fb_captcha_secretkey()->isNotEmpty()): ?>        hcaptcha.reset();
+<?php if($pg->fb_captcha()->toBool() and $pg->fb_captcha_sitekey()->isNotEmpty() and $pg->fb_captcha_secretkey()->isNotEmpty()): ?>        hcaptcha.reset();
 <?php endif; ?>
     });
 </script>
