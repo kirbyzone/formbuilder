@@ -1,3 +1,9 @@
+### 1.0.4
+Make current page the 'default' page in snippet, if no page id parameter passed.
+Improve checking of valid page parameters passed.
+Improve checking of required fields in snippet.
+6 December 2019 1:15 pm AEDT
+
 ### 1.0.3
 Remove left-over hard-coded form styling from main snippet.
 Enables using page ID string in snippet parameter, instead of page object.

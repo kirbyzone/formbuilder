@@ -1,26 +1,37 @@
 <?php
-//determining which page the FormBuilder is in:
-if(!isset($pg)): ?>
-<h3>Unable to generate form: missing page id</h3>
-<?php
-else:
-    // check whether the varibale is a page id string:
-    if(is_string($pg)) { $pg = page($pg); }
+    //determining which page the FormBuilder is in:
+    if(!isset($pg)) {
+        $pg = $page;
+    } else {
+        // check whether the varibale is a page id string:
+        if(is_string($pg)) { $pg = page($pg); }
+    }
     // check whether page exists:
-    if(!$pg->exists()): ?>
+    if(!is_object($pg) or !is_a($pg,'Kirby\Cms\Page') or !$pg->exists()): ?>
 <h3>Unable to generate form: invalid page info</h3>
 <?php
+    else if(!$pg->fb_builder()->exists()):
+?>
+<h3>Unable to generate form: required fields missing</h3>
+<?php
     else:
+        // setting variables that make our code easier to read:
         $fb_id = $pg->fb_form_id()->or('form-'.time());
         $fb_class = $pg->fb_form_class()->isEmpty() ? false : $pg->fb_form_class()->html();
         $fb_blocks = $pg->fb_builder()->toBuilderBlocks();
-        $useDiv = $pg->fb_usediv()->toBool();
+        $useDiv = $pg->fb_usediv()->exists() ? $pg->fb_usediv()->toBool() : true;
+        $isAjax = $pg->fb_is_ajax()->exists() ? $pg->fb_is_ajax()->toBool() : true;
+        $msgPos = $pg->fb_msg_position()->exists() ? $pg->fb_msg_position()->toBool() : false;
+        $hasCaptcha = $pg->fb_captcha()->exists() ? $pg->fb_captcha()->toBool() : false;
+        $captchaSiteKey = $pg->fb_captcha_sitekey()->exists() ? $pg->fb_captcha_sitekey() : '';
+        $captchaSecretKey = $pg->fb_captcha_secretkey()->exists() ? $pg->fb_captcha_secretkey() : '';
+        $captchaTheme = $pg->fb_captcha_theme()->exists() ? $pg->fb_captcha_theme()->toBool() : false;
         $actionURL = $site->url() . '/formbuilder/formhandler';
         $error = $error ?? false;
         $fields = $fields ?? false;
 ?>
 <form id="<?= $fb_id ?>"<?php if($fb_class):?> class="<?= $fb_class ?>"<?php endif; ?> action="<?= $actionURL ?>" method="post">
-<?php if($pg->fb_is_ajax()->toBool() and $pg->fb_msg_position()->toBool()): ?>    <div class="messagebox"></div><?php endif; ?>
+<?php if($isAjax and $msgPos): ?>    <div class="messagebox"></div><?php endif; ?>
 <?php
         foreach($fb_blocks as $field):
             switch ($field->_key()) {
@@ -56,8 +67,8 @@ else:
 ?>
     <input type="hidden" name="fb_pg_id" id="fb_pg_id" value="<?= $pg->id() ?>">
     <input type="hidden" name="fb_csrf" id="fb_csrf" value="<?= csrf() ?>">
-<?php if($pg->fb_captcha()->toBool() and $pg->fb_captcha_sitekey()->isNotEmpty() and $pg->fb_captcha_secretkey()->isNotEmpty()): ?>
-<div class="h-captcha" data-sitekey="<?= $pg->fb_captcha_sitekey() ?>"<?php if($pg->fb_captcha_theme()->toBool()): ?> data-theme="dark"<?php endif; ?>></div>
+<?php if($hasCaptcha and !empty($captchaSiteKey) and !empty($captchaSecretKey)): ?>
+<div class="h-captcha" data-sitekey="<?= $captchaSiteKey ?>"<?php if($captchaTheme): ?> data-theme="dark"<?php endif; ?>></div>
 <script src="https://hcaptcha.com/1/api.js" async defer></script>
 <?php endif; ?>
 <?php if($useDiv): ?>
@@ -70,9 +81,9 @@ else:
 <?php if($useDiv): ?>
 </div>
 <?php endif; ?>
-<?php if($pg->fb_is_ajax()->toBool() and !$pg->fb_msg_position()->toBool()): ?>    <div class="messagebox"></div><?php endif; ?>
+<?php if($isAjax and !$msgPos): ?>    <div class="messagebox"></div><?php endif; ?>
 </form>
-<?php if($pg->fb_is_ajax()->toBool()): ?>
+<?php if($isAjax): ?>
 <script type="text/javascript">
     // function to handle the form submission via ajax:
     const fbform = document.getElementById('<?= $fb_id ?>');
@@ -114,7 +125,7 @@ else:
           msgBox.classList.add('error');
         });
         msgBox.removeAttribute('hidden');
-<?php if($pg->fb_captcha()->toBool() and $pg->fb_captcha_sitekey()->isNotEmpty() and $pg->fb_captcha_secretkey()->isNotEmpty()): ?>        hcaptcha.reset();
+<?php if($hasCaptcha and !empty($captchaSiteKey) and !empty($captchaSecretKey)): ?>        hcaptcha.reset();
 <?php endif; ?>
       });
 
@@ -122,10 +133,9 @@ else:
     const fbreset = fbform.querySelector('button[type=reset]');
     fbreset.addEventListener('click',function(e){
         msgBox.setAttribute('hidden', '');
-<?php if($pg->fb_captcha()->toBool() and $pg->fb_captcha_sitekey()->isNotEmpty() and $pg->fb_captcha_secretkey()->isNotEmpty()): ?>        hcaptcha.reset();
+<?php if($hasCaptcha and !empty($captchaSiteKey) and !empty($captchaSecretKey)): ?>        hcaptcha.reset();
 <?php endif; ?>
     });
 </script>
 <?php endif;
     endif;
-endif;
