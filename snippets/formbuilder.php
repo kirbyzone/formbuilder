@@ -10,7 +10,7 @@
     if(!is_object($pg) or !is_a($pg,'Kirby\Cms\Page') or !$pg->exists()): ?>
 <h3>Unable to generate form: invalid page info</h3>
 <?php
-    else if(!$pg->fb_builder()->exists()):
+    elseif(!$pg->fb_builder()->exists()):
 ?>
 <h3>Unable to generate form: required fields missing</h3>
 <?php

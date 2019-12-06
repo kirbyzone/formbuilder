@@ -1,3 +1,7 @@
+## 1.0.5
+Remove a pesky little space that snuck into an if-clause, causing bugs.
+6 December 2019 3:25 pm AEDT
+
 ### 1.0.4
 Make current page the 'default' page in snippet, if no page id parameter passed.
 Improve checking of valid page parameters passed.
