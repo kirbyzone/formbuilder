@@ -23,6 +23,3 @@
         label: Number of Lines
         min: 3
         width: 1/4
-# preview:
-#   snippet: formbuilder/textarea_preview
-# defaultView: preview

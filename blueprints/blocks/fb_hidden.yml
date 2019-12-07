@@ -9,6 +9,3 @@
       extends: formbuilder/fields/value
       label: Field value
       width: 1/4
-# preview:
-#   snippet: formbuilder/hidden_preview
-# defaultView: preview

@@ -27,6 +27,3 @@
       spellcheck: false
       placeholder: "0.01"
       width: 1/4
-# preview:
-#   snippet: formbuilder/number_preview
-# defaultView: preview

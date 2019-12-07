@@ -23,6 +23,3 @@
       extends: formbuilder/fields/pattern
       spellcheck: false
       placeholder: "[0-9a-z._]+@example.com"
-# preview:
-#   snippet: formbuilder/text_preview
-# defaultView: preview

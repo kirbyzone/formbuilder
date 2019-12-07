@@ -37,6 +37,3 @@
             - 'not selected'
             - 'selected'
       help: Only 1 radio button should be 'selected'.
-# preview:
-#   snippet: formbuilder/radio_preview
-# defaultView: preview

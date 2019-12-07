@@ -20,6 +20,3 @@
       extends: formbuilder/fields/max
     pattern:
       extends: formbuilder/fields/pattern
-# preview:
-#   snippet: formbuilder/text_preview
-# defaultView: preview
