@@ -1,0 +1,2 @@
+    <?= $fld->display()->kirbytext() ?>
+

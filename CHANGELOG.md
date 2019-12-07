@@ -1,3 +1,7 @@
+## 1.1
+Add ability to add divider lines and display text to the form.
+7 December 2019 3:15 pm AEDT
+
 ## 1.0.5
 Remove a pesky little space that snuck into an if-clause, causing bugs.
 6 December 2019 3:25 pm AEDT

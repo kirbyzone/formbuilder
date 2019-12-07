@@ -26,7 +26,8 @@ Kirby::plugin('cre8ivclick/formbuilder', [
         'formbuilder/blocks/fb_password' => __DIR__ . '/blueprints/blocks/fb_password.yml',
         'formbuilder/blocks/fb_hidden' => __DIR__ . '/blueprints/blocks/fb_hidden.yml',
         'formbuilder/blocks/fb_honeypot' => __DIR__ . '/blueprints/blocks/fb_honeypot.yml',
-        'formbuilder/blocks/fb_line' => __DIR__ . '/blueprints/blocks/fb_line.yml'
+        'formbuilder/blocks/fb_line' => __DIR__ . '/blueprints/blocks/fb_line.yml',
+        'formbuilder/blocks/fb_displaytext' => __DIR__ . '/blueprints/blocks/fb_displaytext.yml'
     ],
     'snippets' => [
         'formbuilder' => __DIR__ . '/snippets/formbuilder.php',
@@ -39,7 +40,8 @@ Kirby::plugin('cre8ivclick/formbuilder', [
         'formbuilder/radio' => __DIR__ . '/snippets/fields/radio.php',
         'formbuilder/hidden' => __DIR__ . '/snippets/fields/hidden.php',
         'formbuilder/honeypot' => __DIR__ . '/snippets/fields/honeypot.php',
-        'formbuilder/line' => __DIR__ . '/snippets/fields/line.php'
+        'formbuilder/line' => __DIR__ . '/snippets/fields/line.php',
+        'formbuilder/displaytext' => __DIR__ . '/snippets/fields/displaytext.php'
     ],
     'templates' => [
         'emails/fb_default' => __DIR__ . '/templates/emails/fb_default.php'

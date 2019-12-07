@@ -13,7 +13,7 @@ A big part of the headache in handling forms is processing the submitted respons
 
 ****
 
-## Requirements, Installation & Documentation
+## Requirements & Installation
 FormBuilder requires the **[Kirby Builder Plugin](https://github.com/TimOetting/kirby-builder)** for its panel interface - make sure you install it, before installing FormBuilder.
 
 ### Manual Download
@@ -32,7 +32,12 @@ If you use composer, you can quickly add FormBuilder to your project like this:
 composer require cre8ivclick/formbuilder
 ```
 
-For complete instructions on how to install, configure and use FormBuilder in your Kirby site, please refer to the **[Doc Wiki](https://gitlab.com/cre8ivclick/formbuilder/wikis/home)**.
+
+****
+
+## Documentation
+For complete instructions on how to install, configure and use FormBuilder in your Kirby site, please refer to the **[Wiki area](https://gitlab.com/cre8ivclick/formbuilder/wikis/home)** of this project.
+
 
 ****
 

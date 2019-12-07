@@ -4,7 +4,7 @@
     field_name:
       extends: formbuilder/fields/name
       required: false
-      help: Optional <strong>Unique ID</strong> for the &lt;hr&gt; element.
+      help: Optional <strong>unique ID</strong> for the &lt;hr&gt; element.
     field_class:
       extends: formbuilder/fields/class
       help: Optional CSS class(es) for the &lt;hr&gt; element.

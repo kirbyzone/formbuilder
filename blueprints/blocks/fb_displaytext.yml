@@ -1,0 +1,15 @@
+ name: Display Text
+ label: "display text"
+ fields:
+    display:
+      type: textarea
+      label: Content
+      counter: false
+      buttons:
+        - headlines
+        - bold
+        - italic
+        - ul
+        - ol
+        - link
+        - email
