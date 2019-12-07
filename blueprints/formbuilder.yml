@@ -62,6 +62,7 @@ fields:
       fb_password: formbuilder/blocks/fb_password
       fb_hidden: formbuilder/blocks/fb_hidden
       fb_honeypot: formbuilder/blocks/fb_honeypot
+      fb_line: formbuilder/blocks/fb_line
     when:
       fb_form_settings: true
 

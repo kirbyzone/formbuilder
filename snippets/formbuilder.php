@@ -59,6 +59,9 @@
                 case 'fb_honeypot':
                     snippet('formbuilder/honeypot', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
                     break;
+                case 'fb_line':
+                    snippet('formbuilder/line', ['pg' => $pg, 'fld' => $field]);
+                    break;
                 default:
                     snippet('formbuilder/input', ['pg' => $pg, 'fld' => $field, 'data' => $fields]);
                     break;

@@ -25,7 +25,8 @@ Kirby::plugin('cre8ivclick/formbuilder', [
         'formbuilder/blocks/fb_time' => __DIR__ . '/blueprints/blocks/fb_time.yml',
         'formbuilder/blocks/fb_password' => __DIR__ . '/blueprints/blocks/fb_password.yml',
         'formbuilder/blocks/fb_hidden' => __DIR__ . '/blueprints/blocks/fb_hidden.yml',
-        'formbuilder/blocks/fb_honeypot' => __DIR__ . '/blueprints/blocks/fb_honeypot.yml'
+        'formbuilder/blocks/fb_honeypot' => __DIR__ . '/blueprints/blocks/fb_honeypot.yml',
+        'formbuilder/blocks/fb_line' => __DIR__ . '/blueprints/blocks/fb_line.yml'
     ],
     'snippets' => [
         'formbuilder' => __DIR__ . '/snippets/formbuilder.php',
@@ -38,16 +39,7 @@ Kirby::plugin('cre8ivclick/formbuilder', [
         'formbuilder/radio' => __DIR__ . '/snippets/fields/radio.php',
         'formbuilder/hidden' => __DIR__ . '/snippets/fields/hidden.php',
         'formbuilder/honeypot' => __DIR__ . '/snippets/fields/honeypot.php',
-        'formbuilder/text_preview' => __DIR__ . '/snippets/previews/text.php',
-        'formbuilder/textarea_preview' => __DIR__ . '/snippets/previews/textarea.php',
-        'formbuilder/number_preview' => __DIR__ . '/snippets/previews/number.php',
-        'formbuilder/checkbox_preview' => __DIR__ . '/snippets/previews/checkbox.php',
-        'formbuilder/radio_preview' => __DIR__ . '/snippets/previews/radio.php',
-        'formbuilder/select_preview' => __DIR__ . '/snippets/previews/select.php',
-        'formbuilder/date_preview' => __DIR__ . '/snippets/previews/date.php',
-        'formbuilder/time_preview' => __DIR__ . '/snippets/previews/time.php',
-        'formbuilder/password_preview' => __DIR__ . '/snippets/previews/password.php',
-        'formbuilder/hidden_preview' => __DIR__ . '/snippets/previews/hidden.php'
+        'formbuilder/line' => __DIR__ . '/snippets/fields/line.php'
     ],
     'templates' => [
         'emails/fb_default' => __DIR__ . '/templates/emails/fb_default.php'
