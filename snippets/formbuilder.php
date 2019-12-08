@@ -31,7 +31,7 @@
         $fields = $fields ?? false;
 ?>
 <form id="<?= $fb_id ?>"<?php if($fb_class):?> class="<?= $fb_class ?>"<?php endif; ?> action="<?= $actionURL ?>" method="post">
-<?php if($isAjax and $msgPos): ?>    <div class="messagebox"></div><?php endif; ?>
+<?php if($isAjax and $msgPos): ?>    <div class="messagebox" hidden></div><?php endif; ?>
 <?php
         foreach($fb_blocks as $field):
             switch ($field->_key()) {
@@ -83,7 +83,7 @@
     <button type="reset"><?= $pg->fb_cancel_label()->html() ?></button>
 <?php endif; ?>
 </div>
-<?php if($isAjax and !$msgPos): ?>    <div class="messagebox"></div><?php endif; ?>
+<?php if($isAjax and !$msgPos): ?>    <div class="messagebox" hidden></div><?php endif; ?>
 </form>
 <?php if($isAjax): ?>
 <script type="text/javascript">

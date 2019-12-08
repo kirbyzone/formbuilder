@@ -1,3 +1,7 @@
+## 1.1.3
+Set initial state of messagebox to 'hidden'.
+8 December 2019 7:20 pm AEDT
+
 ## 1.1.2
 Fix issue with establishing a default sender's email address
 in non-standard testing environments.
