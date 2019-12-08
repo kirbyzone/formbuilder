@@ -77,16 +77,12 @@
 <div class="h-captcha" data-sitekey="<?= $captchaSiteKey ?>"<?php if($captchaTheme): ?> data-theme="dark"<?php endif; ?>></div>
 <script src="https://hcaptcha.com/1/api.js" async defer></script>
 <?php endif; ?>
-<?php if($useDiv): ?>
-<div<?php if($fb_class): ?> class="<?= $fb_class ?>"<?php endif; ?>>
-<?php endif; ?>
+<div<?php if($pg->fb_formbtns_class()->isNotEmpty()): ?> class="<?= $pg->fb_formbtns_class()->html() ?>"<?php endif; ?>>
     <button type="submit" name="submit"><?= $pg->fb_submit_label()->or("Submit")->html() ?></button>
 <?php if($pg->fb_cancel_label()->isNotEmpty()): ?>
     <button type="reset"><?= $pg->fb_cancel_label()->html() ?></button>
 <?php endif; ?>
-<?php if($useDiv): ?>
 </div>
-<?php endif; ?>
 <?php if($isAjax and !$msgPos): ?>    <div class="messagebox"></div><?php endif; ?>
 </form>
 <?php if($isAjax): ?>

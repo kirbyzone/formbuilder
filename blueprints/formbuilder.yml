@@ -83,6 +83,18 @@ fields:
     help: Leave empty to omit the button from the form.
     when:
       fb_form_settings: true
+  fb_formbtns_class:
+    type: text
+    label: Enclosing Div Class
+    counter: false
+    translate: false
+    spellcheck: false
+    placeholder: form
+    before: "."
+    width: 1/3
+    help: Optional CSS class to add to the enclosing &lt;div&gt; element.
+    when:
+      fb_form_settings: true
   fb_captcha_line:
     type: line
   fb_captcha:

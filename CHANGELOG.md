@@ -1,3 +1,8 @@
+## 1.1.1
+Add ability to set class on enclosing div of send/reset buttons.
+Fix issue with multiple form classes being converted to slug text.
+8 December 2019 12:20 pm AEDT
+
 ## 1.1
 Add ability to add divider lines and display text to the form.
 7 December 2019 3:15 pm AEDT
