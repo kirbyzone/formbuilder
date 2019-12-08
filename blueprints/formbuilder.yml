@@ -25,7 +25,6 @@ fields:
     type: text
     label: Form Class
     counter: false
-    converter: slug
     translate: false
     spellcheck: false
     placeholder: form
