@@ -202,11 +202,15 @@ Kirby::plugin('cre8ivclick/formbuilder', [
                         if(isset($data[$pg->fb_email_sender_field()->value()]) and !empty($data[$pg->fb_email_sender_field()->value()])){
                             $sender = $data[$pg->fb_email_sender_field()->value()];
                         } else {
-                            $sender = 'form@' . kirby()->request()->domain();
+                            $sender = 'form@' . parse_url(kirby()->request()->domain(),PHP_URL_HOST);
                         }
                     } else {
                         // we get the sender from a panel field:
-                        $sender = $pg->fb_email_sender()->or('form@' . kirby()->request()->domain());
+                        if($pg->fb_email_sender()->isNotEmpty()){
+                            $sender = $pg->fb_email_sender()->value();
+                        } else {
+                            $sender = 'form@' . parse_url(kirby()->request()->domain(),PHP_URL_HOST);
+                        }
                     }
                     // determine the subject:
                     if($pg->fb_email_subject()->exists()){

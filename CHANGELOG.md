@@ -1,3 +1,8 @@
+## 1.1.2
+Fix issue with establishing a default sender's email address
+in non-standard testing environments.
+8 December 2019 5:25 pm AEDT
+
 ## 1.1.1
 Add ability to set class on enclosing div of send/reset buttons.
 Fix issue with multiple form classes being converted to slug text.
