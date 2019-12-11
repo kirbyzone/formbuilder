@@ -1,3 +1,8 @@
+## 1.1.4
+Place radio buttons inside their label elements - easier formatting,
+and stops button splitting from label inside wrapping elements.
+11 December 2019 3:15 pm AEDT
+
 ## 1.1.3
 Set initial state of messagebox to 'hidden'.
 8 December 2019 7:20 pm AEDT

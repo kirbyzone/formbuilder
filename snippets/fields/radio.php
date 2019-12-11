@@ -33,9 +33,10 @@
                     $canSelect = false;
                 }
             }
-?>
-    <input type="radio" name="<?= $name ?>" id="<?= $id ?>" value="<?= $value ?>"<?php if(!$useDiv and $class): ?> class="<?= $class ?>"<?php endif; ?><?php if($req): ?> required<?php endif; ?><?php if($selected): ?> checked<?php $selected = false; endif; ?>>
-    <label for="<?= $id ?>"><?= $label ?></label>
+?>  <label <?php if(!$useDiv and $class): ?> class="<?= $class ?>"<?php endif; ?>>
+        <input type="radio" name="<?= $name ?>" value="<?= $value ?>"<?php if($req): ?> required<?php endif; ?><?php if($selected): ?> checked<?php $selected = false; endif; ?>>
+    <?= $label ?>
+    </label>
 <?php   endforeach; ?>
 <?php if($useDiv): ?>
 </div>
